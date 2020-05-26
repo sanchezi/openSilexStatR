@@ -3,7 +3,7 @@
 # Objective: graphical functions for phenoarch experiment data analysis
 # Author: I.Sanchez
 # Creation: 27/07/2016
-# Update: 14/11/2019
+# Update: 26/05/2020
 #------------------------------------------------------------------
 
 #' @title a function for representing a trait in the phenoarch greenhouse
@@ -299,4 +299,56 @@ plotCARBayesST<-function(datain,outlierin,myselect,trait,xvar){
     geom_point(data=toto,aes_string(x = xvar, y = trait),colour="black") +
     facet_wrap(~ genotypeAlias) + labs(title=trait)
   print(g)
+}
+
+
+#-------------------------------------------------------------------
+#' plotDetectPointOutlierLocFit
+#' @description graphical function to produced the modelled smoothing and detected outliers 
+#'    for each curve of a dataset using a local regression
+#' --- Input:
+#' @param datain input dataframe. This dataframe contains a set of time courses
+#' @param resuin input dataframe of results from funcDetectPointOutlierLocFit function.
+#' @param myparam character, name of the variable to model in datain 
+#'                 (for example, Biomass, PH or LA and so on)
+#' @param mytime character, name of the time variable in datain which must be numeric
+#' @param myid character, name of the id variable in datain
+#' 
+#' @details see locfit() help function from the locfit R library
+#' @details see funcDetectPointOutlierLocFit function
+#'
+#' @return graphics 
+#' @examples
+#' \donttest{
+#' resu.root <- FuncDetectPointOutlierLocFit(datain = RootSub,
+#'                                          myparam = "tipPos_y",
+#'                                          mytime = "Time",
+#'                                          myid = "plantId",
+#'                                          mylevel = 5,
+#'                                          mylocfit = 70)
+#' plotDetectPointOutlierLocFit(datain=RootSub,resuin=resu.root,myparam="tipPos_y",
+#'                             mytime="Time",myid="plantId")
+#' }
+#-------------------------------------------------------------------
+plotDetectPointOutlierLocFit <-function(datain,
+                                        resuin,
+                                        myparam,
+                                        mytime,
+                                        myid) {
+  selectOutlier<- resuin %>% dplyr::filter(outlier == 1)
+  
+  p<-ggplot(datain,aes_string(x=mytime,y=myparam)) + 
+    ggplot2::geom_point()  +
+    ggplot2::facet_wrap(facets=myid) +
+    ggplot2::geom_line(data = resuin,col = "green",size = .8,
+                       mapping = ggplot2::aes_string(x = mytime, y = "lwr")) +
+    ggplot2::geom_line(data = resuin,col = "green",size = .8,
+                       mapping = ggplot2::aes_string(x = mytime, y = "upr")) +
+    ggplot2::geom_line(data = resuin,col = "red",size = .8,
+                       mapping = ggplot2::aes_string(x = mytime, y = "ypred")) +
+    ggplot2::geom_point(data = selectOutlier,
+                        mapping = ggplot2::aes_string(x = mytime, y = myparam),
+                        col = "blue",size = 2) +
+    ggplot2::theme(legend.position = "none")
+  return(p)
 }
