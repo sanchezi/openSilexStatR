@@ -40,7 +40,7 @@ the input dataset must contain Position,Line,Ref,scenario,genotypeAlias columns.
 }
 \examples{
 \donttest{
- library(phisStatR)
+ library(openSilexStatR)
  mydata<-plant1
  mydata<-filter(mydata,!is.na(mydata$thermalTime))
  str(mydata)

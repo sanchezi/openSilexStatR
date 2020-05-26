@@ -3,7 +3,7 @@
 # Objective: calculation of thermal time according to several methods
 # Author: I.Sanchez
 # Creation: 12/12/2016
-# Update  : 14/11/2019
+# Update  : 26/05/2020
 #-------------------------------------------------------------------------------
 
 ##' a function to calculate thermal time
@@ -31,17 +31,6 @@
 ##' @examples
 ##' \donttest{
 ##' # Example for the model of Parent 2010
-##' library(phisWSClientR)
-##' # connectToPHISWS and getEnvironment are functions of the phisWSClientR library
-##' connectToPHISWS(apiID="ws_1_public", username = "guestphis@supagro.inra.fr",
-##'                 password = "guestphis")
-##' tpCount<-getEnvironment(experimentURI="http://www.phenome-fppn.fr/m3p/ARCH2017-03-30",
-##'               facility="http://www.phenome-fppn.fr/m3p/es2",
-##'               variables="leaf temperature_thermocouple sensor_degree celsius")$totalCount
-##' myMeteo<-getEnvironment(experimentURI="http://www.phenome-fppn.fr/m3p/ARCH2017-03-30",
-##'               facility="http://www.phenome-fppn.fr/m3p/es2",
-##'               variables="leaf temperature_thermocouple sensor_degree celsius",
-##'               pageSize=tpCount)$data
 ##' test<-thermalTime(datain=myMeteo,inSpecie="maize",method="parent",inDateS="2017-04-02",
 ##'                   inDateE="2017-06-15",inTemp=NULL)
 ##' }

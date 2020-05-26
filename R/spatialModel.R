@@ -4,7 +4,7 @@
 #            require SpATS package
 # Author: I.Sanchez
 # Creation: 04/05/2018
-# Update: 29/10/2019
+# Update: 26/05/2020
 #-------------------------------------------------------------------------------
 
 #' fitSpATS
@@ -28,7 +28,6 @@
 #' @return a SpATS object
 #' @examples
 #' \donttest{
-#'  library(phisStatR)
 #'  mydata<-plant4
 #'  test<-fitSpATS(datain=mydata,trait="Biomass24",genotypeId="genotypeAlias",rowId="Line",
 #'        colId="Position",typeModel="anova",genotype.as.random=FALSE,nseg=c(14,30),verbose)

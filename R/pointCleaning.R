@@ -4,7 +4,7 @@
 #            locfit smoothing and an interval of prediction
 # Author: I.Sanchez
 # Creation: 13/04/2018
-# Update  : 29/10/2019
+# Update  : 26/05/2020
 #-------------------------------------------------------------------------------
 
 #' flagPointLocfit
@@ -135,3 +135,93 @@ plotFlagPoint<-function(smoothin,loopID,myselect){
 #lines(xreg,lwr,col="green")
 #points(filter(tppred,outlier==1)[,"x"],filter(tppred,outlier==1)[,"y"],col="blue",pch=1,cex=1.5)
 
+#------------- Tutorial version
+
+#' FuncDetectPointOutlierLocFit
+#' @description function to model each curve of a dataset using a local regression
+#' @param datain input dataframe. This dataframe contains a set of time courses
+#' @param myparam character, name of the variable to model in datain 
+#'                 (for example, Biomass, PH or LA and so on)
+#' @param mytime  character, name of the time variable in datain which must be numeric
+#' @param myid    character, name of the id variable in datain
+#' @param mylevel numeric, factor to calculate the confidence interval
+#' @param mylocfit numeric, The constant component of the smoothing parameter. (see the locfit())
+#' 
+#' @details see locfit() help function from the locfit R library
+#' The user can act on:
+#' \describe{
+#'  \item{mylocfit}{the constant of the smoothing parameter. Increase mylocfit to have a 
+#'    very smooth curve}
+#'  \item{mylevel}{the level to calculate the confidence interval. Increase mylevel to 
+#'    exclude less outliers}
+#' }
+#' @details to produce the grahics of the prediction and detected outliers, please use
+#'         plotDetectPointOutlierLocFit() function.
+#' @return a data.frame with outlier containing the following columns:
+#' \describe{
+#'  \item{Ref}{the id variable}
+#'  \item{mytime}{name of the time variable in datain}
+#'  \item{myparam}{name of the modeled variable in datain}
+#'  \item{ypred}{the locfit prediction}
+#'  \item{sd_ypred}{standard deviation of the prediction}
+#'  \item{lwr}{lower bound of the confidence interval}
+#'  \item{upr}{upper bound of the confidence interval}
+#'  \item{outlier}{flag of detected outlier (0 is outlier, 1 is not)}
+#' }
+#' @export
+#'
+#' @importFrom dplyr select_ bind_rows mutate
+#' 
+#' @examples
+#' \donttest{
+#' resu.root<-FuncDetectPointOutlierLocFit(datain=mydata,myparam="y",
+#'                mytime="DegDay",myid="identifiant",mylevel=5,
+#'                mylocfit=70)
+#' }
+#-------------------------------------------------------------------
+FuncDetectPointOutlierLocFit <-function(datain,
+                                        myparam,
+                                        mytime,
+                                        myid,
+                                        mylevel,
+                                        mylocfit) {
+  
+  myfm<-list()     # initialize a list
+  tabpred<-NULL    # initialize a dataframe
+  
+  for (i in levels(factor(datain[,myid]))) {
+    tmp <- datain[datain[,myid]==i,] 
+    tmp <- na.omit(tmp)
+    y <- tmp[,myparam]
+    x <- tmp[,mytime]
+    xpred <- seq(0,max(x,na.rm=TRUE),1)
+    
+    # Choice of step according to the number of data
+    if (length(x) <=6) {
+      print("Not enough data (<=6 points): ",i)
+      next
+    } else {
+      myfm <- locfit(y ~ lp(x, h = mylocfit, deg = 2))
+      
+      # Retrieving predictions for the interval for a fine graphic
+      ypred <- predict(myfm,newdata=list(x=xpred),se.fit=TRUE)
+      lwr <- ypred[[1]]-mylevel*ypred[[2]]
+      upr <- ypred[[1]]+mylevel*ypred[[2]]
+      
+      # Retrieving predictions for the x input interval
+      ypred2 <- predict(myfm,newdata=list(x=x),se.fit=TRUE)
+      lwr2 <- ypred2[[1]] - mylevel*ypred2[[2]]
+      upr2 <- ypred2[[1]] + mylevel*ypred2[[2]]
+      
+      # joining results into dataframe
+      tppred <- cbind.data.frame(rep(i,length(x)),x,y,ypred2[[1]],ypred2[[2]],lwr2,upr2)
+      tppred <- mutate(tppred,outlier=if_else(y < upr2 & y > lwr2,0,1))
+      tabpred <- rbind.data.frame(tabpred,tppred) 
+    }
+  }
+  
+  names(tabpred)<-c(myid,mytime,myparam,"ypred","sd_ypred","lwr","upr","outlier")
+  return(tabpred)
+}
+
+#---------------------------- End of file --------------------------

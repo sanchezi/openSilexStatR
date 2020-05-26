@@ -39,7 +39,6 @@ the input dataset must contain Position,Line,Ref,scenario,genotypeAlias columns
 }
 \examples{
 \donttest{
- library(phisStatR)
  mydata<-plant4
  test<-fitSpATS(datain=mydata,trait="Biomass24",genotypeId="genotypeAlias",rowId="Line",
        colId="Position",typeModel="anova",genotype.as.random=FALSE,nseg=c(14,30),verbose)

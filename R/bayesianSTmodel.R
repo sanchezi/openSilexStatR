@@ -4,7 +4,7 @@
 #            require CARBayesST package
 # Author: I.Sanchez
 # Creation: 20/06/2017
-# Update: 14/11/2019
+# Update: 26/05/2020
 #-------------------------------------------------------------------------------
 
 #' fitCARBayesST
@@ -31,7 +31,7 @@
 #' @return a list with a spatio-temporal object (CARBayesST) and a dataframe of the formated data
 #' @examples
 #' \donttest{
-#'  library(phisStatR)
+#'  library(openSilexStatR)
 #'  mydata<-plant1
 #'  mydata<-filter(mydata,!is.na(mydata$thermalTime))
 #'  str(mydata)
