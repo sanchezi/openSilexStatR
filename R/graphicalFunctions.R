@@ -329,7 +329,7 @@ plotCARBayesST<-function(datain,outlierin,myselect,trait,xvar){
 #' plotDetectPointOutlierLocFit(datain=RootSub,resuin=resu.root,myparam="tipPos_y",
 #'                             mytime="Time",myid="plantId")
 #' }
-#-------------------------------------------------------------------
+#' @export
 plotDetectPointOutlierLocFit <-function(datain,
                                         resuin,
                                         myparam,
@@ -352,3 +352,61 @@ plotDetectPointOutlierLocFit <-function(datain,
     ggplot2::theme(legend.position = "none")
   return(p)
 }
+
+
+
+#' plotDetectOutlierPlantMaize
+#' @description function producing a graphic of detected outlier plants from 
+#'              funcDetectOutlierPlantMaize() function
+#'              
+#' @param datain input dataframe, a spatio-temporal data.frame
+#' @param outmodels the output object from funcDetectOutlierPlantMaize() function
+#'                   containing the detected outliers (either small or big)
+#'                   'theobject$smallOutliers' or 'theobject$bigOutliers'
+#' @param x character, name of the time variable in datain
+#' @param y character, name of the variable in datain to draw
+#' @param genotype character, name of the genotype variable in datain
+#' @param idColor character, name of the treatment variable in datain to differentiate
+#'                  the curves
+#' @param idFill character, name of the repetition variable in the datain to differentiate
+#'                  the outlier curves
+#' 
+#' @details see funcDetectOutlierPlantMaize function
+#' 
+#' @return a graphic
+#' @examples
+#' \donttest{
+#' plotDetectOutlierPlantMaize(datain=PAdata,
+#'          outmodels=test$smallOutlier,
+#'          x="Time",
+#'          y="Biomass_Estimated",
+#'          genotype="Genotype",
+#'          idColor="Treatment",
+#'         idFill="plantId")
+#' }
+#' @export
+plotDetectOutlierPlantMaize <- function(datain,
+                                        outmodels,
+                                        x,
+                                        y,
+                                        genotype,
+                                        idColor,
+                                        idFill) {
+  # some datamanagement  
+  selectGeno<-as.character(unique(outmodels[,genotype]))
+  tmp<- datain %>% dplyr::filter(.[[genotype]] %in% selectGeno)
+  tmpout<- datain %>% dplyr::filter(.[[idFill]] %in% outmodels[,idFill])
+  
+  ggplot(data = tmp, ggplot2::aes_string(x = x, y = y, color = idColor, fill = idFill)) + 
+    ggplot2::geom_point(size = .8) + 
+    ggplot2::facet_wrap(facets=genotype) +
+    # detected plants
+    ggplot2::geom_point(data = tmpout,
+                        mapping = ggplot2::aes_string(x = x, y = y, 
+                                                      group = genotype, 
+                                                      fill = idFill),
+                        col = "black",size = .8) +
+    ggplot2::theme(legend.position = "none")
+}
+
+#----------- End of file ---------------------------
