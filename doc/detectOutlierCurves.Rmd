@@ -1,0 +1,154 @@
+---
+title: "Phenoarch platform - Cleaning procedure - Curve level using SpATS"
+author: "I.Sanchez"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: yes
+    number_sections: true
+vignette: >
+  %\VignetteIndexEntry{Phenoarch platform - Cleaning procedure - Curve level using SpATS}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<!---
+Program  : detectOutlierCurves.Rmd
+Author   : I.Sanchez (MISTEA)
+Objective: a vignette for openSilexStatR library
+           The user has to adapt to his own analysis.
+Creation : 25/05/2020
+Update   : 26/05/2020
+-->
+
+***
+# Objective 
+
+```{r,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+  library(dplyr)
+  library(tidyr)
+  library(openSilexStatR)
+  library(ggplot2)
+```
+
+This vignette deals with the detection of outlier plants in a lattice experiment using a spatial model using splines (**SpATS** library) [3]. Here the following steps of this procedure developed for Maize experiment but easily adaptable to others species:
+
+* From a temporal dataset designed as __plant1__ with biomass (or biovolume) and plant height phenotypes. Extract predictions of these two phenotypes at a specific time point (for example just before the treatment) and create a dataset designed as __plant4__. Here, we will use the biomass and plant height predicted at 24 days at 20°C.
+* From a temporal dataset of count of number of leaves, extract the phyllocron (slope of linear regression for each plant)
+
+We so have a dataset with one row for each plant in the experiment containing the three phenotypes: __biomass24__, __PH24__ and __Phy__.
+
+* Apply a SpATS model on each phenotype, check the diagnostic graphics and retrieve the deviance residuals calculated by the model. 
+* On the residuals, we can detect outlier plant(s) with a combined physiological criterion applying the following rules:
+
+* __raw procedure__: at a threshold=0.95 (can be modified)
+    + __small plants__ are identified if $res_i < \mu_{res} - qnorm(threshold) \times sd_{res}$ for <span style="color:green"> biomass AND phyllocron </span>
+    + __big plants__ are identified if $res_i > \mu_{res} + qnorm(threshold) \times sd_{res}$  for <span style="color:green">biomass AND plant height </span>
+
+Use the `FuncDetectOutlierPlanMaize()` and `plotDetectOutlierPlantMaize()` functions to do the previous steps.
+
+# Import of data
+In this vignette, we use a toy data set of the *openSilexStatR* library (anonymized real data set). 
+
+This data set was obtained from an experiment of maize performed in the Phenoarch greenhouse composed
+of a conveyor belt structure of 28 lanes carrying 60 carts with one pot each (i.e. 1680 pots) (Cabrera-Bosquet et al. 2016). The data contains one experiment with 90 genotypes (Genotype) from two genotypic panels (Population) and two water scenarios (Treatment): well watered (WW) and water deficit (WD).
+
+The leaf area and the biomass of individual plants are estimated from images taken in 13 directions. Briefly, pixels extracted from RGB images are converted into biomass and leaf area using linear models derived from regression of data from multiple side view images and destructive measurements performed at different phenological stages, from 5 to 14 appeared leaves (i.e. from 15 to 50 days at 20°C after emergence). Time courses of biomass (Biomass_Estimated) and leaf area (LA_Estimated) are expressed as a function of thermal time (TT). The height of each plants (Height_Estimated) is also estimated from the pictures. The number of visible leaves (count_leaf) is counted at least once a week on each plant. To prevent errors in leaf counting, leaves 5 and 10 of each plant are marked soon after appearance. The phyllocron is calculated as the slope of the linear regression bewtween the number of leaves and the thermal time at 2017-04-27 day, before the beginning of the water deficit.
+The unique ID of the plant is recorded (plantId), together with the pot position in row (Row) and in column (Col).
+
+```{r,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+  mydata<-PAdata
+  str(mydata)
+```
+
+# SpATS library
+
+## Detection of outliers
+
+```{r}
+test<-FuncDetectOutlierPlantMaize(datain=mydata,dateBeforeTrt="2017-04-27",
+                param1="Biomass_Estimated",param2="Height_Estimated",
+                param3="phyllocron",paramGeno="Genotype",
+                paramCol="Col",paramRow="Row",
+                threshold=0.95,nCol=28,nRow=60,genotype.as.random=FALSE,
+                timeColumn = "Time")
+
+```
+
+The FuncDetectOutlierPlantMaize() returns a list of 6 elements :
+
+* outputDataframe: a dataframe with the used data set, the fitted values and residuals calculated by the models, the plants flagged as outlier
+* smallOutlier: a data.frame of the **small** plants detected as outliers
+* bigOutlier: a data.frame of the **big** plants detected as outliers
+* m1: A list of the SpATS results for param1
+* m2: A list of the SpATS results for param2
+* m3: A list of the SpATS results for param3
+
+## Biomass
+
+```{r spatplot1,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+  plot(test$m1, spaTrend = "percentage")
+```
+
+## Plant height
+
+```{r spatplot2,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+  plot(test$m2, spaTrend = "percentage")
+```
+
+## Phyllocron
+
+```{r spatplot3,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+  plot(test$m2, spaTrend = "percentage")
+```
+
+## Diagnosis on Biomass
+
+```{r}
+ggplot(data=test$outputDataframe,aes(x=fittedP1,y=devResP1)) + geom_point()
+
+```
+
+# Dataset highlighting the outlier plants
+
+```{r,echo=TRUE,message=FALSE, warning=FALSE}
+test$smallOutlier
+test$bigOutlier
+```
+
+The user can save the residuals and detected outliers in an output file, using `write.table()` function.
+
+## Plots
+
+```{r}
+plotDetectOutlierPlantMaize(datain=PAdata,
+                            outmodels=test$smallOutlier,
+                            x="Time",
+                            y="Biomass_Estimated",
+                            genotype="Genotype",
+                            idColor="Treatment",
+                            idFill="plantId")
+```
+
+
+```{r}
+plotDetectOutlierPlantMaize(datain=PAdata,
+                            outmodels=test$bigOutlier,
+                            x="Time",
+                            y="Biomass_Estimated",
+                            genotype="Genotype",
+                            idColor="Treatment",
+                            idFill="plantId")
+```
+
+# Session info
+```{r session,echo=FALSE,message=FALSE, warning=FALSE}
+  sessionInfo()
+```
+
+# References
+1. R Development Core Team (2015). R: A language and environment for statistical computing. R Foundation for
+      Statistical Computing, Vienna, Austria. ISBN 3-900051-07-0, URL http://www.R-project.org.
+2. Maria Xose Rodriguez-Alvarez, Martin P. Boer, Fred A. van Eeuwijk, Paul H.C. Eilers (2017). Correcting for spatial heterogeneity
+  in plant breeding experiments with P-splines. Spatial Statistics URL https://doi.org/10.1016/j.spasta.2017.10.003
+3. Alvarez Prado, S., Sanchez, I., Cabrera Bosquet, L., Grau, A., Welcker, C., Tardieu, F., Hilgert, N. (2019). To clean or not to clean phenotypic datasets for outlier plants in genetic analyses?. Journal of Experimental Botany, 70 (15), 3693-3698. , DOI : 10.1093/jxb/erz191 https://prodinra.inra.fr/record/481355
