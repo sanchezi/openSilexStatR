@@ -15,11 +15,10 @@ vignette: >
 <!---
 Program  : detectOutlierCurves.Rmd
 Author   : I.Sanchez (MISTEA)
-Objective: a vignette for phisStatR library
-           require openSilexStatR library and () function
+Objective: a vignette for openSilexStatR library
            The user has to adapt to his own analysis.
 Creation : 25/05/2020
-Update   : 25/05/2020
+Update   : 26/05/2020
 -->
 
 ***
@@ -34,217 +33,112 @@ Update   : 25/05/2020
 
 This vignette deals with the detection of outlier plants in a lattice experiment using a spatial model using splines (**SpATS** library) [3]. Here the following steps of this procedure developed for Maize experiment but easily adaptable to others species:
 
-* From a temporal dataset designed as __plant1__ with biomass (or biovolume) and plant height phenotypes. Extract predictions of these two phenotypes at a specific time point (for example just before the treatment) and create a dataset designed as __plant4__. Here, we will use the biomass and plant height predicted at 24 days et 20°C.
+* From a temporal dataset designed as __plant1__ with biomass (or biovolume) and plant height phenotypes. Extract predictions of these two phenotypes at a specific time point (for example just before the treatment) and create a dataset designed as __plant4__. Here, we will use the biomass and plant height predicted at 24 days at 20°C.
 * From a temporal dataset of count of number of leaves, extract the phyllocron (slope of linear regression for each plant)
 
-We have so a dataset with one row for each plant in the experiment containing the three phenotypes: __biomass24__, __PH24__ and __Phy__.
+We so have a dataset with one row for each plant in the experiment containing the three phenotypes: __biomass24__, __PH24__ and __Phy__.
 
-* Apply a SpATS model on each phenotype, check the diagnostic graphics and retrieve the deviance residuals calculated by the model
+* Apply a SpATS model on each phenotype, check the diagnostic graphics and retrieve the deviance residuals calculated by the model. 
 * On the residuals, we can detect outlier plant(s) with a combined physiological criterion applying the following rules:
 
 * __raw procedure__: at a threshold=0.95 (can be modified)
     + __small plants__ are identified if $res_i < \mu_{res} - qnorm(threshold) \times sd_{res}$ for <span style="color:green"> biomass AND phyllocron </span>
     + __big plants__ are identified if $res_i > \mu_{res} + qnorm(threshold) \times sd_{res}$  for <span style="color:green">biomass AND plant height </span>
 
+Use the `FuncDetectOutlierPlanMaize()` and `plotDetectOutlierPlantMaize()` functions to do the previous steps.
+
 # Import of data
-In this vignette, we use a toy data set of the *phisStatR* library (anonymized real data set). the first one *plant4* is extracted from *plant1* and is used to detect outlier at a specific time point. The detected outlier will be checked on the *plant1* dataset graphically.
+In this vignette, we use a toy data set of the *openSilexStatR* library (anonymized real data set). 
+
+This data set was obtained from an experiment of maize performed in the Phenoarch greenhouse composed
+of a conveyor belt structure of 28 lanes carrying 60 carts with one pot each (i.e. 1680 pots) (Cabrera-Bosquet et al. 2016). The data contains one experiment with 90 genotypes (Genotype) from two genotypic panels (Population) and two water scenarios (Treatment): well watered (WW) and water deficit (WD).
+
+The leaf area and the biomass of individual plants are estimated from images taken in 13 directions. Briefly, pixels extracted from RGB images are converted into biomass and leaf area using linear models derived from regression of data from multiple side view images and destructive measurements performed at different phenological stages, from 5 to 14 appeared leaves (i.e. from 15 to 50 days at 20°C after emergence). Time courses of biomass (Biomass_Estimated) and leaf area (LA_Estimated) are expressed as a function of thermal time (TT). The height of each plants (Height_Estimated) is also estimated from the pictures. The number of visible leaves (count_leaf) is counted at least once a week on each plant. To prevent errors in leaf counting, leaves 5 and 10 of each plant are marked soon after appearance. The phyllocron is calculated as the slope of the linear regression bewtween the number of leaves and the thermal time at 2017-04-27 day, before the beginning of the water deficit.
+The unique ID of the plant is recorded (plantId), together with the pot position in row (Row) and in column (Col).
 
 ```{r,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
-  mydata<-plant4
+  mydata<-PAdata
   str(mydata)
 ```
 
 # SpATS library
-## Biomass
-```{r spatmodel1,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
-  spat.biomass<-fitSpATS(datain=mydata,trait="Biomass24",genotypeId="genotypeAlias",rowId="Line",colId="Position",
-                 typeModel="anova",genotype.as.random=FALSE,nseg=c(14,30),verbose)
+
+## Detection of outliers
+
+```{r}
+test<-FuncDetectOutlierPlantMaize(datain=mydata,dateBeforeTrt="2017-04-27",
+                param1="Biomass_Estimated",param2="Height_Estimated",
+                param3="phyllocron",paramGeno="Genotype",
+                paramCol="Col",paramRow="Row",
+                threshold=0.95,nCol=28,nRow=60,genotype.as.random=FALSE,
+                timeColumn = "Time")
+
 ```
 
+The FuncDetectOutlierPlantMaize() returns a list of 6 elements :
+
+* outputDataframe: a dataframe with the used data set, the fitted values and residuals calculated by the models, the plants flagged as outlier
+* smallOutlier: a data.frame of the **small** plants detected as outliers
+* bigOutlier: a data.frame of the **big** plants detected as outliers
+* m1: A list of the SpATS results for param1
+* m2: A list of the SpATS results for param2
+* m3: A list of the SpATS results for param3
+
+## Biomass
+
 ```{r spatplot1,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
-  plot(spat.biomass)
+  plot(test$m1, spaTrend = "percentage")
 ```
 
 ## Plant height
-```{r spatmodel2,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
-  spat.ph<-fitSpATS(datain=mydata,trait="PH24",genotypeId="genotypeAlias",rowId="Line",colId="Position",
-                 typeModel="anova",genotype.as.random=FALSE,nseg=c(14,30),verbose)
-```
 
 ```{r spatplot2,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
-  plot(spat.ph)
+  plot(test$m2, spaTrend = "percentage")
 ```
 
 ## Phyllocron
-```{r spatmodel3,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
-  spat.phy<-fitSpATS(datain=mydata,trait="Phy",genotypeId="genotypeAlias",rowId="Line",colId="Position",
-                 typeModel="anova",genotype.as.random=FALSE,nseg=c(14,30),verbose)
-```
 
 ```{r spatplot3,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
-  plot(spat.phy)
+  plot(test$m2, spaTrend = "percentage")
+```
+
+## Diagnosis on Biomass
+
+```{r}
+ggplot(data=test$outputDataframe,aes(x=fittedP1,y=devResP1)) + geom_point()
+
+```
+
+# Dataset highlighting the outlier plants
+
+```{r,echo=TRUE,message=FALSE, warning=FALSE}
+test$smallOutlier
+test$bigOutlier
+```
+
+The user can save the residuals and detected outliers in an output file, using `write.table()` function.
+
+## Plots
+
+```{r}
+plotDetectOutlierPlantMaize(datain=PAdata,
+                            outmodels=test$smallOutlier,
+                            x="Time",
+                            y="Biomass_Estimated",
+                            genotype="Genotype",
+                            idColor="Treatment",
+                            idFill="plantId")
 ```
 
 
-# Data cleaning
-The data cleaning procedure is to identify plants having too large or too small features, from deviance residuals obtained with SpATS mixed models for each parameter (biomass, plant height and phyllocron). 2 procedures are tested:
-
-* __raw procedure__: at a threshold=0.95 or 0.90 or 0.98 (can be modified)
-    + __small plants__ are identified if $res_i < \mu_{res} - qnorm(threshold) \times sd_{res}$ for <span style="color:green"> biomass AND phyllocron </span>
-    + __big plants__ are identified if $res_i > \mu_{res} + qnorm(threshold) \times sd_{res}$  for <span style="color:green">biomass AND plant height </span>
-* __quantile procedure__: Same procedure with quantiles : 
-    + __small plants__ are identified if $res_{i} < Q1_{res} - 1.5 \times(Q3 - Q1)$ for <span style="color:green"> biomass AND phyllocron </span>
-    + __big plants__ are identified if $res\_{i} > Q1_{res} - 1.5 \times(Q3 - Q1)$ for <span style="color:green"> biomass AND plant height </span>
-
-```{r proc,echo=TRUE,message=FALSE, warning=FALSE}
-  # concatenate raw data and residuals calculated with the SpATS model
-  devResBio<-spat.biomass$residuals
-  devResPH<-spat.ph$residuals
-  devResPhy<-spat.phy$residuals
-  myglobal<-cbind.data.frame(mydata,devResBio,devResPH,devResPhy)
-  threshold<-0.95
-  
-  myglobal<-mutate(myglobal,mean.devBio=mean(devResBio,na.rm=TRUE),
-                          sd.devBio=sd(devResBio,na.rm=TRUE),
-                          mean.devPH=mean(devResPH,na.rm=TRUE),
-                          sd.devPH=sd(devResPH,na.rm=TRUE),
-                          mean.devPhy=mean(devResPhy,na.rm=TRUE),
-                          sd.devPhy=sd(devResPhy,na.rm=TRUE),
-                          lower.devBio=mean.devBio - sd.devBio*qnorm(threshold),
-                          lower.devPH=mean.devPH - sd.devPH*qnorm(threshold),
-                          lower.devPhy=mean.devPhy - sd.devPhy*qnorm(threshold),
-                          upper.devBio=mean.devBio + sd.devBio*qnorm(threshold),
-                          upper.devPH=mean.devPH + sd.devPH*qnorm(threshold),
-                          upper.devPhy=mean.devPhy + sd.devPhy*qnorm(threshold),
-                          # yes=1 == OK
-                          # no =0 == problem
-                          lower.critraw.spatsBio=ifelse(devResBio - lower.devBio > 0,yes=1,no=0),
-                          lower.critraw.spatsPH=ifelse(devResPH - lower.devPH > 0,yes=1,no=0),
-                          lower.critraw.spatsPhy=ifelse(devResPhy - lower.devPhy > 0,yes=1,no=0),
-                          upper.critraw.spatsBio=ifelse(devResBio - upper.devBio < 0,yes=1,no=0),
-                          upper.critraw.spatsPH=ifelse(devResPH - upper.devPH < 0,yes=1,no=0),
-                          upper.critraw.spatsPhy=ifelse(devResPhy - upper.devPhy < 0,yes=1,no=0),
-                          Q1.devBio=quantile(devResBio,probs=0.25,na.rm=TRUE) - 
-                                    1.5*(quantile(devResBio,probs=0.75,na.rm=TRUE) - 
-                                         quantile(devResBio,probs=0.25,na.rm=TRUE)),
-                          Q1.devPH=quantile(devResPH,probs=0.25,na.rm=TRUE) - 
-                                    1.5*(quantile(devResPH,probs=0.75,na.rm=TRUE) - 
-                                         quantile(devResPH,probs=0.25,na.rm=TRUE)),
-                          Q1.devPhy=quantile(devResPhy,probs=0.25,na.rm=TRUE) - 
-                                    1.5*(quantile(devResPhy,probs=0.75,na.rm=TRUE) - 
-                                         quantile(devResPhy,probs=0.25,na.rm=TRUE)),
-                          Q3.devBio=quantile(devResBio,probs=0.75,na.rm=TRUE) + 
-                                    1.5*(quantile(devResBio,probs=0.75,na.rm=TRUE) - 
-                                         quantile(devResBio,probs=0.25,na.rm=TRUE)),
-                          Q3.devPH=quantile(devResPH,probs=0.75,na.rm=TRUE) + 
-                                    1.5*(quantile(devResPH,probs=0.75,na.rm=TRUE) - 
-                                         quantile(devResPH,probs=0.25,na.rm=TRUE)),
-                          Q3.devPhy=quantile(devResPhy,probs=0.75,na.rm=TRUE) + 
-                                    1.5*(quantile(devResPhy,probs=0.75,na.rm=TRUE) - 
-                                         quantile(devResPhy,probs=0.25,na.rm=TRUE)),
-                          lower.critci.spatsBio=ifelse(devResBio - Q1.devBio > 0,yes=1,no=0),
-                          lower.critci.spatsPH=ifelse(devResPH - Q1.devPH > 0,yes=1,no=0),
-                          lower.critci.spatsPhy=ifelse(devResPhy - Q1.devPhy > 0,yes=1,no=0),
-                          upper.critci.spatsBio=ifelse(devResBio - Q3.devBio < 0,yes=1,no=0),
-                          upper.critci.spatsPH=ifelse(devResPH - Q3.devPH < 0,yes=1,no=0),
-                          upper.critci.spatsPhy=ifelse(devResPhy - Q3.devPhy < 0,yes=1,no=0)
-                    )
-    
-  # small plants
-  # yes=1 == OK
-  # no =0 == problem
-  myglobal<-mutate(myglobal,
-                  flagLowerRawSpats=ifelse(lower.critraw.spatsBio + lower.critraw.spatsPhy==0,yes=0,no=1),
-                  flagLowerCiSpats=ifelse(lower.critci.spatsBio + lower.critci.spatsPhy==0,yes=0,no=1)
-                  )
-  
-  # big plants
-  # yes=1 == OK
-  # no =0 == problem
-  myglobal<-mutate(myglobal,
-                  flagUpperRawSpats=ifelse(upper.critraw.spatsBio + upper.critraw.spatsPH==0,yes=0,no=1),
-                  flagUpperCiSpats=ifelse(upper.critci.spatsBio + upper.critci.spatsPH==0,yes=0,no=1)
-                  )
-  
-```
-
-The user can save the residuals and detected outliers in an output file.
-
-```{r export,echo=TRUE,eval=FALSE,message=FALSE, warning=FALSE}
-  write.table(myglobal,"OutputFile_detectOutlierCurves_SpATS.csv",row.names=FALSE,sep="\t")
-```
-
-Summary of the cleaning procedure:
-
-* Number of __too small__ plants according to __raw criteria__: `r ifelse(length(table(myglobal[,"flagLowerRawSpats"]))==1,
-                                                                        0,table(myglobal[,"flagLowerRawSpats"])[[1]])`
-* Number of __too big__ plants according to __raw criteria__: `r ifelse(length(table(myglobal[,"flagUpperRawSpats"]))==1,
-                                                                        0,table(myglobal[,"flagUpperRawSpats"])[[1]])`
-* Number of __too small__ plants according to __quantile criteria__: `r ifelse(length(table(myglobal[,"flagLowerCiSpats"]))==1,
-                                                                        0,table(myglobal[,"flagLowerCiSpats"])[[1]]) `
-* Number of __too big__ plants according to __quantile criteria__: `r ifelse(length(table(myglobal[,"flagUpperCiSpats"]))==1,
-                                                                        0,table(myglobal[,"flagUpperCiSpats"])[[1]])`
-
-## raw criteria 
-```{r listing1,echo=TRUE,message=FALSE, warning=FALSE}
-  cat("Lower raw outlier:")
-  myglobal %>% select(Ref,genotypeAlias,repetition,Biomass24,PH24,Phy,flagLowerRawSpats) %>%
-                filter(flagLowerRawSpats !=1)
-   
-  cat("Upper raw outlier:")
-  myglobal %>% select(Ref,genotypeAlias,repetition,Biomass24,PH24,Phy,flagUpperRawSpats) %>%
-                filter(flagUpperRawSpats !=1)
-```
-
-## quantile criteria 
-```{r listing2,echo=TRUE,message=FALSE, warning=FALSE}
-  cat("Lower quantile outlier:")
-  myglobal %>% select(Ref,genotypeAlias,repetition,Biomass24,PH24,Phy,flagLowerCiSpats) %>%
-                filter(flagLowerCiSpats !=1)
-   
-  cat("Upper quantile outlier:")
-  myglobal %>% select(Ref,genotypeAlias,repetition,Biomass24,PH24,Phy,flagUpperCiSpats) %>%
-                filter(flagUpperCiSpats !=1)
-    
-```
-
-## raw criteria : Plots
-
-The user can check the outlier curves detected by this procedure. We use *plant1* the dataset containing all the phenotypes of the same toy experiment as *plant4* but over thermal time. 
-
-```{r dm,echo=TRUE,message=FALSE, warning=FALSE}
-  outlierId<-filter(myglobal,flagLowerRawSpats !=1 | flagUpperRawSpats !=1)  %>% 
-             select(genotypeAlias,scenario,repetition,flagLowerRawSpats,flagUpperRawSpats) %>%
-             unite("geno_sce",genotypeAlias,scenario,sep="_",remove=FALSE)
-
-  mycurve<-plant1 %>%
-           unite("geno_sce",genotypeAlias,scenario,sep="_",remove=FALSE) %>%
-           left_join(outlierId,mycurve,by=c("geno_sce","repetition"))
-  
-  # flagLower ou upper == 0 problem
-  # flagLower ou upper == 1 OK
-  # flag == "lower" problem en lower
-  # flag == "upper" problem en upper
-  # flag == "OK" plant OK
-  tmp<-filter(mycurve,geno_sce %in% outlierId[,"geno_sce"]) %>%
-       mutate(flagLowerRawSpats=ifelse(is.na(flagLowerRawSpats),1,flagLowerRawSpats),
-         flagUpperRawSpats=ifelse(is.na(flagUpperRawSpats),1,flagUpperRawSpats),
-         flag=case_when(flagLowerRawSpats == 0 ~ "lower",
-                        flagUpperRawSpats == 0 ~ "upper",
-                        flagUpperRawSpats + flagLowerRawSpats ==2 ~ "OK"
-         ))
-```
-  
-```{r plotoutlier,echo=TRUE,message=FALSE, warning=FALSE,fig.height=10,fig.width=10}
-  ggplot(data=tmp,aes(x=thermalTime,y=biovolume,color=as.factor(repetition))) + geom_line() +
-    geom_point(aes(shape=flag,color=as.factor(repetition))) + scale_shape_manual(values = c(0,19,2)) +
-    facet_wrap(~geno_sce) 
-```
-
-```{r plotoutlier2,echo=TRUE,message=FALSE, warning=FALSE,fig.height=10,fig.width=10}
-  ggplot(data=tmp,aes(x=thermalTime,y=plantHeight,color=as.factor(repetition))) + geom_line() +
-    geom_point(aes(shape=flag,color=as.factor(repetition))) + scale_shape_manual(values = c(0,19,2)) +
-    facet_wrap(~geno_sce) 
+```{r}
+plotDetectOutlierPlantMaize(datain=PAdata,
+                            outmodels=test$bigOutlier,
+                            x="Time",
+                            y="Biomass_Estimated",
+                            genotype="Genotype",
+                            idColor="Treatment",
+                            idFill="plantId")
 ```
 
 # Session info
