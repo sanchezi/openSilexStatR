@@ -2,23 +2,27 @@
 
 __Package In progress...__
 
-A set of statistical functions and rmarkdown scripts to analyze experiment in a lattice platform - OpenSilex system information.
+A set of statistical functions and rmarkdown scripts to analyze experiments in a lattice platform - OpenSilex system information.
   
 * Spatial representation of a greenhouse or a lattice platform
 * Create a video with imageGreenhouse() function. see vignette _videoImageGreenhouse_
 * Detection of outliers in a set of points using the smoothing of a local regression (Loader 2013) and calculating a confidence interval of the prediction. see vignette _detectOutlierPoints_
 * Detection of outliers in a set of points using a bayesian spatio-temporal ANOVA model (Lee, 2018). see vignette _CARBayesSTReport_
 * Detection of outlier time courses using a nonparametric spline (Gu, 2014). see vignette _gssAnalysisReport_
-* Detection of outlier plant, defined as a biological replicate deviating from the overall distribution of plants on a
-multi-criteria basis, regardless of the quality of measurements. see vignette _detectOutlierCurves_
+* Detection of outlier plant, defined as a biological replicate deviating from the overall distribution of plants on a multi-criteria basis, regardless of the quality of measurements. see vignette _detectOutlierCurves_
 
 
-The functions of the package are constructed according to a data set structure of a lattice experiment (spatial coordinates) and for some with temporal informations and therefore are not entirely generic. Please have a look to the structure of the example datasets provided by the package (plant1, plant2, plant3 and plant4). Mostly, the following columns are required:
+The functions of the package are constructed according to a data set structure of a lattice experiment (spatial coordinates) and for some with temporal informations and therefore are not entirely generic.
+
+<div style="background-color:rgba(0, 255, 0,0.1); text-align:left; vertical-align: center; padding:10px 0;">
+Please have a look to the structure of the example datasets provided by the package (plant1, plant2, plant3, plant4, PAdata). Mostly, the following columns are required:
 
 * the Line and Position columns (coordinates in a greenhouse)
 * Ref: a unique identifiant
 * genotypeAlias: genotypes used in the experiment
 * scenario: scenario applied to the experiment
+* time: a numeric time variable, for exemple a thermal time
+</div>
 
 # Installation
 
@@ -26,7 +30,7 @@ To install the **openSilexStatR** package, the easiest is to install it directly
 
 ```R
 library(remotes) 
-install_gitlab("forgemia.inra.fr/isabelle.sanchez/opensilexstatr", build_vignettes=TRUE)
+install_gitlab("https://forgemia.inra.fr/isabelle.sanchez/opensilexstatr", build_vignettes=TRUE)
 ```
 
 # Usage
@@ -38,11 +42,16 @@ library(openSilexStatR)
 help(package="openSilexStatR")
 ```
 
-# Citation
+# Others useful packages
+
+You can have a look to the following R packages allowing to openSilex users to retrieve data from the openSilex Web Service:
 
 * https://github.com/OpenSILEX/opensilex-ws-client-R
+* https://github.com/OpenSILEX/phis-ws-client-r-tool
+* https://github.com/OpenSILEX/phisWSClientR
 
-* https://github.com/sanchezi/phisWSClientR
+
+# Citation
 
 * Alvarez Prado, S., Sanchez, I., Cabrera Bosquet, L., Grau, A., Welcker, C., Tardieu, F., Hilgert, N. (2019). To clean or not to clean phenotypic datasets for outlier plants in genetic analyses?. Journal of Experimental Botany, 70 (15), 3693-3698. , DOI : 10.1093/jxb/erz191 https://prodinra.inra.fr/record/481355
 
