@@ -1,0 +1,105 @@
+---
+title: "Phenoarch platform - Cleaning procedure - Point level using locfit"
+author: "I.Sanchez"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: yes
+    number_sections: true
+vignette: >
+  %\VignetteIndexEntry{Phenoarch platform - Cleaning procedure - Point level using locfit}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<!---
+Program  : detectOutlierPoints.Rmd
+Author   : I.Sanchez (MISTEA)
+Objective: a vignette for phisStatR library
+           require openSilexStatR library and flagPointLocfit() function
+           The user has to adapt to his own analysis.
+Creation : 25/05/2020
+Update   : 28/05/2020
+-->
+
+***
+# Objective 
+
+Detection of outlier points in time courses of an experiment in PhenoArch greenhouse. This procedure can be used in any kind of time courses data sets. It uses a locfit smoothing function from the *locfit* library [2]. For each time course of a dataset, a locfit smoothing is applied, predictive confidence interval calculated (Y$\_$hat +/- threshold*Y$\_$hat$\_$se). 
+
+Points are declared outlier if outside this confidence interval. the user choose the **threshold**.
+
+<div style="background-color:rgba(0, 255, 0,0.1); text-align:left; vertical-align: center; padding:10px 0;">
+`FuncDetectPointOutlierLocFit`: detection of outlier points in time courses
+
+* @param datain input dataframe. This dataframe contains a set of time courses
+* @param myparam character, name of the variable to model in datain (for example, Biomass, PH or LA and so on)
+* @param mytime  character, name of the time variable in datain which must be numeric
+* @param myid    character, name of the id variable in datain
+* @param mylevel numeric, factor to calculate the confidence interval. Increase mylevel to exclude less outliers
+* @param mylocfit numeric, The constant component of the smoothing parameter. (see the locfit()) Increase mylocfit to have a very smooth curve
+
+@return a data.frame:
+
+*Ref: the id variable
+*mytime: name of the time variable in datain
+*myparam: name of the modeled variable in datain
+*ypred: the locfit prediction
+*sd_ypred: standard deviation of the prediction
+*lwr: lower bound of the confidence interval
+*upr: upper bound of the confidence interval
+*outlier: flag of detected outlier (0 is outlier, 1 is not)
+
+</div>
+
+If a time course has less than 6 points, no smoothing would be done and a warning appears.
+
+```{r,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+  library(lubridate)
+  library(dplyr)
+  library(locfit)
+  library(openSilexStatR)
+```
+
+# Import of data
+In this vignette, we use a toy data set of the *openSilexStatR* library (anonymized real data set). 
+```{r,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+  mydata<-plant1
+  str(mydata)
+
+  mydata<-filter(mydata,!is.na(mydata$thermalTime))
+```
+
+# Outlier points detection
+I have chosen a smoothing parameter of 30 and a threshold of 10 to detect the outlier points.
+
+```{r,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+  # Selection of only 2 genotypes to speed up the process
+  plantSel <- c("11430_H","A310_H")
+  mydataSub <- filter(mydata,genotypeAlias %in% plantSel)
+
+  resu1<-FuncDetectPointOutlierLocFit(datain=mydataSub,myparam="biovolume",
+               mytime="thermalTime",myid="potAlias",
+               mylevel=10,
+               mylocfit=30)
+```
+
+
+# Graphic
+
+```{r}
+plotDetectPointOutlierLocFit(datain=mydataSub,resuin=resu1,
+                              myparam="biovolume",
+                              mytime="thermalTime",
+                              myid="potAlias")
+```
+
+# Session info
+```{r session,echo=FALSE,message=FALSE, warning=FALSE}
+  sessionInfo()
+```
+
+# References
+1. R Development Core Team (2015). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. ISBN 3-900051-07-0, URL http://www.R-project.org.
+2. Catherine Loader (2013). locfit: Local Regression, Likelihood and Density Estimation.. R package version 1.5-9.1. https://CRAN.R-project.org/package=locfit
+ 
