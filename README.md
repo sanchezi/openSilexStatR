@@ -26,23 +26,11 @@ Please have a look to the structure of the example datasets provided by the pack
 
 # Installation
 
-To install the **openSilexStatR** package, the easiest is to install it directly from GitLab. Open an R session and run the following commands:
+To install the **openSilexStatR** package, the easiest is to install it directly from Github. Open an R session and run the following commands:
 
 ```R
 library(remotes) 
-install_gitlab("isabelle.sanchez/opensilexstatr", host="forgemia.inra.fr",
-              build_vignettes=TRUE)
-```
-
-Another way is to `download` the repository (button on the left to the `clone` button in the main page of the repository, ask for a `zip` file or a `tar.gz` file), you will have a file named **opensilexstatr-master.zip** or **opensilexstatr-master.tar.gz**, use the following lines in a R console:
-
-```R
-mypath<-"your-path-to-the-archive-file/"
-setwd(mypath)
-unzip("opensilexstatr-master.zip")
-file.rename("opensilexstatr-master", "openSilexStatR")
-setwd(paste0(mypath,"openSilexStatR"))
-devtools::install(build_vignettes = TRUE)
+install_github("sanchezi/openSilexStatR",build_vignettes=TRUE)
 ```
 
 # Usage
