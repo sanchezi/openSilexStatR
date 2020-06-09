@@ -33,6 +33,31 @@ library(remotes)
 install_github("sanchezi/openSilexStatR",build_vignettes=TRUE)
 ```
 
+If you want to install the vignettes included in this library, be aware to have the following softwares on your computer:
+
+* if **Windows OS**: MikTex, Rtools
+* if **Unix OS**: rgdal, rgl, imagemagick
+
+```R
+sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+sudo apt-get update
+sudo apt-get install libgdal-dev
+
+sudo apt install libftgl2 libcgal-dev libglu1-mesa-dev libglu1-mesa-dev libx11-dev libfreetype6-dev
+
+sudo add-apt-repository -y ppa:cran/imagemagick
+sudo apt-get update
+sudo apt-get install imagemagick-common
+sudo apt-get install -y libmagick++-dev
+```
+
+Even if it is less informative, you can also install the package without the vignettes:
+
+```R
+library(remotes) 
+install_github("sanchezi/openSilexStatR")
+```
+
 # Usage
 
 Once the package is installed on your computer, it can be loaded into a R session:
