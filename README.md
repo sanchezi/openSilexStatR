@@ -35,7 +35,7 @@ install_github("sanchezi/openSilexStatR",build_vignettes=TRUE)
 
 If you want to install the vignettes included in this library, be aware to have the following softwares on your computer:
 
-* if **Windows OS**: MikTex, Rtools
+* if **Windows OS**: MikTex (do not forget to add its path to the environment variables PATH, ex: "C:\MIKTEX~1.9\miktex\bin\x64\pdflatex.exe"), Rtools
 * if **Unix OS**: rgdal, rgl, imagemagick
 
 ```R
