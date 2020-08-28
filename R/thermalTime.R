@@ -3,7 +3,7 @@
 # Objective: calculation of thermal time according to several methods
 # Author: I.Sanchez
 # Creation: 12/12/2016
-# Update  : 26/05/2020
+# Update  : 28/08/2020
 #-------------------------------------------------------------------------------
 
 ##' a function to calculate thermal time
@@ -29,11 +29,12 @@
 ##' @importFrom dplyr mutate arrange summarise filter
 ##'
 ##' @examples
-##' \donttest{
 ##' # Example for the model of Parent 2010
-##' test<-thermalTime(datain=myMeteo,inSpecie="maize",method="parent",inDateS="2017-04-02",
+##' data(meteoDT)
+##' head(meteoDT)
+##' test<-thermalTime(datain=meteoDT,inSpecie="maize",method="parent",inDateS="2017-04-02",
 ##'                   inDateE="2017-06-15",inTemp=NULL)
-##' }
+##' head(test)
 ##' @export
 thermalTime<-function(datain,inSpecie,method,inDateS=NULL,inDateE=NULL,inTemp=NULL){
   #---------------------------------------------------------

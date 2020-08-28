@@ -38,9 +38,10 @@ Parent et. al. (2010). Modelling temperature-compensated physiological rates,
    and is structured as follow: date, value, sensor, codeVariable and facility
 }
 \examples{
-\donttest{
 # Example for the model of Parent 2010
-test<-thermalTime(datain=myMeteo,inSpecie="maize",method="parent",inDateS="2017-04-02",
+data(meteoDT)
+head(meteoDT)
+test<-thermalTime(datain=meteoDT,inSpecie="maize",method="parent",inDateS="2017-04-02",
                   inDateE="2017-06-15",inTemp=NULL)
-}
+head(test)
 }

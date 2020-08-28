@@ -107,5 +107,17 @@
 #' }
 "PAdata"
 
+#' leaf temperature in degree celsius over time in a greenhouse experiment
+#'
+#' A dataset containing the leaf temperature (degree celsius) over time 
+#' during an experiment to calculate themal time
+#' @format a data frame with 7393 rows and 4 variables:
+#' \describe{
+#'   \item{date}{date of measurement}
+#'   \item{yyyymmdd}{day of measurement}
+#'   \item{codeVariable}{code of the variable in the web service}
+#'   \item{value}{leaf temperature in degree celsius}
+#' }
+"meteoDT"
 
 

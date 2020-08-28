@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>a function to calculate thermal time — thermalTime • openSilexStatR</title>
+<title>leaf temperature in degree celsius over time in a greenhouse experiment — meteoDT • openSilexStatR</title>
 
 
 <!-- jquery -->
@@ -33,9 +33,9 @@
 
 
 
-<meta property="og:title" content="a function to calculate thermal time — thermalTime" />
-<meta property="og:description" content="this function calculates the thermal time for an experiment
-             according to several methods" />
+<meta property="og:title" content="leaf temperature in degree celsius over time in a greenhouse experiment — meteoDT" />
+<meta property="og:description" content="A dataset containing the leaf temperature (degree celsius) over time 
+during an experiment to calculate themal time" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -121,93 +121,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>a function to calculate thermal time</h1>
+    <h1>leaf temperature in degree celsius over time in a greenhouse experiment</h1>
     
-    <div class="hidden name"><code>thermalTime.Rd</code></div>
+    <div class="hidden name"><code>meteoDT.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>this function calculates the thermal time for an experiment
-             according to several methods</p>
+    <p>A dataset containing the leaf temperature (degree celsius) over time 
+during an experiment to calculate themal time</p>
     </div>
 
-    <pre class="usage"><span class='fu'>thermalTime</span>(<span class='no'>datain</span>, <span class='no'>inSpecie</span>, <span class='no'>method</span>, <span class='kw'>inDateS</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>inDateE</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inTemp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='no'>meteoDT</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>datain</th>
-      <td><p>input dataframe of meteo data from phis web service</p></td>
-    </tr>
-    <tr>
-      <th>inSpecie</th>
-      <td><p>character, studied specie</p></td>
-    </tr>
-    <tr>
-      <th>method</th>
-      <td><p>character, a method of thermal time's calculation ("parent","baseline")</p></td>
-    </tr>
-    <tr>
-      <th>inDateS</th>
-      <td><p>a date of sowing or thinning etc... start event ("YYYY-MM-DD")</p></td>
-    </tr>
-    <tr>
-      <th>inDateE</th>
-      <td><p>a date of harvesting ("YYYY-MM-DD")</p></td>
-    </tr>
-    <tr>
-      <th>inTemp</th>
-      <td><p>numeric, a baseline temperature for baseline's method</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>a dataframe</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>a data frame with 7393 rows and 4 variables:</p><dl class='dl-horizontal'>
+  <dt>date</dt><dd><p>date of measurement</p></dd>
+  <dt>yyyymmdd</dt><dd><p>day of measurement</p></dd>
+  <dt>codeVariable</dt><dd><p>code of the variable in the web service</p></dd>
+  <dt>value</dt><dd><p>leaf temperature in degree celsius</p></dd>
+</dl>
 
-    <p>Parent et. al. (2010). Modelling temperature-compensated physiological rates,
-   based on the co-ordination of responses to temperature of developmental processes.
-   Journal of Experimental Botany. 61 (8):2057-2069</p>
-<p>if the Parent's model is chosen inTemp must be NULL</p>
-<p>The input dataframe is extracted from phis web service (getEnvironment function)
-   and is structured as follow: date, value, sensor, codeVariable and facility</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Example for the model of Parent 2010</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>meteoDT</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>meteoDT</span>)</div><div class='output co'>#&gt;                  date      yyyymmdd
-#&gt; 1 2017-03-29 22:00:00 mars 29, 2017
-#&gt; 2 2017-03-29 22:15:00 mars 29, 2017
-#&gt; 3 2017-03-29 22:30:00 mars 29, 2017
-#&gt; 4 2017-03-29 22:45:00 mars 29, 2017
-#&gt; 5 2017-03-29 23:00:00 mars 29, 2017
-#&gt; 6 2017-03-29 23:15:00 mars 29, 2017
-#&gt;                                          codeVariable value
-#&gt; 1 leaf temperature_thermocouple sensor_degree celsius    21
-#&gt; 2 leaf temperature_thermocouple sensor_degree celsius    21
-#&gt; 3 leaf temperature_thermocouple sensor_degree celsius    21
-#&gt; 4 leaf temperature_thermocouple sensor_degree celsius    21
-#&gt; 5 leaf temperature_thermocouple sensor_degree celsius    20
-#&gt; 6 leaf temperature_thermocouple sensor_degree celsius    20</div><div class='input'><span class='no'>test</span><span class='kw'>&lt;-</span><span class='fu'>thermalTime</span>(<span class='kw'>datain</span><span class='kw'>=</span><span class='no'>meteoDT</span>,<span class='kw'>inSpecie</span><span class='kw'>=</span><span class='st'>"maize"</span>,<span class='kw'>method</span><span class='kw'>=</span><span class='st'>"parent"</span>,<span class='kw'>inDateS</span><span class='kw'>=</span><span class='st'>"2017-04-02"</span>,
-                  <span class='kw'>inDateE</span><span class='kw'>=</span><span class='st'>"2017-06-15"</span>,<span class='kw'>inTemp</span><span class='kw'>=</span><span class='kw'>NULL</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>test</span>)</div><div class='output co'>#&gt;          Day       TT
-#&gt; 1 2017-04-02 1.006146
-#&gt; 2 2017-04-03 2.139710
-#&gt; 3 2017-04-04 3.236158
-#&gt; 4 2017-04-05 4.214921
-#&gt; 5 2017-04-06 5.269632
-#&gt; 6 2017-04-07 6.426939</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
+      <li><a href="#format">Format</a></li>
     </ul>
 
   </div>
