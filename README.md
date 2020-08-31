@@ -4,6 +4,8 @@ __Package In progress...__
 
 A set of statistical functions and rmarkdown scripts to analyze experiments in a lattice platform - OpenSilex system information.
   
+https://sanchezi.github.io/openSilexStatR/  
+  
 * Spatial representation of a greenhouse or a lattice platform
 * Create a video with imageGreenhouse() function. see vignette _videoImageGreenhouse_
 * Detection of outliers in a set of points using the smoothing of a local regression (Loader 2013) and calculating a confidence interval of the prediction. see vignette _detectOutlierPoints_
@@ -22,6 +24,7 @@ Please have a look to the structure of the example datasets provided by the pack
 * genotypeAlias: genotypes used in the experiment
 * scenario: scenario applied to the experiment
 * time: a numeric time variable, for exemple a thermal time
+
 </div>
 
 # Installation
