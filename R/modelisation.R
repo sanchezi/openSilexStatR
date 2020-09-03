@@ -4,7 +4,7 @@
 #            according to thermal time and estimate phyllocron
 # Author: I.Sanchez
 # Creation: 28/07/2016
-# Update: 14/11/2019
+# Update: 03/09/2020
 #-------------------------------------------------------------------------------
 
 #' @title a function to model curve of a dataset using a local regression
@@ -28,7 +28,10 @@
 #' \donttest{
 #' # Take a while...
 #'  myThermalTimes<-c(24,30)
-#'  resu<-fitLocfit(datain=plant1,trait="biovolume",xtime="thermalTime",
+#' selec<-c("manip1_1_1_WW","manip1_1_2_WW","manip1_1_3_WW",
+#'          "manip1_1_4_WW","manip1_1_5_WW")
+#' mydata<-plant1[plant1[,"Ref"] %in% selec,]
+#'  resu<-fitLocfit(datain=mydata,trait="biovolume",xtime="thermalTime",
 #'                  myylim=700,tt=myThermalTimes,reference="Ref",
 #'                  myxlab="Thermal Time degD")
 #'  str(resu)
@@ -102,7 +105,10 @@ fitLocfit<-function(datain,trait,xtime,myylim,tt,reference,myxlab){
 #' @examples
 #' \donttest{
 #' # Take a while...
-#'  resu<-fitReg(datain=plant2,trait="F_visible",xtime="thermalTime",
+#' selec<-c("manip1_1_1_WW","manip1_1_2_WW","manip1_1_3_WW",
+#'          "manip1_1_4_WW","manip1_1_5_WW")
+#' mydata<-plant2[plant2[,"Ref"] %in% selec,]
+#'  resu<-fitReg(datain=mydata,trait="F_visible",xtime="thermalTime",
 #'               myylim=22,reference="Ref",
 #'               myxlab="Thermal Time degD")
 #'  str(resu)
