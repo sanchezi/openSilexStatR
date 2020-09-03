@@ -3,7 +3,7 @@
 # Objective: graphical functions for diagnostics of linear models
 # Author: I.Sanchez
 # Creation: 28/07/2016
-# Update: 22/03/2018
+# Update: 01/09/2020
 #------------------------------------------------------------------
 
 #' a function for representing the residuals of a linear model
@@ -11,9 +11,7 @@
 #' @return 2 graphs in one page: a graph to check the homoscedasticity of residuals
 #'         the second to check the normality of the residuals
 #' @examples
-#' \donttest{
-#'  diagnosticLM(fitin=aListResult[[2]])
-#' }
+#' # diagnosticLM() needs a classical linear model list result
 #' @export
 diagnosticLM<-function(fitin){
   par(mfrow=c(2,2))
@@ -31,9 +29,7 @@ diagnosticLM<-function(fitin){
 #' @return a graphic of diagnostic for linear model
 #' @importFrom ggplot2 ggplot geom_point geom_hline aes_string
 #' @examples
-#' \donttest{
-#'  diagnosticResiduals(datain,xfitted,yresidual)
-#' }
+#' # diagnosticResiduals(datain,xfitted,yresidual)
 #' @export
 #---------------------------------------------------
 diagnosticResiduals<-function(datain,xfitted,yresidual){

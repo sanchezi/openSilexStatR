@@ -170,13 +170,18 @@ plotFlagPoint<-function(smoothin,loopID,myselect){
 #' }
 #' @export
 #'
-#' @importFrom dplyr select_ bind_rows mutate
+#' @importFrom dplyr select_ bind_rows mutate if_else
 #' 
 #' @examples
 #' \donttest{
-#' resu.root<-FuncDetectPointOutlierLocFit(datain=mydata,myparam="y",
-#'                mytime="DegDay",myid="identifiant",mylevel=5,
-#'                mylocfit=70)
+#' data(plant1)
+#' library(locfit)
+#' selec<-c("manip1_1_1_WW","manip1_1_2_WW","manip1_1_3_WW",
+#'          "manip1_1_4_WW","manip1_1_5_WW")
+#' mydata<-plant1[plant1[,"Ref"] %in% selec,]
+#' resu<-FuncDetectPointOutlierLocFit(datain=mydata,
+#'                myparam="biovolume",mytime="thermalTime",
+#'                myid="Ref",mylevel=5,mylocfit=70)
 #' }
 #-------------------------------------------------------------------
 FuncDetectPointOutlierLocFit <-function(datain,

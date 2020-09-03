@@ -6,18 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Phenoarch platform - Cleaning procedure - Curve level using SpATS • openSilexStatR</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Phenoarch platform - Cleaning procedure - Curve level using SpATS">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="openSilexStatR">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">openSilexStatR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -79,13 +80,14 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+
+      </header><script src="detectOutlierCurves_files/header-attrs-2.3/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Phenoarch platform - Cleaning procedure - Curve level using SpATS</h1>
+      <h1 data-toc-skip>Phenoarch platform - Cleaning procedure - Curve level using SpATS</h1>
                         <h4 class="author">I.Sanchez</h4>
             
-            <h4 class="date">août 28, 2020</h4>
+            <h4 class="date">septembre 03, 2020</h4>
       
       
       <div class="hidden name"><code>detectOutlierCurves.Rmd</code></div>
@@ -106,10 +108,10 @@ Update   : 26/05/2020
 <div id="objective" class="section level1">
 <h1 class="hasAnchor">
 <a href="#objective" class="anchor"></a>Objective</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyr)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(openSilexStatR)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><html><body><pre class="r">  <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tidyr</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">openSilexStatR</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)</pre></body></html></div>
 <p>This vignette deals with the detection of outlier plants in a lattice experiment using a spatial model using splines (<strong>SpATS</strong> library) [3]. Here the following steps of this procedure developed for Maize experiment but easily adaptable to others species:</p>
 <ul>
 <li>From a temporal dataset designed as <strong>plant1</strong> with biomass (or biovolume) and plant height phenotypes. Extract predictions of these two phenotypes at a specific time point (for example just before the treatment) and create a dataset designed as <strong>plant4</strong>. Here, we will use the biomass and plant height predicted at 24 days at 20°C.</li>
@@ -117,10 +119,10 @@ Update   : 26/05/2020
 </ul>
 <p>We so have a dataset with one row for each plant in the experiment containing the three phenotypes: <strong>biomass24</strong>, <strong>PH24</strong> and <strong>Phy</strong>.</p>
 <ul>
-<li>Apply a SpATS model on each phenotype, check the diagnostic graphics and retrieve the deviance residuals calculated by the model.</li>
+<li><p>Apply a SpATS model on each phenotype, check the diagnostic graphics and retrieve the deviance residuals calculated by the model.</p></li>
 <li><p>On the residuals, we can detect outlier plant(s) with a combined physiological criterion applying the following rules:</p></li>
 <li>
-<strong>raw procedure</strong>: at a threshold=0.95 (can be modified)
+<p><strong>raw procedure</strong>: at a threshold=0.95 (can be modified)</p>
 <ul>
 <li>
 <strong>small plants</strong> are identified if <span class="math inline">\(res_i &lt; \mu_{res} - qnorm(threshold) \times sd_{res}\)</span> for <span style="color:green"> biomass AND phyllocron </span>
@@ -139,8 +141,8 @@ Update   : 26/05/2020
 <p>In this vignette, we use a toy data set of the <em>openSilexStatR</em> library (anonymized real data set).</p>
 <p>This data set was obtained from an experiment of maize performed in the Phenoarch greenhouse composed of a conveyor belt structure of 28 lanes carrying 60 carts with one pot each (i.e. 1680 pots) (Cabrera-Bosquet et al. 2016). The data contains one experiment with 90 genotypes (Genotype) from two genotypic panels (Population) and two water scenarios (Treatment): well watered (WW) and water deficit (WD).</p>
 <p>The leaf area and the biomass of individual plants are estimated from images taken in 13 directions. Briefly, pixels extracted from RGB images are converted into biomass and leaf area using linear models derived from regression of data from multiple side view images and destructive measurements performed at different phenological stages, from 5 to 14 appeared leaves (i.e. from 15 to 50 days at 20°C after emergence). Time courses of biomass (Biomass_Estimated) and leaf area (LA_Estimated) are expressed as a function of thermal time (TT). The height of each plants (Height_Estimated) is also estimated from the pictures. The number of visible leaves (count_leaf) is counted at least once a week on each plant. To prevent errors in leaf counting, leaves 5 and 10 of each plant are marked soon after appearance. The phyllocron is calculated as the slope of the linear regression bewtween the number of leaves and the thermal time at 2017-04-27 day, before the beginning of the water deficit. The unique ID of the plant is recorded (plantId), together with the pot position in row (Row) and in column (Col).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">  mydata&lt;-PAdata</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(mydata)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><html><body><pre class="r">  <span class="no">mydata</span><span class="kw">&lt;-</span><span class="no">PAdata</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">mydata</span>)</pre></body></html></div>
 <pre><code>## 'data.frame':    55799 obs. of  13 variables:
 ##  $ Time             : Factor w/ 72 levels "2017-04-13","2017-04-14",..: 2 3 4 5 6 7 8 9 10 11 ...
 ##  $ plantId          : Factor w/ 1671 levels "01_01","01_02",..: 1 1 1 1 1 1 1 1 1 1 ...
@@ -162,12 +164,12 @@ Update   : 26/05/2020
 <div id="detection-of-outliers" class="section level2">
 <h2 class="hasAnchor">
 <a href="#detection-of-outliers" class="anchor"></a>Detection of outliers</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">test&lt;-<span class="kw"><a href="../reference/FuncDetectOutlierPlantMaize.html">FuncDetectOutlierPlantMaize</a></span>(<span class="dt">datain=</span>mydata,<span class="dt">dateBeforeTrt=</span><span class="st">"2017-04-27"</span>,</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">                <span class="dt">param1=</span><span class="st">"Biomass_Estimated"</span>,<span class="dt">param2=</span><span class="st">"Height_Estimated"</span>,</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">                <span class="dt">param3=</span><span class="st">"phyllocron"</span>,<span class="dt">paramGeno=</span><span class="st">"Genotype"</span>,</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">                <span class="dt">paramCol=</span><span class="st">"Col"</span>,<span class="dt">paramRow=</span><span class="st">"Row"</span>,</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">                <span class="dt">threshold=</span><span class="fl">0.95</span>,<span class="dt">nCol=</span><span class="dv">28</span>,<span class="dt">nRow=</span><span class="dv">60</span>,<span class="dt">genotype.as.random=</span><span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">                <span class="dt">timeColumn =</span> <span class="st">"Time"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">test</span><span class="kw">&lt;-</span><span class="fu"><a href="../reference/FuncDetectOutlierPlantMaize.html">FuncDetectOutlierPlantMaize</a></span>(<span class="kw">datain</span><span class="kw">=</span><span class="no">mydata</span>,<span class="kw">dateBeforeTrt</span><span class="kw">=</span><span class="st">"2017-04-27"</span>,
+                <span class="kw">param1</span><span class="kw">=</span><span class="st">"Biomass_Estimated"</span>,<span class="kw">param2</span><span class="kw">=</span><span class="st">"Height_Estimated"</span>,
+                <span class="kw">param3</span><span class="kw">=</span><span class="st">"phyllocron"</span>,<span class="kw">paramGeno</span><span class="kw">=</span><span class="st">"Genotype"</span>,
+                <span class="kw">paramCol</span><span class="kw">=</span><span class="st">"Col"</span>,<span class="kw">paramRow</span><span class="kw">=</span><span class="st">"Row"</span>,
+                <span class="kw">threshold</span><span class="kw">=</span><span class="fl">0.95</span>,<span class="kw">nCol</span><span class="kw">=</span><span class="fl">28</span>,<span class="kw">nRow</span><span class="kw">=</span><span class="fl">60</span>,<span class="kw">genotype.as.random</span><span class="kw">=</span><span class="fl">FALSE</span>,
+                <span class="kw">timeColumn</span> <span class="kw">=</span> <span class="st">"Time"</span>)</pre></body></html></div>
 <p>The FuncDetectOutlierPlantMaize() returns a list of 6 elements :</p>
 <ul>
 <li>outputDataframe: a dataframe with the used data set, the fitted values and residuals calculated by the models, the plants flagged as outlier</li>
@@ -181,32 +183,32 @@ Update   : 26/05/2020
 <div id="biomass" class="section level2">
 <h2 class="hasAnchor">
 <a href="#biomass" class="anchor"></a>Biomass</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">  <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(test<span class="op">$</span>m1, <span class="dt">spaTrend =</span> <span class="st">"percentage"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><html><body><pre class="r">  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">test</span>$<span class="no">m1</span>, <span class="kw">spaTrend</span> <span class="kw">=</span> <span class="st">"percentage"</span>)</pre></body></html></div>
 <p><img src="detectOutlierCurves_files/figure-html/spatplot1-1.png" width="700"></p>
 </div>
 <div id="plant-height" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plant-height" class="anchor"></a>Plant height</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">  <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(test<span class="op">$</span>m2, <span class="dt">spaTrend =</span> <span class="st">"percentage"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><html><body><pre class="r">  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">test</span>$<span class="no">m2</span>, <span class="kw">spaTrend</span> <span class="kw">=</span> <span class="st">"percentage"</span>)</pre></body></html></div>
 <p><img src="detectOutlierCurves_files/figure-html/spatplot2-1.png" width="700"></p>
 </div>
 <div id="phyllocron" class="section level2">
 <h2 class="hasAnchor">
 <a href="#phyllocron" class="anchor"></a>Phyllocron</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">  <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(test<span class="op">$</span>m2, <span class="dt">spaTrend =</span> <span class="st">"percentage"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><html><body><pre class="r">  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">test</span>$<span class="no">m2</span>, <span class="kw">spaTrend</span> <span class="kw">=</span> <span class="st">"percentage"</span>)</pre></body></html></div>
 <p><img src="detectOutlierCurves_files/figure-html/spatplot3-1.png" width="700"></p>
 </div>
 <div id="diagnosis-on-biomass" class="section level2">
 <h2 class="hasAnchor">
 <a href="#diagnosis-on-biomass" class="anchor"></a>Diagnosis on Biomass</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="dt">data=</span>test<span class="op">$</span>outputDataframe,<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x=</span>fittedP1,<span class="dt">y=</span>devResP1)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span><span class="kw">=</span><span class="no">test</span>$<span class="no">outputDataframe</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">fittedP1</span>,<span class="kw">y</span><span class="kw">=</span><span class="no">devResP1</span>)) + <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()</pre></body></html></div>
 <p><img src="detectOutlierCurves_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 </div>
 </div>
 <div id="dataset-highlighting-the-outlier-plants" class="section level1">
 <h1 class="hasAnchor">
 <a href="#dataset-highlighting-the-outlier-plants" class="anchor"></a>Dataset highlighting the outlier plants</h1>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">test<span class="op">$</span>smallOutlier</a></code></pre></div>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">test</span>$<span class="no">smallOutlier</span></pre></body></html></div>
 <pre><code>##          Time plantId Genotype Treatment Population Position Line
 ## 1  2017-04-27   05_03   GenoA6        WW     Panel1        3    5
 ## 2  2017-04-27   06_57  GenoA57        WW     Panel1       57    6
@@ -340,7 +342,7 @@ Update   : 26/05/2020
 ## 16             1              0              1
 ## 17             1              0              1
 ## 18             1              0              1</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">test<span class="op">$</span>bigOutlier</a></code></pre></div>
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">test</span>$<span class="no">bigOutlier</span></pre></body></html></div>
 <pre><code>##         Time plantId Genotype Treatment Population Position Line
 ## 1 2017-04-27   07_55   GenoB3        WW     Panel2       55    7
 ## 2 2017-04-27   11_29  GenoA36        WW     Panel1       29   11
@@ -369,27 +371,27 @@ Update   : 26/05/2020
 ## 1              1              0
 ## 2              1              0
 ## 3              1              0</code></pre>
-<p>The user can save the residuals and detected outliers in an output file, using <code><a href="https://www.rdocumentation.org/packages/utils/topics/write.table">write.table()</a></code> function.</p>
+<p>The user can save the residuals and detected outliers in an output file, using <code><a href="https://rdrr.io/r/utils/write.table.html">write.table()</a></code> function.</p>
 <div id="plots" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plots" class="anchor"></a>Plots</h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="../reference/plotDetectOutlierPlantMaize.html">plotDetectOutlierPlantMaize</a></span>(<span class="dt">datain=</span>PAdata,</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">                            <span class="dt">outmodels=</span>test<span class="op">$</span>smallOutlier,</a>
-<a class="sourceLine" id="cb13-3" data-line-number="3">                            <span class="dt">x=</span><span class="st">"Time"</span>,</a>
-<a class="sourceLine" id="cb13-4" data-line-number="4">                            <span class="dt">y=</span><span class="st">"Biomass_Estimated"</span>,</a>
-<a class="sourceLine" id="cb13-5" data-line-number="5">                            <span class="dt">genotype=</span><span class="st">"Genotype"</span>,</a>
-<a class="sourceLine" id="cb13-6" data-line-number="6">                            <span class="dt">idColor=</span><span class="st">"Treatment"</span>,</a>
-<a class="sourceLine" id="cb13-7" data-line-number="7">                            <span class="dt">idFill=</span><span class="st">"plantId"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="../reference/plotDetectOutlierPlantMaize.html">plotDetectOutlierPlantMaize</a></span>(<span class="kw">datain</span><span class="kw">=</span><span class="no">PAdata</span>,
+                            <span class="kw">outmodels</span><span class="kw">=</span><span class="no">test</span>$<span class="no">smallOutlier</span>,
+                            <span class="kw">x</span><span class="kw">=</span><span class="st">"Time"</span>,
+                            <span class="kw">y</span><span class="kw">=</span><span class="st">"Biomass_Estimated"</span>,
+                            <span class="kw">genotype</span><span class="kw">=</span><span class="st">"Genotype"</span>,
+                            <span class="kw">idColor</span><span class="kw">=</span><span class="st">"Treatment"</span>,
+                            <span class="kw">idFill</span><span class="kw">=</span><span class="st">"plantId"</span>)</pre></body></html></div>
 <pre><code>## Warning: Removed 1968 rows containing missing values (geom_point).</code></pre>
 <pre><code>## Warning: Removed 122 rows containing missing values (geom_point).</code></pre>
 <p><img src="detectOutlierCurves_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="../reference/plotDetectOutlierPlantMaize.html">plotDetectOutlierPlantMaize</a></span>(<span class="dt">datain=</span>PAdata,</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">                            <span class="dt">outmodels=</span>test<span class="op">$</span>bigOutlier,</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">                            <span class="dt">x=</span><span class="st">"Time"</span>,</a>
-<a class="sourceLine" id="cb16-4" data-line-number="4">                            <span class="dt">y=</span><span class="st">"Biomass_Estimated"</span>,</a>
-<a class="sourceLine" id="cb16-5" data-line-number="5">                            <span class="dt">genotype=</span><span class="st">"Genotype"</span>,</a>
-<a class="sourceLine" id="cb16-6" data-line-number="6">                            <span class="dt">idColor=</span><span class="st">"Treatment"</span>,</a>
-<a class="sourceLine" id="cb16-7" data-line-number="7">                            <span class="dt">idFill=</span><span class="st">"plantId"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="../reference/plotDetectOutlierPlantMaize.html">plotDetectOutlierPlantMaize</a></span>(<span class="kw">datain</span><span class="kw">=</span><span class="no">PAdata</span>,
+                            <span class="kw">outmodels</span><span class="kw">=</span><span class="no">test</span>$<span class="no">bigOutlier</span>,
+                            <span class="kw">x</span><span class="kw">=</span><span class="st">"Time"</span>,
+                            <span class="kw">y</span><span class="kw">=</span><span class="st">"Biomass_Estimated"</span>,
+                            <span class="kw">genotype</span><span class="kw">=</span><span class="st">"Genotype"</span>,
+                            <span class="kw">idColor</span><span class="kw">=</span><span class="st">"Treatment"</span>,
+                            <span class="kw">idFill</span><span class="kw">=</span><span class="st">"plantId"</span>)</pre></body></html></div>
 <pre><code>## Warning: Removed 280 rows containing missing values (geom_point).</code></pre>
 <pre><code>## Warning: Removed 16 rows containing missing values (geom_point).</code></pre>
 <p><img src="detectOutlierCurves_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
@@ -398,55 +400,49 @@ Update   : 26/05/2020
 <div id="session-info" class="section level1">
 <h1 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session info</h1>
-<pre><code>## R version 3.6.3 (2020-02-29)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 16.04.7 LTS
+<pre><code>## R version 4.0.2 (2020-06-22)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 18363)
 ## 
 ## Matrix products: default
-## BLAS:   /usr/lib/libblas/libblas.so.3.6.0
-## LAPACK: /usr/lib/lapack/liblapack.so.3.6.0
 ## 
 ## locale:
-##  [1] LC_CTYPE=fr_FR.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=fr_FR.UTF-8        LC_COLLATE=fr_FR.UTF-8    
-##  [5] LC_MONETARY=fr_FR.UTF-8    LC_MESSAGES=fr_FR.UTF-8   
-##  [7] LC_PAPER=fr_FR.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=fr_FR.UTF-8 LC_IDENTIFICATION=C       
+## [1] LC_COLLATE=French_France.1252  LC_CTYPE=French_France.1252   
+## [3] LC_MONETARY=French_France.1252 LC_NUMERIC=C                  
+## [5] LC_TIME=French_France.1252    
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] ggplot2_3.2.1        openSilexStatR_1.0.0 tidyr_1.0.0         
-## [4] dplyr_0.8.3         
+## [1] ggplot2_3.3.2        openSilexStatR_1.1.0 tidyr_1.1.0         
+## [4] dplyr_1.0.0         
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] maps_3.3.0         splines_3.6.3      dotCall64_1.0-0    gtools_3.8.1      
-##  [5] shiny_1.4.0        assertthat_0.2.1   expm_0.999-4       CARBayesdata_2.1  
-##  [9] sp_1.3-2           stats4_3.6.3       LearnBayes_2.15.1  yaml_2.2.0        
-## [13] truncdist_1.0-2    pillar_1.4.3       backports_1.1.5    lattice_0.20-38   
-## [17] glue_1.3.1         digest_0.6.23      promises_1.1.0     colorspace_1.4-1  
-## [21] Matrix_1.2-17      htmltools_0.4.0    httpuv_1.5.2       pkgconfig_2.0.3   
-## [25] CARBayesST_3.0.1   gmodels_2.18.1     purrr_0.3.3        xtable_1.8-4      
-## [29] scales_1.1.0       gdata_2.18.0       later_1.0.0        tibble_2.1.3      
-## [33] farver_2.0.1       withr_2.1.2        lazyeval_0.2.2     magrittr_1.5      
-## [37] crayon_1.3.4       mime_0.8           deldir_0.1-23      memoise_1.1.0     
-## [41] evaluate_0.14      fs_1.3.1           nlme_3.1-140       MASS_7.3-51.4     
-## [45] xml2_1.2.0         foreign_0.8-71     truncnorm_1.0-8    class_7.3-15      
-## [49] data.table_1.12.6  tools_3.6.3        shapefiles_0.7     lifecycle_0.1.0   
-## [53] matrixStats_0.55.0 stringr_1.4.0      munsell_0.5.0      compiler_3.6.3    
-## [57] pkgdown_1.3.0      e1071_1.7-2        evd_2.3-3          rlang_0.4.2       
-## [61] classInt_0.4-2     units_0.6-5        grid_3.6.3         rstudioapi_0.10   
-## [65] htmlwidgets_1.5.1  spam_2.4-0         crosstalk_1.0.0    labeling_0.3      
-## [69] rmarkdown_2.3      SpATS_1.0-10       boot_1.3-23        testthat_2.3.0    
-## [73] gtable_0.3.0       DBI_1.0.0          roxygen2_6.1.1     R6_2.4.1          
-## [77] lubridate_1.7.4    knitr_1.26         rgdal_1.4-7        fastmap_1.0.1     
-## [81] zeallot_0.1.0      commonmark_1.7     rprojroot_1.3-2    spdep_1.1-3       
-## [85] KernSmooth_2.23-15 desc_1.2.0         matrixcalc_1.0-3   stringi_1.4.3     
-## [89] Rcpp_1.0.3         fields_10.0        vctrs_0.2.1        sf_0.8-0          
-## [93] leaflet_2.0.2      spData_0.3.2       tidyselect_0.2.5   xfun_0.11         
-## [97] coda_0.19-3</code></pre>
+##  [1] maps_3.3.0         splines_4.0.2      dotCall64_1.0-0    gtools_3.8.2      
+##  [5] assertthat_0.2.1   expm_0.999-5       CARBayesdata_2.1   sp_1.4-2          
+##  [9] stats4_4.0.2       yaml_2.2.1         LearnBayes_2.15.1  truncdist_1.0-2   
+## [13] pillar_1.4.6       backports_1.1.8    lattice_0.20-41    glue_1.4.1        
+## [17] digest_0.6.25      RColorBrewer_1.1-2 colorspace_1.4-1   plyr_1.8.6        
+## [21] htmltools_0.5.0    Matrix_1.2-18      pkgconfig_2.0.3    raster_3.3-13     
+## [25] CARBayesST_3.1     gmodels_2.18.1     purrr_0.3.4        scales_1.1.1      
+## [29] gdata_2.18.0       tibble_3.0.3       farver_2.0.3       generics_0.0.2    
+## [33] ellipsis_0.3.1     withr_2.2.0        magrittr_1.5       crayon_1.3.4      
+## [37] deldir_0.1-28      memoise_1.1.0      evaluate_0.14      GGally_2.0.0      
+## [41] fs_1.4.2           nlme_3.1-148       MASS_7.3-51.6      foreign_0.8-80    
+## [45] truncnorm_1.0-8    class_7.3-17       data.table_1.13.0  tools_4.0.2       
+## [49] shapefiles_0.7     lifecycle_0.2.0    matrixStats_0.56.0 stringr_1.4.0     
+## [53] munsell_0.5.0      compiler_4.0.2     pkgdown_1.5.1      e1071_1.7-3       
+## [57] evd_2.3-3          rlang_0.4.7        classInt_0.4-3     units_0.6-7       
+## [61] grid_4.0.2         rstudioapi_0.11    htmlwidgets_1.5.1  spam_2.5-1        
+## [65] crosstalk_1.1.0.1  labeling_0.3       rmarkdown_2.3      SpATS_1.0-11      
+## [69] boot_1.3-25        testthat_2.3.2     gtable_0.3.0       codetools_0.2-16  
+## [73] reshape_0.8.8      DBI_1.1.0          R6_2.4.1           lubridate_1.7.9   
+## [77] gridExtra_2.3      knitr_1.29         rgdal_1.5-12       rprojroot_1.3-2   
+## [81] spdep_1.1-5        KernSmooth_2.23-17 desc_1.2.0         matrixcalc_1.0-3  
+## [85] stringi_1.4.6      Rcpp_1.0.5         fields_10.3        vctrs_0.3.2       
+## [89] sf_0.9-5           leaflet_2.0.3      spData_0.3.8       tidyselect_1.1.0  
+## [93] xfun_0.16          coda_0.19-3</code></pre>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
@@ -461,35 +457,14 @@ Update   : 26/05/2020
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#objective">Objective</a></li>
-      <li><a href="#import-of-data">Import of data</a></li>
-      <li>
-<a href="#spats-library">SpATS library</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#detection-of-outliers">Detection of outliers</a></li>
-      <li><a href="#biomass">Biomass</a></li>
-      <li><a href="#plant-height">Plant height</a></li>
-      <li><a href="#phyllocron">Phyllocron</a></li>
-      <li><a href="#diagnosis-on-biomass">Diagnosis on Biomass</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#dataset-highlighting-the-outlier-plants">Dataset highlighting the outlier plants</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#plots">Plots</a></li>
-      </ul>
-</li>
-      <li><a href="#session-info">Session info</a></li>
-      <li><a href="#references">References</a></li>
-      </ul>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
+
 
 
       <footer><div class="copyright">
@@ -497,12 +472,14 @@ Update   : 26/05/2020
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

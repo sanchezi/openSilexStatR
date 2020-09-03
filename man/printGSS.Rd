@@ -24,10 +24,11 @@ the input object is the 2nd element of a fitGSS result, a dataframe with the Kul
          genotypes when the test is significant.
 }
 \examples{
-\donttest{
- fm1<-fitGSS(datain=plant1,trait="biovolume")
+data(plant1)
+selec<-c("Lo1199_H","Lo1124_H","Lo1038_H","A3_H")
+mydata<-plant1[plant1[,"genotypeAlias"] \%in\% selec,]
+fm1<-fitGSS(datain=mydata,trait="biovolume",loopId="genotypeAlias")
  printGSS(object=fm1,threshold=0.05)
-}
 }
 \seealso{
 \code{\link[=ssanova]{ssanova}}

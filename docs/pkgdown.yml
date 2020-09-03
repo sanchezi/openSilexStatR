@@ -1,5 +1,5 @@
-pandoc: 2.3.1
-pkgdown: 1.3.0
+pandoc: 2.10.1
+pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
   CARBayesSTReport: CARBayesSTReport.html
@@ -7,4 +7,5 @@ articles:
   detectOutlierPoint: detectOutlierPoint.html
   gssAnalysisReport: gssAnalysisReport.html
   videoImageGreenhouse: videoImageGreenhouse.html
+last_built: 2020-09-03T11:23Z
 

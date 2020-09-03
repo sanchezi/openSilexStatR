@@ -36,7 +36,10 @@ performed with the gss R package.
 }
 \examples{
 \donttest{
- fm1<-fitGSS(datain=plant1,trait="biovolume")
+data(plant1)
+selec<-c("Lo1199_H","Lo1124_H","Lo1038_H","A3_H")
+mydata<-plant1[plant1[,"genotypeAlias"] \%in\% selec,]
+ fm1<-fitGSS(datain=mydata,trait="biovolume",loopId="genotypeAlias")
 }
 }
 \seealso{

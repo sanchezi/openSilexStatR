@@ -4,8 +4,16 @@
 \alias{outlierCriteria}
 \title{a function for several outlier criteria}
 \usage{
-outlierCriteria(datain, typeD, residin, typeR, trait, resRawName,
-  resStdName, threshold)
+outlierCriteria(
+  datain,
+  typeD,
+  residin,
+  typeR,
+  trait,
+  resRawName,
+  resStdName,
+  threshold
+)
 }
 \arguments{
 \item{datain}{input dataframe of parameters}

@@ -17,7 +17,5 @@ diagnosticLM(fitin)
 a function for representing the residuals of a linear model
 }
 \examples{
-\donttest{
- diagnosticLM(fitin=aListResult[[2]])
-}
+# diagnosticLM() needs a classical linear model list result
 }

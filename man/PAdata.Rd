@@ -4,7 +4,8 @@
 \name{PAdata}
 \alias{PAdata}
 \title{Parameters of interest of plant over thermal time in an experiment}
-\format{a data frame with 55799 rows and 13 variables:
+\format{
+a data frame with 55799 rows and 13 variables:
 \describe{
   \item{Time}{date of measurement}
   \item{plantId}{Id of the plant in the greenhouse}
@@ -21,7 +22,8 @@
   between the number of leaves and the thermal time at 2017-04-27 day, before the
   beginning of the water deficit}
   \item{TT}{thermal time}
-}}
+}
+}
 \usage{
 PAdata
 }

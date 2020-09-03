@@ -4,8 +4,7 @@
 \alias{plotDetectOutlierPlantMaize}
 \title{plotDetectOutlierPlantMaize}
 \usage{
-plotDetectOutlierPlantMaize(datain, outmodels, x, y, genotype, idColor,
-  idFill)
+plotDetectOutlierPlantMaize(datain, outmodels, x, y, genotype, idColor, idFill)
 }
 \arguments{
 \item{datain}{input dataframe, a spatio-temporal data.frame}
@@ -38,12 +37,12 @@ see funcDetectOutlierPlantMaize function
 }
 \examples{
 \donttest{
-plotDetectOutlierPlantMaize(datain=PAdata,
-         outmodels=test$smallOutlier,
-         x="Time",
-         y="Biomass_Estimated",
-         genotype="Genotype",
-         idColor="Treatment",
-        idFill="plantId")
+#plotDetectOutlierPlantMaize(datain=PAdata,
+#          outmodels=test$smallOutlier,
+#          x="Time",
+#         y="Biomass_Estimated",
+#          genotype="Genotype",
+#          idColor="Treatment",
+#         idFill="plantId")
 }
 }

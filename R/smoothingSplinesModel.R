@@ -4,7 +4,7 @@
 #            require gss package
 # Author: I.Sanchez
 # Creation: 28/07/2016
-# Update: 29/10/2019
+# Update: 03/09/2020
 #-------------------------------------------------------------------------------
 
 ##' a function to model curves using smoothing splines anova using \code{gss} library
@@ -32,7 +32,10 @@
 ##' 
 ##' @examples
 ##' \donttest{
-##'  fm1<-fitGSS(datain=plant1,trait="biovolume")
+##' data(plant1)
+##' selec<-c("Lo1199_H","Lo1124_H","Lo1038_H","A3_H")
+##' mydata<-plant1[plant1[,"genotypeAlias"] %in% selec,]
+##'  fm1<-fitGSS(datain=mydata,trait="biovolume",loopId="genotypeAlias")
 ##' }
 ##' @export
 fitGSS<-function(datain,trait,loopId){
@@ -49,8 +52,7 @@ fitGSS<-function(datain,trait,loopId){
     resu<-rbind.data.frame(resu,tpproj)
   }
   result <- list(fm=fm,projKL=resu)
-  class(result) = c("phisStatR")
-  return(invisible(result))
+  return(result)
 }
 
 #' a function for gss analysis description
@@ -65,13 +67,14 @@ fitGSS<-function(datain,trait,loopId){
 #' @return a description
 #'
 #' @examples
-#' \donttest{
-#'  fm1<-fitGSS(datain=plant1,trait="biovolume")
+#' data(plant1)
+#' selec<-c("Lo1199_H","Lo1124_H","Lo1038_H","A3_H")
+#' mydata<-plant1[plant1[,"genotypeAlias"] %in% selec,]
+#' fm1<-fitGSS(datain=mydata,trait="biovolume",loopId="genotypeAlias")
 #'  printGSS(object=fm1,threshold=0.05)
-#' }
 #' @export
 printGSS<-function(object,threshold){
-  tmp<-as.data.frame(object)
+  tmp<-as.data.frame(object[[2]])
   if (!(is.null(threshold)))  tmp<-filter(tmp,ratio > threshold)
   return(tmp)
 }

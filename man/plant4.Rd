@@ -4,7 +4,8 @@
 \name{plant4}
 \alias{plant4}
 \title{Parameters of interest of plants in an experiment for outlier detection purpose}
-\format{a data frame with 1680 rows and 11 variables:
+\format{
+a data frame with 1680 rows and 11 variables:
 \describe{
   \item{Line}{Line position in the greenhouse}
   \item{Position}{Position in the line in the greenhouse}
@@ -17,7 +18,8 @@
   \item{Biomass24}{biomass at 24 TT day (g)}
   \item{PH24}{plant height at 24 TT day (mm)}
   \item{Phy}{Phyllocron}
-}}
+}
+}
 \usage{
 plant4
 }

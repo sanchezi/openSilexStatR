@@ -4,7 +4,8 @@
 \name{plant2}
 \alias{plant2}
 \title{Visible leafs of plant over thermal time in an experiment}
-\format{a data frame with XX rows and 10 variables:
+\format{
+a data frame with XX rows and 10 variables:
 \describe{
   \item{experimentAlias}{Id of an experiment}
   \item{F_visible}{Number of leafs}
@@ -16,7 +17,8 @@
   \item{Genetic}{Genetic}
   \item{thermalTime}{Thermal Time}
   \item{Ref}{Reference of each plant in the greenhouse}
-}}
+}
+}
 \usage{
 plant2
 }

@@ -20,7 +20,5 @@ a graphic of diagnostic for linear model
 a function for representing diagnostic graphics for each trait
 }
 \examples{
-\donttest{
- diagnosticResiduals(datain,xfitted,yresidual)
-}
+# diagnosticResiduals(datain,xfitted,yresidual)
 }

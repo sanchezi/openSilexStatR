@@ -23,11 +23,17 @@ a function to detect outlier point in time-course using a CARBayesST modelling
 }
 \examples{
 \donttest{
- test<-fitCARBayesST(datain=mydata,xvar="thermalTime",trait="plantHeight",k=2,
-     graphDist=TRUE,burnin=10,n.sample=110,
-     formulaModel=as.formula(plantHeight~scenario+genotypeAlias),
-     typeModel="anova",verbose=FALSE)
- test2<-outlierCARBayesST(modelin=test[[1]],datain=test[[2]],threshold=4,trait="plantHeight")
+ data(plant1)
+ library(dplyr)
+ mydata<-filter(plant1,!is.na(plant1$thermalTime))
+ str(mydata)
+ test<-fitCARBayesST(datain=mydata,xvar="thermalTime",
+       trait="plantHeight",k=2,
+       graphDist=TRUE,burnin=10,n.sample=110,
+       formulaModel=as.formula(plantHeight~scenario+genotypeAlias),
+       typeModel="anova",verbose=FALSE)
+ test2<-outlierCARBayesST(modelin=test[[1]],datain=test[[2]],threshold=4,
+        trait="plantHeight")
 }
 }
 \seealso{

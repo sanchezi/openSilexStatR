@@ -4,8 +4,14 @@
 \alias{thermalTime}
 \title{a function to calculate thermal time}
 \usage{
-thermalTime(datain, inSpecie, method, inDateS = NULL, inDateE = NULL,
-  inTemp = NULL)
+thermalTime(
+  datain,
+  inSpecie,
+  method,
+  inDateS = NULL,
+  inDateE = NULL,
+  inTemp = NULL
+)
 }
 \arguments{
 \item{datain}{input dataframe of meteo data from phis web service}
@@ -28,7 +34,7 @@ this function calculates the thermal time for an experiment
              according to several methods
 }
 \details{
-Parent et. al. (2010). Modelling temperature-compensated physiological rates,
+Parent et. al. (2010). Modeling temperature-compensated physiological rates,
    based on the co-ordination of responses to temperature of developmental processes.
    Journal of Experimental Botany. 61 (8):2057-2069
 
@@ -41,7 +47,8 @@ Parent et. al. (2010). Modelling temperature-compensated physiological rates,
 # Example for the model of Parent 2010
 data(meteoDT)
 head(meteoDT)
-test<-thermalTime(datain=meteoDT,inSpecie="maize",method="parent",inDateS="2017-04-02",
+test<-thermalTime(datain=meteoDT,inSpecie="maize",method="parent",
+                  inDateS="2017-04-02",
                   inDateE="2017-06-15",inTemp=NULL)
 head(test)
 }

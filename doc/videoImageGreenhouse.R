@@ -1,11 +1,11 @@
-## ----libraries,echo=FALSE,message=FALSE, warning=FALSE,error=TRUE--------
+## ----libraries,echo=FALSE,message=FALSE, warning=FALSE,error=TRUE-------------
   #-- Loading of librairies
   library(tidyr)
   library(dplyr)
   library(openSilexStatR)
   library(animation)
 
-## ----echo=TRUE,message=FALSE, warning=FALSE------------------------------
+## ----echo=TRUE,message=FALSE, warning=FALSE-----------------------------------
   # import a temporal dataframe from phisStatR package:
   data(plant1)
 
@@ -19,7 +19,7 @@
   plant1<-arrange(plant1,Day)
     
 
-## ---- echo=TRUE,eval=FALSE,message=FALSE, warning=FALSE------------------
+## ---- echo=TRUE,eval=FALSE,message=FALSE, warning=FALSE-----------------------
 #      #----------------------------------------------------
 #      #heat map biovolume per Day and creation of a gif video
 #      #----------------------------------------------------
@@ -44,6 +44,6 @@
 #    #![](/my-path-to-project/output/humidity.gif)
 #  
 
-## ----session,echo=FALSE,message=FALSE, warning=FALSE---------------------
+## ----session,echo=FALSE,message=FALSE, warning=FALSE--------------------------
   sessionInfo()
 

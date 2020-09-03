@@ -3,7 +3,7 @@
 # Objective: graphical functions for phenoarch experiment data analysis
 # Author: I.Sanchez
 # Creation: 27/07/2016
-# Update: 26/05/2020
+# Update: 03/09/2020
 #------------------------------------------------------------------
 
 #' @title a function for representing a trait in the phenoarch greenhouse
@@ -15,10 +15,12 @@
 #' (Manip, Pot, Genotype, Repsce)
 #' @param datain a dataframe to explore
 #' @param trait character, a parameter to draw
-#' @param xcol character, name of the abscissa column (Line or x...)
-#' @param ycol character, name of the ordinate column (Position or y...)
+#' @param xcol character, name of the abscissa column ("Line" or "x"...)
+#' @param ycol character, name of the ordinate column ("Position" or "y"...)
 #' @param numrow numeric, number of rows in the greenhouse
 #' @param numcol numeric, number of columns in the greenhouse
+#' @param daycol character, name of the day time column ("Day" or "Time"...) 
+#'               necessary for video call.
 #' @param typeD numeric, type of dataframe (1==wide, 2==long). If typeD==2, the input dataset must contain
 #'              a 'Trait' column. 
 #' @param typeT numeric, type of the trait (1: quantitatif, 2: qualitatif), 1 is the default
@@ -30,28 +32,32 @@
 #'          "ggplot2" for classical graphic in report pdf , default.
 #' @param typeV character, type de video, NULL by default, "absolute" for abs. video
 #' @importFrom ggplot2 ggplot aes labs theme element_text scale_y_discrete scale_colour_brewer scale_fill_gradient2 scale_colour_gradient
+#' @importFrom dplyr filter group_by mutate select
 #'
 #' @return a ggplot2 object if plotly, the print of the ggplot2 object (a graph) otherwise
 #'
-#' @importFrom dplyr filter group_by mutate select
-#'
 #' @examples
 #' \donttest{
+#' library(dplyr)
 #' # a video call
-#'  imageGreenhouse(datain=filter(plant2,Day==vecDay[Day]),trait="plantHeight",
-#'                  xcol="Line",ycol="Position",numrow=28,numcol=60,
+#' library(dplyr)
+#' selec<-"2017-04-14"
+#' # in PAdata, daycol=="Time"
+#' imageGreenhouse(datain=filter(PAdata,Time==selec),trait="Height_Estimated",
+#'                  xcol="Row",ycol="Col",numrow=28,numcol=60,daycol="Time",
 #'                  typeD=1,typeT=1,ylim=NULL,typeI="video")
 #' # an interactive plotly call
-#'  test<-imageGreenhouse(datain=plant4, trait="Biomass24",xcol="Line",ycol="Position",
-#'                  numrow=28,numcol=60,typeD=1,typeT=1, ylim=NULL,typeI="plotly")
+#' test<-imageGreenhouse(datain=plant4, trait="Biomass24",xcol="Line",ycol="Position",
+#'                  numrow=28,numcol=60,
+#'                  typeD=1,typeT=1, ylim=NULL,typeI="plotly")
 #' # test is a ggplot2 object, you have to render it with: plotly::ggplotly(test)
 #' # a classical ggplot2 call
-#'  imageGreenhouse(datain=plant4, trait="Biomass24",xcol="Line",ycol="Position",
+#' imageGreenhouse(datain=plant4, trait="Biomass24",xcol="Line",ycol="Position",
 #'                 numrow=28,numcol=60,typeD=1,typeT=1, ylim=NULL,typeI="ggplot2")
 #' }
 #' @export
 imageGreenhouse<-function(datain,trait,xcol,ycol,
-                          numrow,numcol,
+                          numrow,numcol,daycol=NULL,
                           typeD,typeT=1,
                           ylim=NULL,
                           typeI="ggplot2",typeV=NULL){
@@ -79,8 +85,9 @@ imageGreenhouse<-function(datain,trait,xcol,ycol,
   } else if (typeD==2){ # long format 1 column Trait, 1 column value
     tmp.sp<-datain[datain[,"Trait"]==trait,]
   }
+  
   # get the day for video generation
-  if (typeI=="video") dayin<-unique(datain[,"Day"])
+  if (typeI=="video") dayin<-unique(datain[,daycol])
 
   # Take care that position must be reordered from 1-60 to 60-1 for the graphic
   # ordering the dataset
@@ -256,9 +263,7 @@ plotGSS<-function(datain,modelin,trait,myvec,lgrid){
 ##' @importFrom graphics abline hist lines par plot points text
 ##'
 ##' @examples
-##' \donttest{
-##'  outlierHist(datain=myResuGlobal,trait="biovolume24",flag="flagLowerRaw")
-##' }
+##' # outlierHist(datain=myResuGlobal,trait="biovolume24",flag="flagLowerRaw")
 ##' @export
 outlierHist<-function(datain,trait,flag,labelX){
   datain<-as.data.frame(datain)
@@ -319,16 +324,14 @@ plotCARBayesST<-function(datain,outlierin,myselect,trait,xvar){
 #'
 #' @return graphics 
 #' @examples
-#' \donttest{
-#' resu.root <- FuncDetectPointOutlierLocFit(datain = RootSub,
-#'                                          myparam = "tipPos_y",
-#'                                          mytime = "Time",
-#'                                          myid = "plantId",
-#'                                          mylevel = 5,
-#'                                          mylocfit = 70)
-#' plotDetectPointOutlierLocFit(datain=RootSub,resuin=resu.root,myparam="tipPos_y",
-#'                             mytime="Time",myid="plantId")
-#' }
+#' library(locfit)
+#' selec<-c("manip1_1_1_WW","manip1_1_2_WW","manip1_1_3_WW")
+#' mydata<-plant1[plant1[,"Ref"] %in% selec,]
+#' resu<-FuncDetectPointOutlierLocFit(datain=mydata,
+#'                myparam="biovolume",mytime="thermalTime",
+#'                myid="Ref",mylevel=5,mylocfit=70)
+#' plotDetectPointOutlierLocFit(datain=mydata,resuin=resu,myparam="biovolume",
+#'                             mytime="thermalTime",myid="Ref")
 #' @export
 plotDetectPointOutlierLocFit <-function(datain,
                                         resuin,
@@ -376,13 +379,13 @@ plotDetectPointOutlierLocFit <-function(datain,
 #' @return a graphic
 #' @examples
 #' \donttest{
-#' plotDetectOutlierPlantMaize(datain=PAdata,
-#'          outmodels=test$smallOutlier,
-#'          x="Time",
-#'          y="Biomass_Estimated",
-#'          genotype="Genotype",
-#'          idColor="Treatment",
-#'         idFill="plantId")
+#' #plotDetectOutlierPlantMaize(datain=PAdata,
+#' #          outmodels=test$smallOutlier,
+#' #          x="Time",
+#' #         y="Biomass_Estimated",
+#' #          genotype="Genotype",
+#' #          idColor="Treatment",
+#' #         idFill="plantId")
 #' }
 #' @export
 plotDetectOutlierPlantMaize <- function(datain,

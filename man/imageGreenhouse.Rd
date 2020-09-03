@@ -4,21 +4,36 @@
 \alias{imageGreenhouse}
 \title{a function for representing a trait in the phenoarch greenhouse}
 \usage{
-imageGreenhouse(datain, trait, xcol, ycol, numrow, numcol, typeD,
-  typeT = 1, ylim = NULL, typeI = "ggplot2", typeV = NULL)
+imageGreenhouse(
+  datain,
+  trait,
+  xcol,
+  ycol,
+  numrow,
+  numcol,
+  daycol = NULL,
+  typeD,
+  typeT = 1,
+  ylim = NULL,
+  typeI = "ggplot2",
+  typeV = NULL
+)
 }
 \arguments{
 \item{datain}{a dataframe to explore}
 
 \item{trait}{character, a parameter to draw}
 
-\item{xcol}{character, name of the abscissa column (Line or x...)}
+\item{xcol}{character, name of the abscissa column ("Line" or "x"...)}
 
-\item{ycol}{character, name of the ordinate column (Position or y...)}
+\item{ycol}{character, name of the ordinate column ("Position" or "y"...)}
 
 \item{numrow}{numeric, number of rows in the greenhouse}
 
 \item{numcol}{numeric, number of columns in the greenhouse}
+
+\item{daycol}{character, name of the day time column ("Day" or "Time"...) 
+necessary for video call.}
 
 \item{typeD}{numeric, type of dataframe (1==wide, 2==long). If typeD==2, the input dataset must contain
 a 'Trait' column.}
@@ -50,16 +65,21 @@ For plotly type graphic, the data frame in input must also contain id of plants
 }
 \examples{
 \donttest{
+library(dplyr)
 # a video call
- imageGreenhouse(datain=filter(plant2,Day==vecDay[Day]),trait="plantHeight",
-                 xcol="Line",ycol="Position",numrow=28,numcol=60,
+library(dplyr)
+selec<-"2017-04-14"
+# in PAdata, daycol=="Time"
+imageGreenhouse(datain=filter(PAdata,Time==selec),trait="Height_Estimated",
+                 xcol="Row",ycol="Col",numrow=28,numcol=60,daycol="Time",
                  typeD=1,typeT=1,ylim=NULL,typeI="video")
 # an interactive plotly call
- test<-imageGreenhouse(datain=plant4, trait="Biomass24",xcol="Line",ycol="Position",
-                 numrow=28,numcol=60,typeD=1,typeT=1, ylim=NULL,typeI="plotly")
+test<-imageGreenhouse(datain=plant4, trait="Biomass24",xcol="Line",ycol="Position",
+                 numrow=28,numcol=60,
+                 typeD=1,typeT=1, ylim=NULL,typeI="plotly")
 # test is a ggplot2 object, you have to render it with: plotly::ggplotly(test)
 # a classical ggplot2 call
- imageGreenhouse(datain=plant4, trait="Biomass24",xcol="Line",ycol="Position",
+imageGreenhouse(datain=plant4, trait="Biomass24",xcol="Line",ycol="Position",
                 numrow=28,numcol=60,typeD=1,typeT=1, ylim=NULL,typeI="ggplot2")
 }
 }

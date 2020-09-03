@@ -6,18 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Phenoarch platform - Create a video of a trait in the plateform • openSilexStatR</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Phenoarch platform - Create a video of a trait in the plateform">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="openSilexStatR">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">openSilexStatR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -79,13 +80,14 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+
+      </header><script src="videoImageGreenhouse_files/header-attrs-2.3/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Phenoarch platform - Create a video of a trait in the plateform</h1>
+      <h1 data-toc-skip>Phenoarch platform - Create a video of a trait in the plateform</h1>
                         <h4 class="author">I.Sanchez</h4>
             
-            <h4 class="date">août 28, 2020</h4>
+            <h4 class="date">septembre 03, 2020</h4>
       
       
       <div class="hidden name"><code>videoImageGreenhouse.Rmd</code></div>
@@ -113,10 +115,10 @@ Update   : 25/05/2020
 <div id="code-for-creating-a-video" class="section level1">
 <h1 class="hasAnchor">
 <a href="#code-for-creating-a-video" class="anchor"></a>Code for creating a video</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">  <span class="co"># import a temporal dataframe from phisStatR package:</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(plant1)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(plant1)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><html><body><pre class="r">  <span class="co"># import a temporal dataframe from phisStatR package:</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">plant1</span>)
+
+  <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">plant1</span>)</pre></body></html></div>
 <pre><code>## 'data.frame':    47022 obs. of  14 variables:
 ##  $ Ref            : Factor w/ 1680 levels "manip1_10_10_WW",..: 131 131 131 131 131 131 131 131 131 131 ...
 ##  $ experimentAlias: Factor w/ 1 level "manip1": 1 1 1 1 1 1 1 1 1 1 ...
@@ -132,7 +134,7 @@ Update   : 25/05/2020
 ##  $ leafArea       : num  0.018 0.019 0.0208 0.0222 0.0235 ...
 ##  $ biovolume      : num  0.253 0.62 1.201 1.68 3.396 ...
 ##  $ Repsce         : Factor w/ 15 levels "1_WD","1_WW",..: 2 2 2 2 2 2 2 2 2 2 ...</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">  <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(plant1)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><html><body><pre class="r">  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">plant1</span>)</pre></body></html></div>
 <pre><code>##             Ref experimentAlias        Day potAlias scenario genotypeAlias
 ## 1 manip1_1_1_WW          manip1 2013-02-04        1       WW      Lo1199_H
 ## 2 manip1_1_1_WW          manip1 2013-02-05        1       WW      Lo1199_H
@@ -147,8 +149,8 @@ Update   : 25/05/2020
 ## 4          1    1        1    5.319284     239.200 0.02215532 1.6800266   1_WW
 ## 5          1    1        1    6.656157     270.825 0.02351661 3.3961557   1_WW
 ## 6          1    1        1    9.258258     358.225 0.02595851 5.9954879   1_WW</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">  <span class="co"># Number of Days in the dataframe (in the experiment)</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/table">table</a></span>(plant1[,<span class="st">"Day"</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb5"><html><body><pre class="r">  <span class="co"># Number of Days in the dataframe (in the experiment)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">plant1</span>[,<span class="st">"Day"</span>])</pre></body></html></div>
 <pre><code>## 
 ## 2013-02-01 2013-02-02 2013-02-04 2013-02-05 2013-02-06 2013-02-07 2013-02-08 
 ##        719        961        617       1843       1547       1573       1382 
@@ -162,7 +164,7 @@ Update   : 25/05/2020
 ##        819        873        800        987        843        871        531 
 ## 2013-03-09 2013-03-10 2013-03-11 2013-03-12 2013-03-13 2013-03-14 2013-03-15 
 ##       1154       1243       1568        979        583        120        120</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">  plant1&lt;-<span class="kw">arrange</span>(plant1,Day)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><html><body><pre class="r">  <span class="no">plant1</span><span class="kw">&lt;-</span><span class="fu">arrange</span>(<span class="no">plant1</span>,<span class="no">Day</span>)</pre></body></html></div>
 <p>The code below is not evaluated but just presented. Indeed, to create a video, R must save each temporal graphic in a repertory and then create the video using all the files. We just here show how to do this. Please try it with your own path and folder hierarchy.</p>
 <ul>
 <li>Using the <em>saveVideo()</em> function, we need to do a for loop on the vector of days of the experiment</li>
@@ -172,80 +174,74 @@ Update   : 25/05/2020
 <li>you can set other options to ffmepg (other.opts)</li>
 <li>To incorporate the GIF in a Rmarkdown file, you have just to call the video in the chunk.</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">    <span class="co">#----------------------------------------------------</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">    <span class="co">#heat map biovolume per Day and creation of a gif video</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">    <span class="co">#----------------------------------------------------</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">    vecDay&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/na.fail">na.omit</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unique">unique</a></span>(plant1[,<span class="st">"Day"</span>]))</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">    </a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">    videoFileName&lt;-<span class="st">"biovolume"</span></a>
-<a class="sourceLine" id="cb8-7" data-line-number="7">    </a>
-<a class="sourceLine" id="cb8-8" data-line-number="8">    <span class="kw">saveVideo</span>({</a>
-<a class="sourceLine" id="cb8-9" data-line-number="9">      <span class="cf">for</span> (tmpday <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(vecDay)){</a>
-<a class="sourceLine" id="cb8-10" data-line-number="10">        <span class="kw"><a href="../reference/imageGreenhouse.html">imageGreenhouse</a></span>(<span class="dt">datain=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(plant1,Day<span class="op">==</span>vecDay[tmpday]),<span class="dt">trait=</span><span class="st">"biovolume"</span>,<span class="dt">typeD=</span><span class="dv">1</span>,<span class="dt">typeT=</span><span class="dv">1</span>,<span class="dt">ylim=</span><span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb8-11" data-line-number="11">                        <span class="dt">xcol=</span><span class="st">"Line"</span>,<span class="dt">ycol=</span><span class="st">"Position"</span>,<span class="dt">numrow=</span><span class="dv">28</span>,<span class="dt">numcol=</span><span class="dv">60</span>,</a>
-<a class="sourceLine" id="cb8-12" data-line-number="12">                        <span class="dt">typeI=</span><span class="st">"video"</span>)</a>
-<a class="sourceLine" id="cb8-13" data-line-number="13">      } </a>
-<a class="sourceLine" id="cb8-14" data-line-number="14">      <span class="kw">ani.options</span>(<span class="dt">interval =</span> <span class="dv">1</span>,<span class="dt">ani.dev=</span><span class="st">"png"</span>,<span class="dt">ani.height=</span><span class="dv">480</span>)</a>
-<a class="sourceLine" id="cb8-15" data-line-number="15">      },</a>
-<a class="sourceLine" id="cb8-16" data-line-number="16">      <span class="dt">video.name =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(thepath,<span class="st">"/output/"</span>,videoFileName,<span class="st">".gif"</span>), </a>
-<a class="sourceLine" id="cb8-17" data-line-number="17">      <span class="dt">other.opts =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"-y -r "</span>,<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(vecDay)<span class="op">+</span><span class="dv">2</span>,<span class="st">" -i Rplot%d.png -dframes "</span>,</a>
-<a class="sourceLine" id="cb8-18" data-line-number="18">                          <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(vecDay)<span class="op">+</span><span class="dv">2</span>,<span class="st">" -r "</span>,<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(vecDay)<span class="op">+</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb8-19" data-line-number="19">    )</a>
-<a class="sourceLine" id="cb8-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb8-21" data-line-number="21">  <span class="co"># Call the video in a Rmarkdown file</span></a>
-<a class="sourceLine" id="cb8-22" data-line-number="22">  <span class="co">#![](/my-path-to-project/output/humidity.gif)</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><html><body><pre class="r">    <span class="co">#----------------------------------------------------</span>
+    <span class="co">#heat map biovolume per Day and creation of a gif video</span>
+    <span class="co">#----------------------------------------------------</span>
+    <span class="no">vecDay</span><span class="kw">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">plant1</span>[,<span class="st">"Day"</span>]))
+
+    <span class="no">videoFileName</span><span class="kw">&lt;-</span><span class="st">"biovolume"</span>
+
+    <span class="fu">saveVideo</span>({
+      <span class="kw">for</span> (<span class="no">tmpday</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">vecDay</span>)){
+        <span class="fu"><a href="../reference/imageGreenhouse.html">imageGreenhouse</a></span>(<span class="kw">datain</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="no">plant1</span>,<span class="no">Day</span><span class="kw">==</span><span class="no">vecDay</span>[<span class="no">tmpday</span>]),<span class="kw">trait</span><span class="kw">=</span><span class="st">"biovolume"</span>,<span class="kw">typeD</span><span class="kw">=</span><span class="fl">1</span>,<span class="kw">typeT</span><span class="kw">=</span><span class="fl">1</span>,<span class="kw">ylim</span><span class="kw">=</span><span class="kw">NULL</span>,
+                        <span class="kw">xcol</span><span class="kw">=</span><span class="st">"Line"</span>,<span class="kw">ycol</span><span class="kw">=</span><span class="st">"Position"</span>,<span class="kw">numrow</span><span class="kw">=</span><span class="fl">28</span>,<span class="kw">numcol</span><span class="kw">=</span><span class="fl">60</span>,
+                        <span class="kw">typeI</span><span class="kw">=</span><span class="st">"video"</span>)
+      }
+      <span class="fu">ani.options</span>(<span class="kw">interval</span> <span class="kw">=</span> <span class="fl">1</span>,<span class="kw">ani.dev</span><span class="kw">=</span><span class="st">"png"</span>,<span class="kw">ani.height</span><span class="kw">=</span><span class="fl">480</span>)
+      },
+      <span class="kw">video.name</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">thepath</span>,<span class="st">"/output/"</span>,<span class="no">videoFileName</span>,<span class="st">".gif"</span>),
+      <span class="kw">other.opts</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"-y -r "</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">vecDay</span>)+<span class="fl">2</span>,<span class="st">" -i Rplot%d.png -dframes "</span>,
+                          <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">vecDay</span>)+<span class="fl">2</span>,<span class="st">" -r "</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">vecDay</span>)+<span class="fl">2</span>)
+    )
+
+  <span class="co"># Call the video in a Rmarkdown file</span>
+  <span class="co">#![](/my-path-to-project/output/humidity.gif)</span></pre></body></html></div>
 </div>
 <div id="session-info" class="section level1">
 <h1 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session info</h1>
-<pre><code>## R version 3.6.3 (2020-02-29)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 16.04.7 LTS
+<pre><code>## R version 4.0.2 (2020-06-22)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 18363)
 ## 
 ## Matrix products: default
-## BLAS:   /usr/lib/libblas/libblas.so.3.6.0
-## LAPACK: /usr/lib/lapack/liblapack.so.3.6.0
 ## 
 ## locale:
-##  [1] LC_CTYPE=fr_FR.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=fr_FR.UTF-8        LC_COLLATE=fr_FR.UTF-8    
-##  [5] LC_MONETARY=fr_FR.UTF-8    LC_MESSAGES=fr_FR.UTF-8   
-##  [7] LC_PAPER=fr_FR.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=fr_FR.UTF-8 LC_IDENTIFICATION=C       
+## [1] LC_COLLATE=French_France.1252  LC_CTYPE=French_France.1252   
+## [3] LC_MONETARY=French_France.1252 LC_NUMERIC=C                  
+## [5] LC_TIME=French_France.1252    
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] animation_2.6        openSilexStatR_1.0.0 dplyr_0.8.3         
-## [4] tidyr_1.0.0         
+## [1] animation_2.6        openSilexStatR_1.1.0 dplyr_1.0.0         
+## [4] tidyr_1.1.0         
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] splines_3.6.3      dotCall64_1.0-0    gtools_3.8.1       shiny_1.4.0       
-##  [5] assertthat_0.2.1   expm_0.999-4       CARBayesdata_2.1   sp_1.3-2          
-##  [9] stats4_3.6.3       LearnBayes_2.15.1  yaml_2.2.0         truncdist_1.0-2   
-## [13] pillar_1.4.3       backports_1.1.5    lattice_0.20-38    glue_1.3.1        
-## [17] digest_0.6.23      promises_1.1.0     colorspace_1.4-1   Matrix_1.2-17     
-## [21] htmltools_0.4.0    httpuv_1.5.2       pkgconfig_2.0.3    CARBayesST_3.0.1  
-## [25] gmodels_2.18.1     purrr_0.3.3        xtable_1.8-4       scales_1.1.0      
-## [29] gdata_2.18.0       later_1.0.0        tibble_2.1.3       ggplot2_3.2.1     
-## [33] lazyeval_0.2.2     magrittr_1.5       crayon_1.3.4       mime_0.8          
-## [37] deldir_0.1-23      memoise_1.1.0      evaluate_0.14      fs_1.3.1          
-## [41] nlme_3.1-140       MASS_7.3-51.4      xml2_1.2.0         foreign_0.8-71    
-## [45] truncnorm_1.0-8    class_7.3-15       data.table_1.12.6  tools_3.6.3       
-## [49] shapefiles_0.7     lifecycle_0.1.0    matrixStats_0.55.0 stringr_1.4.0     
-## [53] munsell_0.5.0      compiler_3.6.3     pkgdown_1.3.0      e1071_1.7-2       
-## [57] evd_2.3-3          rlang_0.4.2        classInt_0.4-2     units_0.6-5       
-## [61] grid_3.6.3         rstudioapi_0.10    htmlwidgets_1.5.1  spam_2.4-0        
-## [65] crosstalk_1.0.0    rmarkdown_2.3      SpATS_1.0-10       boot_1.3-23       
-## [69] testthat_2.3.0     gtable_0.3.0       DBI_1.0.0          roxygen2_6.1.1    
-## [73] R6_2.4.1           lubridate_1.7.4    knitr_1.26         rgdal_1.4-7       
-## [77] fastmap_1.0.1      zeallot_0.1.0      commonmark_1.7     rprojroot_1.3-2   
-## [81] spdep_1.1-3        KernSmooth_2.23-15 desc_1.2.0         matrixcalc_1.0-3  
-## [85] stringi_1.4.3      Rcpp_1.0.3         vctrs_0.2.1        sf_0.8-0          
-## [89] leaflet_2.0.2      spData_0.3.2       tidyselect_0.2.5   xfun_0.11         
-## [93] coda_0.19-3</code></pre>
+##  [1] splines_4.0.2      dotCall64_1.0-0    gtools_3.8.2       assertthat_0.2.1  
+##  [5] expm_0.999-5       CARBayesdata_2.1   sp_1.4-2           stats4_4.0.2      
+##  [9] yaml_2.2.1         LearnBayes_2.15.1  truncdist_1.0-2    pillar_1.4.6      
+## [13] backports_1.1.8    lattice_0.20-41    glue_1.4.1         digest_0.6.25     
+## [17] RColorBrewer_1.1-2 colorspace_1.4-1   plyr_1.8.6         htmltools_0.5.0   
+## [21] Matrix_1.2-18      pkgconfig_2.0.3    raster_3.3-13      CARBayesST_3.1    
+## [25] gmodels_2.18.1     purrr_0.3.4        scales_1.1.1       gdata_2.18.0      
+## [29] tibble_3.0.3       generics_0.0.2     ggplot2_3.3.2      ellipsis_0.3.1    
+## [33] magrittr_1.5       crayon_1.3.4       deldir_0.1-28      memoise_1.1.0     
+## [37] evaluate_0.14      GGally_2.0.0       fs_1.4.2           nlme_3.1-148      
+## [41] MASS_7.3-51.6      foreign_0.8-80     truncnorm_1.0-8    class_7.3-17      
+## [45] data.table_1.13.0  tools_4.0.2        shapefiles_0.7     lifecycle_0.2.0   
+## [49] matrixStats_0.56.0 stringr_1.4.0      munsell_0.5.0      compiler_4.0.2    
+## [53] pkgdown_1.5.1      e1071_1.7-3        evd_2.3-3          rlang_0.4.7       
+## [57] classInt_0.4-3     units_0.6-7        grid_4.0.2         rstudioapi_0.11   
+## [61] htmlwidgets_1.5.1  spam_2.5-1         crosstalk_1.1.0.1  rmarkdown_2.3     
+## [65] SpATS_1.0-11       boot_1.3-25        testthat_2.3.2     gtable_0.3.0      
+## [69] codetools_0.2-16   reshape_0.8.8      DBI_1.1.0          R6_2.4.1          
+## [73] lubridate_1.7.9    gridExtra_2.3      knitr_1.29         rgdal_1.5-12      
+## [77] rprojroot_1.3-2    spdep_1.1-5        KernSmooth_2.23-17 desc_1.2.0        
+## [81] matrixcalc_1.0-3   stringi_1.4.6      Rcpp_1.0.5         vctrs_0.3.2       
+## [85] sf_0.9-5           leaflet_2.0.3      spData_0.3.8       tidyselect_1.1.0  
+## [89] xfun_0.16          coda_0.19-3</code></pre>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
@@ -257,21 +253,14 @@ Update   : 25/05/2020
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#objective">Objective</a></li>
-      <li><a href="#code-for-creating-a-video">Code for creating a video</a></li>
-      <li><a href="#session-info">Session info</a></li>
-      <li><a href="#references">References</a></li>
-      </ul>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
+
 
 
       <footer><div class="copyright">
@@ -279,12 +268,14 @@ Update   : 25/05/2020
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

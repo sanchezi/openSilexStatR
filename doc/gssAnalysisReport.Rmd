@@ -20,7 +20,7 @@ Objective: a vignette for phisStatR library
            This program produces a pdf report and some export files (CSV format) is necessary. 
            The user has to adapt to his own analysis.
 Creation : 25/05/2020
-Update   : 25/05/2020
+Update   : 03/09/2020
 -->
 
 
@@ -71,7 +71,8 @@ The five first column names are standard names extracted from the web service.
   # 'Genosce' is the concatenation of experimentAlias-genotypeAlias-scenario
   #------------------------------------------------------------------------
   
-  mydata<-unite(plant3,Genosce,experimentAlias,genotypeAlias,scenario,sep="-",remove=FALSE)
+  mydata<-unite(plant3,Genosce,experimentAlias,genotypeAlias,scenario,
+                sep="-",remove=FALSE)
   mydata<-arrange(mydata,Genosce)
   
 ```
@@ -85,8 +86,8 @@ The five first column names are standard names extracted from the web service.
 
 ## Biovolume
 ```{r,echo=TRUE,message=FALSE, warning=FALSE}
-  outlierbio<-printGSS(object=resbio[[2]],threshold = 0.05)
-  klbio<-printGSS(object=resbio[[2]],threshold = NULL)
+  outlierbio<-printGSS(object=resbio,threshold = 0.05)
+  klbio<-printGSS(object=resbio,threshold = NULL)
   
   cat("Detection of outlier curve with KL projection:\n")
   print(outlierbio)
@@ -95,8 +96,10 @@ The five first column names are standard names extracted from the web service.
   # You can export these two datasets
   # suppress the comments
   #------------------------------------------------
-  #write.table(outlierbio,paste0(myreport,"outlier_gss_biovolume.csv"),row.names = FALSE,sep="\t")
-  #write.table(klbio,paste0(myreport,"KLprojection_gss_biovolume.csv"),row.names = FALSE,sep="\t")
+  #write.table(outlierbio,paste0(myreport,"outlier_gss_biovolume.csv"),
+  #   row.names = FALSE,sep="\t")
+  #write.table(klbio,paste0(myreport,"KLprojection_gss_biovolume.csv"),
+  #   row.names = FALSE,sep="\t")
 ```
 
 I take a threshold of 0.05 for this example. We can take a more conservative threshold like 0.01 or 0.02 to detect more outlier curves...
@@ -106,7 +109,8 @@ I take a threshold of 0.05 for this example. We can take a more conservative thr
   for(i in seq(1,length(unique(mydata[,"Genosce"])),by=12)){ 
     myvec<-seq(i,i+11,1)
     myvec<-myvec[myvec<=length(unique(mydata[,"Genosce"]))]
-    print(plotGSS(datain=mydata,modelin=resbio[[1]],trait="biovolume",myvec=myvec,lgrid=50))
+    print(plotGSS(datain=mydata,modelin=resbio[[1]],trait="biovolume",
+                  myvec=myvec,lgrid=50))
     cat("\n\n")
   }
 

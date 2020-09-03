@@ -3,7 +3,7 @@
 # Objective: calculation of thermal time according to several methods
 # Author: I.Sanchez
 # Creation: 12/12/2016
-# Update  : 28/08/2020
+# Update  : 01/09/2020
 #-------------------------------------------------------------------------------
 
 ##' a function to calculate thermal time
@@ -15,7 +15,7 @@
 ##' @param inDateS a date of sowing or thinning etc... start event ("YYYY-MM-DD")
 ##' @param inDateE a date of harvesting ("YYYY-MM-DD")
 ##' @param inTemp numeric, a baseline temperature for baseline's method
-##' @details Parent et. al. (2010). Modelling temperature-compensated physiological rates,
+##' @details Parent et. al. (2010). Modeling temperature-compensated physiological rates,
 ##'    based on the co-ordination of responses to temperature of developmental processes.
 ##'    Journal of Experimental Botany. 61 (8):2057-2069
 ##'
@@ -26,13 +26,14 @@
 ##' @return a dataframe
 ##'
 ##' @importFrom lubridate yday ymd
-##' @importFrom dplyr mutate arrange summarise filter
+##' @importFrom dplyr mutate arrange summarise filter n
 ##'
 ##' @examples
 ##' # Example for the model of Parent 2010
 ##' data(meteoDT)
 ##' head(meteoDT)
-##' test<-thermalTime(datain=meteoDT,inSpecie="maize",method="parent",inDateS="2017-04-02",
+##' test<-thermalTime(datain=meteoDT,inSpecie="maize",method="parent",
+##'                   inDateS="2017-04-02",
 ##'                   inDateE="2017-06-15",inTemp=NULL)
 ##' head(test)
 ##' @export
@@ -48,8 +49,10 @@ thermalTime<-function(datain,inSpecie,method,inDateS=NULL,inDateE=NULL,inTemp=NU
   myMeteoMean<-arrange(myMeteoMean,myDate)
 
   # 1b: Day retrieve the yyyymmdd in myDate and nDay gives what is the nth day of myDate
-  myMeteoMean<-mutate(myMeteoMean,Day=as.character(ymd(substr(myDate,1,10))),
+  myMeteoMean<-mutate(myMeteoMean,
+                      Day=as.character(ymd(substr(myDate,1,10))),
                       nDay=yday(myDate))
+  
   # filter on inDataS and inDateE: start and end of events!
   myMeteoMean<-filter(myMeteoMean,Day >= inDateS,Day <= inDateE)
 
@@ -87,7 +90,8 @@ thermalTime<-function(datain,inSpecie,method,inDateS=NULL,inDateE=NULL,inTemp=NU
     f20<-(293*exp(-Ha/(R*293))) / (1+exp((Sd/R)-(Hd/(R*293))))
 
     # Time calculation (number of days at 20 degree C) on temperatures per quarter hour
-    myMeteoMean<-mutate(myMeteoMean,ft=(tKelvin*exp(-Ha/(R*tKelvin))) /
+    myMeteoMean<-mutate(myMeteoMean,
+                        ft=(tKelvin*exp(-Ha/(R*tKelvin))) /
                           (1+exp((Sd/R)-(Hd/(R*tKelvin)))) )
 
     # t20 by number of records per day

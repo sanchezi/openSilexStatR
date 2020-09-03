@@ -4,8 +4,18 @@
 \alias{fitCARBayesST}
 \title{fitCARBayesST}
 \usage{
-fitCARBayesST(datain, xvar, trait, k = NULL, graphDist, burnin = 500,
-  n.sample = 1500, formulaModel, typeModel = "anova", verbose)
+fitCARBayesST(
+  datain,
+  xvar,
+  trait,
+  k = NULL,
+  graphDist,
+  burnin = 500,
+  n.sample = 1500,
+  formulaModel,
+  typeModel = "anova",
+  verbose
+)
 }
 \arguments{
 \item{datain}{input dataframe of parameters}
@@ -39,16 +49,15 @@ the input dataset must contain Position,Line,Ref,scenario,genotypeAlias columns.
          specific columns names in the input data set. Please have a look of the struture of the data set used in the example.
 }
 \examples{
-\donttest{
- library(openSilexStatR)
- mydata<-plant1
- mydata<-filter(mydata,!is.na(mydata$thermalTime))
+ data(plant1)
+ library(dplyr)
+ mydata<-filter(plant1,!is.na(plant1$thermalTime))
  str(mydata)
- test<-fitCARBayesST(datain=mydata,xvar="thermalTime",trait="plantHeight",k=2,
-     graphDist=TRUE,burnin=10,n.sample=110,
-     formulaModel=as.formula(plantHeight~scenario+genotypeAlias),
-     typeModel="anova",verbose=FALSE)
-}
+ test<-fitCARBayesST(datain=mydata,xvar="thermalTime",
+       trait="plantHeight",k=2,
+       graphDist=TRUE,burnin=10,n.sample=110,
+       formulaModel=as.formula(plantHeight~scenario+genotypeAlias),
+       typeModel="anova",verbose=FALSE)
 }
 \seealso{
 \code{\link[=CARBayesST]{CARBayesST}}, \code{\link[=ST.CARanova]{ST.CARanova}} and \code{\link[=spdep]{spdep}}

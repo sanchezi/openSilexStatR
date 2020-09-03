@@ -1,6 +1,6 @@
 Package: openSilexStatR
 Title: Lattice Experiments Data Analysis
-Version: 1.0.0
+Version: 1.1.0
 Authors@R: c(person("Pascal", "Neveu", email = "pascal.neveu@supagro.inra.fr", role = "aut"),
     person("Nadine", "Hilgert", email = "nadine.hilgert@inra.fr", role = "aut"),
     person("Isabelle", "Sanchez", email = "isabelle.sanchez@inra.fr", role = c("aut", "cre")))
@@ -8,7 +8,7 @@ Maintainer: Isabelle Sanchez <isabelle.sanchez@inra.fr>
 Description: A set of statistical functions and rmarkdown scripts to analyze experiment in
    a lattice platfrom - OpenSilex system information.
 Depends:
-    R (>= 3.2.0)
+    R (>= 4.0.0)
 License: GPL-3
 LazyData: true
 Imports:
@@ -28,5 +28,5 @@ Suggests:
     knitr,
     rmarkdown
 Author: Isabelle Sanchez [aut, cre]
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr

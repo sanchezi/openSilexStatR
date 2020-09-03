@@ -10,21 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -35,7 +41,6 @@
 
 <meta property="og:title" content="printCARBayesST — printCARBayesST" />
 <meta property="og:description" content="a function for CARBayesST analysis description" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -50,9 +55,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -66,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">openSilexStatR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -74,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -115,6 +121,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -148,22 +155,324 @@
     <div class='dont-index'><p><code>CARBayesST</code>, <code>ST.CARanova</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='no'>test</span><span class='kw'>&lt;-</span><span class='fu'><a href='fitCARBayesST.html'>fitCARBayesST</a></span>(<span class='kw'>datain</span><span class='kw'>=</span><span class='no'>mydata</span>,<span class='kw'>xvar</span><span class='kw'>=</span><span class='st'>"thermalTime"</span>,<span class='kw'>trait</span><span class='kw'>=</span><span class='st'>"plantHeight"</span>,<span class='kw'>k</span><span class='kw'>=</span><span class='fl'>2</span>,
-     <span class='kw'>graphDist</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>10</span>,<span class='kw'>n.sample</span><span class='kw'>=</span><span class='fl'>110</span>,
-     <span class='kw'>formulaModel</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/formula'>as.formula</a></span>(<span class='no'>plantHeight</span>~<span class='no'>scenario</span>+<span class='no'>genotypeAlias</span>),
-     <span class='kw'>typeModel</span><span class='kw'>=</span><span class='st'>"anova"</span>,<span class='kw'>verbose</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in unique(datain[, xvar]): objet 'mydata' introuvable</span></div><div class='input'> <span class='fu'>printCARBayesST</span>(<span class='kw'>modelin</span><span class='kw'>=</span><span class='no'>test</span><span class='kw'>[[</span><span class='fl'>1</span>]])</div><div class='output co'>#&gt; <span class='error'>Error in printCARBayesST(modelin = test[[1]]): objet 'test' introuvable</span></div></pre>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+ <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>plant1</span>)
+ <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
+ <span class='no'>mydata</span><span class='kw'>&lt;-</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>plant1</span>,!<span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span>(<span class='no'>plant1</span>$<span class='no'>thermalTime</span>))
+ <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>mydata</span>)</div><div class='output co'>#&gt; 'data.frame':	45342 obs. of  14 variables:
+#&gt;  $ Ref            : Factor w/ 1680 levels "manip1_10_10_WW",..: 131 131 131 131 131 131 131 131 131 131 ...
+#&gt;  $ experimentAlias: Factor w/ 1 level "manip1": 1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ Day            : Factor w/ 42 levels "2013-02-01","2013-02-02",..: 3 4 5 6 7 9 9 10 11 12 ...
+#&gt;  $ potAlias       : int  1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ scenario       : Factor w/ 2 levels "WD","WW": 2 2 2 2 2 2 2 2 2 2 ...
+#&gt;  $ genotypeAlias  : Factor w/ 274 levels "11430_H","A310_H",..: 165 165 165 165 165 165 165 165 165 165 ...
+#&gt;  $ repetition     : int  1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ Line           : int  1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ Position       : int  1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ thermalTime    : num  1.29 2.65 3.98 5.32 6.66 ...
+#&gt;  $ plantHeight    : num  140 151 213 239 271 ...
+#&gt;  $ leafArea       : num  0.018 0.019 0.0208 0.0222 0.0235 ...
+#&gt;  $ biovolume      : num  0.253 0.62 1.201 1.68 3.396 ...
+#&gt;  $ Repsce         : Factor w/ 15 levels "1_WD","1_WW",..: 2 2 2 2 2 2 2 2 2 2 ...</div><div class='input'> <span class='no'>test</span><span class='kw'>&lt;-</span><span class='fu'><a href='fitCARBayesST.html'>fitCARBayesST</a></span>(<span class='kw'>datain</span><span class='kw'>=</span><span class='no'>mydata</span>,<span class='kw'>xvar</span><span class='kw'>=</span><span class='st'>"thermalTime"</span>,
+       <span class='kw'>trait</span><span class='kw'>=</span><span class='st'>"plantHeight"</span>,<span class='kw'>k</span><span class='kw'>=</span><span class='fl'>2</span>,
+       <span class='kw'>graphDist</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>10</span>,<span class='kw'>n.sample</span><span class='kw'>=</span><span class='fl'>110</span>,
+       <span class='kw'>formulaModel</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/formula.html'>as.formula</a></span>(<span class='no'>plantHeight</span>~<span class='no'>scenario</span>+<span class='no'>genotypeAlias</span>),
+       <span class='kw'>typeModel</span><span class='kw'>=</span><span class='st'>"anova"</span>,<span class='kw'>verbose</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] 22.35558</div><div class='img'><img src='printCARBayesST-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt;            used  (Mb) gc trigger   (Mb) max used  (Mb)
+#&gt; Ncells  3966799 211.9    6910528  369.1  3966799 211.9
+#&gt; Vcells 68271535 520.9  213081920 1625.7 68271535 520.9</div><div class='input'> <span class='fu'>printCARBayesST</span>(<span class='kw'>modelin</span><span class='kw'>=</span><span class='no'>test</span><span class='kw'>[[</span><span class='fl'>1</span>]])</div><div class='output co'>#&gt;                             Median      2.5%      97.5% Geweke.diag
+#&gt; (Intercept)               792.5817  763.6455   811.1604        -0.5
+#&gt; scenarioWW                  3.0254   -9.2358    12.9744        -6.5
+#&gt; genotypeAliasA310_H       -34.8434  -71.8982     2.6984        -0.3
+#&gt; genotypeAliasA347        -298.1270 -346.1150  -240.2592         2.1
+#&gt; genotypeAliasA347_H         9.3035  -40.1602    57.7790         2.4
+#&gt; genotypeAliasA374_H        83.5795   31.5775   102.9859        -0.8
+#&gt; genotypeAliasA375_H        55.4157   16.6273    88.5397        -0.2
+#&gt; genotypeAliasA3_H          88.8552   61.5739   125.9540         0.1
+#&gt; genotypeAliasA554_H       -58.3851 -108.7537   -20.7920        -2.3
+#&gt; genotypeAliasAS5707_H      37.9737  -34.6114    85.8855        -3.1
+#&gt; genotypeAliasB100_H        43.0816   16.5982    73.4005        -1.0
+#&gt; genotypeAliasB104_H       -42.9235  -88.7832    20.1843        -1.4
+#&gt; genotypeAliasB105_H       -39.6113  -90.3097    -5.2356        -0.8
+#&gt; genotypeAliasB106_H        41.2016   10.7697    71.0919         0.1
+#&gt; genotypeAliasB107_H       -75.2361 -118.5950   -15.1701        -1.5
+#&gt; genotypeAliasB108_H        17.3732  -11.0115    58.6335         0.0
+#&gt; genotypeAliasB109_H        22.7601  -27.2720    46.8757        -1.2
+#&gt; genotypeAliasB110_H       -44.4801  -77.6416   -19.8984        -1.1
+#&gt; genotypeAliasB113_H       -11.1585  -49.0835    22.5764         0.0
+#&gt; genotypeAliasB14a_H       -88.5402 -121.6324   -48.2574        -0.7
+#&gt; genotypeAliasB37_H        -44.0026  -71.4509    -8.4415        -2.4
+#&gt; genotypeAliasB73         -128.3739 -153.3333  -100.1120         0.3
+#&gt; genotypeAliasB73_H          4.2788  -19.5660    51.4808         0.7
+#&gt; genotypeAliasB73_SILK      -7.4485  -49.1756    22.6770        -3.5
+#&gt; genotypeAliasB84_H         34.4643    0.1506    76.5138        -3.6
+#&gt; genotypeAliasB89_H        -65.3823  -85.7602   -27.3031        -0.7
+#&gt; genotypeAliasB97_H         88.1297   53.9924   122.2355         0.6
+#&gt; genotypeAliasB98_H        -94.1014 -125.8517   -60.4686         0.5
+#&gt; genotypeAliasC103_H        30.0965  -12.7809    73.2951        -2.3
+#&gt; genotypeAliasCO109_H       24.4584    1.6874    57.3200         0.8
+#&gt; genotypeAliasCR1Ht_H      -20.0050  -43.2688    28.2277         3.8
+#&gt; genotypeAliasD09_H          9.8849  -33.6821    54.3705         1.4
+#&gt; genotypeAliasDE811_H      -62.5960  -92.9800   -21.3860        -4.1
+#&gt; genotypeAliasDK2MA22_H     92.3445   74.8867   114.4049        -0.1
+#&gt; genotypeAliasDK4676A_H    -32.3405  -72.4448     2.3872        -0.4
+#&gt; genotypeAliasDK78010_H    -73.4609 -107.5378   -23.5284        -0.4
+#&gt; genotypeAliasDK78371A_H    12.7434  -25.0506    45.8902        -2.6
+#&gt; genotypeAliasDKFAPW_H     -18.9844  -42.1027    13.8854        -1.2
+#&gt; genotypeAliasDKFBHJ_H      27.0913    2.8832    69.0719        -0.3
+#&gt; genotypeAliasDKIBO2_H       6.9929  -29.0815    36.6104        -0.4
+#&gt; genotypeAliasDKMBST_H     107.7154   65.8016   134.9297        -3.0
+#&gt; genotypeAliasEA1027_H      35.0575   15.8514    64.7414         1.0
+#&gt; genotypeAliasEA1163_H     -48.3318  -74.3464   -18.8635        -0.5
+#&gt; genotypeAliasEA3076_H       3.3521  -31.9494    43.8627        -1.4
+#&gt; genotypeAliasEC136_H       -4.8976  -39.2879    30.7859        -1.3
+#&gt; genotypeAliasEC140_H      -83.1202 -110.6009   -47.3672         0.1
+#&gt; genotypeAliasEC151_H      -89.7487 -123.0797   -69.7535         0.2
+#&gt; genotypeAliasEC169_H       -5.0263  -38.0574    26.7399        -0.5
+#&gt; genotypeAliasEC175_H      -66.6553  -91.7228   -31.0474         0.2
+#&gt; genotypeAliasEC232_H      -36.1643  -62.2750    -3.0614         0.1
+#&gt; genotypeAliasEC242C_H      11.2612  -38.9750    51.7292         0.8
+#&gt; genotypeAliasEC334_H      -83.7695 -119.5162   -46.9332        -2.3
+#&gt; genotypeAliasEP10_H        78.9524    8.8753   118.3356        -2.4
+#&gt; genotypeAliasEP2008-18_H   43.7335   12.7222    75.9333        -0.4
+#&gt; genotypeAliasEP2008-22_H   15.5254  -10.8988    41.6517         1.7
+#&gt; genotypeAliasEP29_H       -89.9753 -121.5017   -55.8337        -1.3
+#&gt; genotypeAliasEP51_H       -50.2543  -83.6946   -12.3450         0.1
+#&gt; genotypeAliasEP52_H         9.1390  -19.8112    34.7840        -0.6
+#&gt; genotypeAliasEP55_H      -122.2902 -156.2607   -97.2895        -0.4
+#&gt; genotypeAliasEP67_H        -0.5907  -34.3334    38.8934        -1.7
+#&gt; genotypeAliasEP72_H        23.7431  -32.2715    93.5627        -2.1
+#&gt; genotypeAliasEP77_H        72.4911   48.2675   115.9988        -0.4
+#&gt; genotypeAliasEZ11A_H      -29.9450  -47.4628    -2.2891         1.0
+#&gt; genotypeAliasEZ18_H         6.3970  -38.7496    47.7755        -3.7
+#&gt; genotypeAliasEZ31_H        25.6253  -11.2751    57.1874         0.3
+#&gt; genotypeAliasEZ34_H       -46.4014  -93.8290    -5.0932        -3.9
+#&gt; genotypeAliasEZ35_H       -15.2166  -47.4864    19.9276        -2.0
+#&gt; genotypeAliasEZ36_H       -47.3379  -91.0837   -16.1873         0.1
+#&gt; genotypeAliasEZ37_H       -10.2272  -77.7982    36.9957        -3.4
+#&gt; genotypeAliasEZ38_H       -21.1955  -74.7363    19.8276        -2.2
+#&gt; genotypeAliasEZ40_H       -73.1573  -99.1040   -51.1085        -0.6
+#&gt; genotypeAliasEZ42_H       -36.1737  -72.7980    -4.3905        -1.6
+#&gt; genotypeAliasEZ47_H        70.6121   24.9775    96.5888         0.4
+#&gt; genotypeAliasEZ48_H        -1.7372  -34.5657    44.8541         0.2
+#&gt; genotypeAliasEZ53_H       -62.5097  -93.4855   -22.0347        -1.4
+#&gt; genotypeAliasEZ5_H         34.2409   -2.8321    81.5285        -1.5
+#&gt; genotypeAliasF04401_H     -29.5917  -60.1383    18.4441        -0.2
+#&gt; genotypeAliasF04402_H     -86.0697 -121.6738   -39.2699        -2.0
+#&gt; genotypeAliasF04701_H     -28.3877  -71.3657     5.3917        -0.5
+#&gt; genotypeAliasF04702_H       1.8918  -38.2768    48.9668        -1.9
+#&gt; genotypeAliasF05101_H      69.3628   16.5515    93.1147        -0.8
+#&gt; genotypeAliasF05404_H      31.5244  -13.1941    73.6465        -2.9
+#&gt; genotypeAliasF1808_H       -1.9477  -40.7192    31.2134        -2.5
+#&gt; genotypeAliasF1890_H       34.6592  -10.1353    72.4861        -1.1
+#&gt; genotypeAliasF218_H       -60.9202 -100.0474   -27.2418         0.2
+#&gt; genotypeAliasF252_H        63.5911   37.9589    90.3410         3.9
+#&gt; genotypeAliasF353        -119.7033 -148.3467   -69.6333         2.1
+#&gt; genotypeAliasF353_H        93.2910   66.3278   132.2299         1.6
+#&gt; genotypeAliasF354_H        11.5948  -31.9823    39.8355         0.3
+#&gt; genotypeAliasF584_H       -46.0423  -74.0375    -2.8462         0.2
+#&gt; genotypeAliasF608_H        24.0904  -15.0188    67.8744        -0.1
+#&gt; genotypeAliasF618_H       -35.7221  -63.9978    -4.6059        -0.4
+#&gt; genotypeAliasF7001_H      -35.4477  -77.2955    -2.9333         0.6
+#&gt; genotypeAliasF7019_H       28.0813  -21.1613    65.1118        -0.2
+#&gt; genotypeAliasF7025_H      -21.2857  -55.2893    21.0813        -0.4
+#&gt; genotypeAliasF7028_H       47.4259    2.3076    82.9752        -0.7
+#&gt; genotypeAliasF7057_H        9.4523  -31.3882    37.0810         0.3
+#&gt; genotypeAliasF7058_H       25.4385  -33.9551    54.1959         1.7
+#&gt; genotypeAliasF7081_H       43.2103   15.0258    71.4952         0.6
+#&gt; genotypeAliasF7082_H       14.5557  -23.9768    62.5868         0.8
+#&gt; genotypeAliasF712_H        76.6793   27.2736   119.8439        -4.0
+#&gt; genotypeAliasF748_H       -71.5426 -112.2025   -48.9057         1.4
+#&gt; genotypeAliasF752_H       -32.2894  -73.0140     7.2271         1.9
+#&gt; genotypeAliasF816_H        33.0296    0.0034    61.8437        -0.7
+#&gt; genotypeAliasF838_H       -34.3951  -85.2881    13.9679        -1.1
+#&gt; genotypeAliasF874_H         4.4246  -33.5532    51.4900        -1.9
+#&gt; genotypeAliasF888_H        28.3135   -1.2756    54.9281        -0.6
+#&gt; genotypeAliasF894_H       -74.4998  -98.6787   -50.8168        -0.3
+#&gt; genotypeAliasF908_H       -39.6158  -79.1284     5.2511        -1.3
+#&gt; genotypeAliasF912_H        25.5362   -8.1223    54.9331         0.5
+#&gt; genotypeAliasF918_H        17.1812  -20.1388    59.1166        -1.7
+#&gt; genotypeAliasF922_H       164.2660  120.3740   204.5190        -1.4
+#&gt; genotypeAliasF924        -224.6287 -269.5044  -159.9178         1.7
+#&gt; genotypeAliasF924_H        58.4923   24.3853   107.2302         1.3
+#&gt; genotypeAliasF924_SILK    -20.7863  -51.9511    17.5704        -1.4
+#&gt; genotypeAliasF98902_H      69.8007   47.9467   107.8461        -0.8
+#&gt; genotypeAliasFP1_H         53.3136   -1.0725    89.6371        -3.2
+#&gt; genotypeAliasFR19_H        -2.5331  -29.2060    26.1068         1.3
+#&gt; genotypeAliasH99_H        -22.1682  -57.6805    14.8253        -0.3
+#&gt; genotypeAliasHMV5301_H    148.0008   93.2551   198.6353        -4.9
+#&gt; genotypeAliasHMV5325_H     16.9189  -13.0867    57.0144        -0.6
+#&gt; genotypeAliasHMV5343_H    -28.9717  -61.3714    -4.0191        -0.4
+#&gt; genotypeAliasHMV5347_H     19.9183  -20.6160    62.6256        -1.0
+#&gt; genotypeAliasHMV5405_H     35.7915    6.9664    69.2624         2.1
+#&gt; genotypeAliasHMV5409_H    -69.8494 -105.7921   -41.7196        -0.4
+#&gt; genotypeAliasHMV5422_H     42.5869   -6.8858    69.3205        -1.6
+#&gt; genotypeAliasHMV5502_H   -102.8145 -135.6816   -73.9946        -0.3
+#&gt; genotypeAliasI198_H        28.4076  -20.5502    62.1989         0.3
+#&gt; genotypeAliasI205_H      -126.3334 -183.0943   -80.2518        -1.4
+#&gt; genotypeAliasI211_H        23.1333  -18.8143    53.0067         0.5
+#&gt; genotypeAliasI233_H       -48.0161  -79.5036   -17.7682        -0.1
+#&gt; genotypeAliasI238_H       -73.1009 -100.8292   -28.1533        -2.0
+#&gt; genotypeAliasI242_H       -23.8579  -51.0169    10.4567        -1.8
+#&gt; genotypeAliasI261_H        -8.7741  -52.7838    30.1742        -0.5
+#&gt; genotypeAliasI267_H        56.4763   34.2549    85.2616         0.7
+#&gt; genotypeAliasIDT_H         23.8099  -24.4510    61.0916        -1.0
+#&gt; genotypeAliasLAN496_H       4.0017  -26.3486    37.3790        -0.6
+#&gt; genotypeAliasLH123Ht_H     40.6583   18.8399    83.2027        -0.7
+#&gt; genotypeAliasLH145_H      -47.7204  -80.0864   -18.6285        -0.4
+#&gt; genotypeAliasLH38        -156.6802 -199.3072   -86.7165         2.4
+#&gt; genotypeAliasLH38_H        74.5916   41.9135   132.3384         2.2
+#&gt; genotypeAliasLH39_H        -1.3504  -35.4230    47.0640        -0.7
+#&gt; genotypeAliasLH59_H         3.6441  -39.6687    35.0044        -1.1
+#&gt; genotypeAliasLH60_H       -46.8925  -81.3986   -21.1999        -0.4
+#&gt; genotypeAliasLH65_H       -54.9659  -86.5932    -4.3957        -0.9
+#&gt; genotypeAliasLH74_H       -86.4869 -123.4937   -39.6907         0.0
+#&gt; genotypeAliasLH82_H       -21.5502  -51.1156    17.6045         0.1
+#&gt; genotypeAliasLH93_H        -4.2507  -36.1999    39.1938         1.1
+#&gt; genotypeAliasLo1016_H      29.6175  -18.7321    57.4783         0.8
+#&gt; genotypeAliasLo1026_H      35.2133    2.1803    66.2561        -1.6
+#&gt; genotypeAliasLo1035_H     -15.0095  -56.7137    10.6420         0.1
+#&gt; genotypeAliasLo1038_H     -31.6922  -63.7403    -8.5710        -0.9
+#&gt; genotypeAliasLo1056_H      40.4162    6.8254    67.3625        -0.1
+#&gt; genotypeAliasLo1063_H     -13.1228  -57.4158    24.5762        -1.6
+#&gt; genotypeAliasLo1087_H    -108.7804 -132.9150   -71.6993        -0.1
+#&gt; genotypeAliasLo1094_H      40.2549  -11.0582    73.2869         0.7
+#&gt; genotypeAliasLo1095_H      27.7410  -22.1838    85.0748        -3.9
+#&gt; genotypeAliasLo1101_H     -37.0402  -79.2671     3.0233        -1.5
+#&gt; genotypeAliasLo1106_H     -32.0826  -60.4493    -5.4218        -0.1
+#&gt; genotypeAliasLo1123_H       8.5752  -21.2387    48.4049        -0.1
+#&gt; genotypeAliasLo1124_H      37.0075    3.6168    67.1704        -1.7
+#&gt; genotypeAliasLo1130_H     -37.0052  -73.4344    31.1090        -0.8
+#&gt; genotypeAliasLo1172_H      93.3601   61.6016   121.3202        -0.3
+#&gt; genotypeAliasLo1180_H      25.1730    0.8354    69.9697        -0.6
+#&gt; genotypeAliasLo1187_H     -35.7930  -64.7602    16.4363        -1.1
+#&gt; genotypeAliasLo1199_H     -23.8220  -65.3923     7.2964        -0.4
+#&gt; genotypeAliasLo1203_H     -49.7042  -72.0677   -13.2660        -0.5
+#&gt; genotypeAliasLo1223_H      37.2500    6.6381    71.0563         2.3
+#&gt; genotypeAliasLo1242_H       0.0596  -43.0237    40.3705        -1.6
+#&gt; genotypeAliasLo1251_H      -8.9417  -51.3217    39.8693        -1.9
+#&gt; genotypeAliasLo1253_H      -8.7856  -45.5901    26.3579        -2.5
+#&gt; genotypeAliasLo1261_H     -50.5477  -90.1772     5.4724        -2.3
+#&gt; genotypeAliasLo1266_H      87.0796   37.2878   115.8148        -2.5
+#&gt; genotypeAliasLo1270_H      43.6985   17.2698    77.4168        -0.6
+#&gt; genotypeAliasLo1273_H      48.8208   12.2772    93.9864        -0.8
+#&gt; genotypeAliasLo1274_H     106.9320   53.4470   171.2191        -2.5
+#&gt; genotypeAliasLo1280_H      48.9024   18.6097    79.2197         1.0
+#&gt; genotypeAliasLo1282_H      45.9741   10.5851    76.3529        -1.1
+#&gt; genotypeAliasLo1284_H      28.5580   -0.9051    67.9137        -1.6
+#&gt; genotypeAliasLo1288_H     -63.1768  -88.5822   -24.9890        -1.3
+#&gt; genotypeAliasLo1290_H      79.7041   44.9227   126.3124        -0.1
+#&gt; genotypeAliasLo1301_H      15.8710   -1.4562    55.0201        -0.4
+#&gt; genotypeAliasLo904_H      -37.9335  -90.8574   -14.0260        -1.7
+#&gt; genotypeAliasLp5_H        -22.3930  -60.2760    12.6865        -1.0
+#&gt; genotypeAliasML606_H       36.9714   -6.8112    82.5618         0.1
+#&gt; genotypeAliasMo15W_H       21.0619  -28.3433    64.1765        -1.6
+#&gt; genotypeAliasMo17        -284.2791 -319.0918  -226.2359         0.0
+#&gt; genotypeAliasMo17_H        47.1835   22.5031    82.2613         0.7
+#&gt; genotypeAliasMS153       -115.2413 -142.8250   -72.4199         1.0
+#&gt; genotypeAliasMS153_H       87.3043   20.7076   120.4026         1.6
+#&gt; genotypeAliasMS153_SILK    35.2053   -7.6556    66.4219        -3.9
+#&gt; genotypeAliasMS71_H       -40.6461  -74.2671    15.4410         0.5
+#&gt; genotypeAliasN16_H         26.0340  -27.5461    53.8828        -0.7
+#&gt; genotypeAliasN192_H       -50.0501  -76.4091   -16.4180         1.4
+#&gt; genotypeAliasN22_H        -89.8216 -119.7061   -51.2518         3.6
+#&gt; genotypeAliasN25_H        -38.3446  -63.5511   -10.5358        -0.7
+#&gt; genotypeAliasN6_H         -16.1390  -47.8605    13.1856        -0.6
+#&gt; genotypeAliasNC290_H      -43.2121  -68.3724   -16.8215         1.3
+#&gt; genotypeAliasNC358_H      -39.8774  -80.6597   -10.9386         1.1
+#&gt; genotypeAliasNDB8_H        22.1998  -55.7412    58.3052         2.7
+#&gt; genotypeAliasNK764_H      -10.8142  -47.5707    12.8406         0.1
+#&gt; genotypeAliasNK807_H      -11.2468  -36.3319    33.0143         0.1
+#&gt; genotypeAliasNQ508_H        7.2602  -14.7327    30.0138        -0.7
+#&gt; genotypeAliasNS501_H        4.8644  -28.1356    47.9912        -0.6
+#&gt; genotypeAliasNS701_H       -2.2449  -39.8166    47.0017        -0.1
+#&gt; genotypeAliasOh02_H        39.4335  -17.9256    82.5017        -2.5
+#&gt; genotypeAliasOh33_H        10.8870  -11.8168    47.4863        -1.0
+#&gt; genotypeAliasOh40B_H      -37.1485  -95.9895     3.1699        -2.2
+#&gt; genotypeAliasOh43        -192.4946 -221.0072  -146.6776         1.4
+#&gt; genotypeAliasOh43_H       116.2157   76.9006   165.2931         1.5
+#&gt; genotypeAliasOh43_SILK     49.0454   28.1855    78.3252        -0.4
+#&gt; genotypeAliasOs426_H      -41.2685  -76.5766    -2.5670        -0.5
+#&gt; genotypeAliasP465P_H      -58.6407  -97.3127   -19.7497         0.9
+#&gt; genotypeAliasPa35_H       -45.5933  -83.0805     5.1491        -1.1
+#&gt; genotypeAliasPa36_H       -27.7161  -67.9287    -0.1201        -0.6
+#&gt; genotypeAliasPa374_H       -3.4955  -23.6843    20.1306        -0.1
+#&gt; genotypeAliasPa405_H        0.3621  -60.5387    47.8708        -1.8
+#&gt; genotypeAliasPa91_H        65.5765   37.6201    99.1136        -0.4
+#&gt; genotypeAliasPB116_H      -13.8329  -60.4621    20.0268         0.4
+#&gt; genotypeAliasPB98TR_H      -9.3608  -39.7496    48.6283        -1.0
+#&gt; genotypeAliasPH207_H     -109.9208 -128.6127   -76.5843         0.3
+#&gt; genotypeAliasPHB09_H      -67.1792 -103.3751   -23.4825        -0.3
+#&gt; genotypeAliasPHG35_H       27.6749  -12.8726    70.2369        -0.7
+#&gt; genotypeAliasPHG39_H       28.9658   -5.7796    49.1828        -1.5
+#&gt; genotypeAliasPHG47_H       50.4788   18.0757    87.3388        -1.4
+#&gt; genotypeAliasPHG50_H       58.9390   28.6583    86.5053         0.0
+#&gt; genotypeAliasPHG71_H       54.3497   15.9903    89.6117        -3.3
+#&gt; genotypeAliasPHG80_H      -86.8178 -124.1286   -50.1106         1.7
+#&gt; genotypeAliasPHG83_H      -94.9385 -114.7631   -60.9215        -0.3
+#&gt; genotypeAliasPHG84_H       82.6666   51.9637   122.9031        -0.1
+#&gt; genotypeAliasPHG86_H      -24.9278  -62.5286     4.0118        -4.8
+#&gt; genotypeAliasPHH93_H       48.0083   17.7829    90.5443        -1.1
+#&gt; genotypeAliasPHJ40_H       96.1010   65.5354   123.7188        -0.4
+#&gt; genotypeAliasPHK29_H       29.5680  -25.0598    54.4415        -1.3
+#&gt; genotypeAliasPHK76_H        7.3965  -17.5376    60.7903        -0.3
+#&gt; genotypeAliasPHR36_H       83.3693   55.6631   116.2439        -4.0
+#&gt; genotypeAliasPHT77_H       60.6973   24.7614    94.0658        -2.1
+#&gt; genotypeAliasPHV63_H       30.3843   -1.2702    60.1636         1.7
+#&gt; genotypeAliasPHW65_H       -9.9210  -54.9942    27.2680        -4.3
+#&gt; genotypeAliasPHZ51_H       98.2921   76.9719   134.4934         0.4
+#&gt; genotypeAliasPP147_H       28.0271   -5.8706    58.6582        -6.4
+#&gt; genotypeAliasSC-Malawi_H   11.1667   -9.3112    32.0915         0.7
+#&gt; genotypeAliasUH_2500_H     -0.0968  -24.2734    49.0025        -0.7
+#&gt; genotypeAliasUH250_H       42.8090   13.1164    78.2581        -1.1
+#&gt; genotypeAliasUH304_H      -63.9048  -95.4267   -20.2483         0.1
+#&gt; genotypeAliasUH_6102_H     34.0473    5.0129    62.2186        -0.3
+#&gt; genotypeAliasUH_6179_H    -66.4808 -101.9948   -16.7868        -1.2
+#&gt; genotypeAliasUH_P024_H    -96.9513 -154.5796   -66.2087        -3.1
+#&gt; genotypeAliasUH_P060_H     32.6820    3.3007    59.4823        -0.5
+#&gt; genotypeAliasUH_P064_H      6.3651  -17.2911    34.5702        -1.3
+#&gt; genotypeAliasUH_P074_H   -100.0842 -127.7418   -69.4405        -0.5
+#&gt; genotypeAliasUH_P087_H    -33.0241  -53.2766   -11.0582        -0.2
+#&gt; genotypeAliasUH_P089_H      0.4331  -35.2077    22.2577        -0.5
+#&gt; genotypeAliasUH_P104_H    107.8449   74.5086   162.2133        -0.6
+#&gt; genotypeAliasUH_P115_H     90.8566   42.0633   124.7711        -7.1
+#&gt; genotypeAliasUH_P128_H     54.1108   27.3170    98.6391        -0.2
+#&gt; genotypeAliasUH_P148_H    -21.2177  -68.4826    20.0792        -0.7
+#&gt; genotypeAliasUH_S018_H    -20.2968  -50.1840    18.2260        -0.4
+#&gt; genotypeAliasUH_S020_H    -53.9049  -78.2748   -10.7204         0.2
+#&gt; genotypeAliasUH_S025_H     85.5738   59.3207   106.9561         0.4
+#&gt; genotypeAliasVa26_H        34.0215    7.8676    59.3159        -0.2
+#&gt; genotypeAliasW117        -147.5043 -178.6093  -107.3583         0.5
+#&gt; genotypeAliasW117_H       115.8126   67.4583   155.5631         3.0
+#&gt; genotypeAliasW153R_H      -16.7560  -53.4061     7.1459        -0.8
+#&gt; genotypeAliasW182E_H      -12.1516  -57.0438    23.1397        -3.5
+#&gt; genotypeAliasW23_H         18.8351  -23.9337    61.8420        -0.4
+#&gt; genotypeAliasW602S_H       26.0025   -7.7420    57.8923        -0.7
+#&gt; genotypeAliasW604S_H      -30.0691  -72.8708    -8.9608        -1.7
+#&gt; genotypeAliasW64A_H       -39.6251  -77.2972    -9.4319         0.2
+#&gt; genotypeAliasW9          -463.4328 -494.1298  -411.2920         1.0
+#&gt; genotypeAliasW95115_H      56.6909   -1.5128    97.2494        -3.0
+#&gt; genotypeAliasW9_H         -43.7471  -81.4519    -3.8657         0.6
+#&gt; genotypeAliasWf9_H        124.8180   73.7623   174.6388        -0.4
+#&gt; genotypeAliasX061_H        58.6443   12.0185    83.9169        -1.0
+#&gt; genotypeAliasX697_H         6.6264  -25.0713    47.9549        -1.5
+#&gt; tau2.S                   4505.6067 2841.6485  5078.5644        -4.9
+#&gt; tau2.T                   3349.1124 2535.1526  6952.1644         2.1
+#&gt; nu2                      6352.0346 6167.8110 10266.7960         2.7
+#&gt; rho.S                       0.4034    0.2730     0.5062        -6.3
+#&gt; rho.T                       0.9988    0.9679     0.9994        -0.9
+#&gt;           DIC           p.d          WAIC           p.w          LMPL 
+#&gt;    497737.942      2360.307    508599.554      8850.950   -250460.817 
+#&gt; loglikelihood 
+#&gt;   -246508.664 </div><div class='input'># }
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -171,13 +480,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

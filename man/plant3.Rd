@@ -4,7 +4,8 @@
 \name{plant3}
 \alias{plant3}
 \title{Parameters of interest of plants over thermal time in an experiment}
-\format{a data frame with XX rows and 15 variables:
+\format{
+a data frame with XX rows and 15 variables:
 \describe{
   \item{Ref}{Reference of each plant in the greenhouse}
   \item{experimentAlias}{Id of an experiment}
@@ -20,7 +21,8 @@
   \item{leafArea}{Leaf area}
   \item{biovolume}{biovolume (g)}
   \item{Repsce}{repetion-scenario}
-}}
+}
+}
 \usage{
 plant3
 }

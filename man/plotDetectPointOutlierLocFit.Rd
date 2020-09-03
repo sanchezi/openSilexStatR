@@ -32,14 +32,12 @@ see locfit() help function from the locfit R library
 see funcDetectPointOutlierLocFit function
 }
 \examples{
-\donttest{
-resu.root <- FuncDetectPointOutlierLocFit(datain = RootSub,
-                                         myparam = "tipPos_y",
-                                         mytime = "Time",
-                                         myid = "plantId",
-                                         mylevel = 5,
-                                         mylocfit = 70)
-plotDetectPointOutlierLocFit(datain=RootSub,resuin=resu.root,myparam="tipPos_y",
-                            mytime="Time",myid="plantId")
-}
+library(locfit)
+selec<-c("manip1_1_1_WW","manip1_1_2_WW","manip1_1_3_WW")
+mydata<-plant1[plant1[,"Ref"] \%in\% selec,]
+resu<-FuncDetectPointOutlierLocFit(datain=mydata,
+               myparam="biovolume",mytime="thermalTime",
+               myid="Ref",mylevel=5,mylocfit=70)
+plotDetectPointOutlierLocFit(datain=mydata,resuin=resu,myparam="biovolume",
+                            mytime="thermalTime",myid="Ref")
 }

@@ -6,19 +6,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lattice Experiments Data Analysis • openSilexStatR</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Lattice Experiments Data Analysis">
 <meta property="og:description" content="A set of statistical functions and rmarkdown scripts to analyze experiment in
    a lattice platfrom - OpenSilex system information.">
-<meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">openSilexStatR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -39,7 +40,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -80,6 +81,7 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="contents col-md-9">
 
@@ -88,6 +90,7 @@
 <a href="#opensilexstatr" class="anchor"></a>openSilexStatR</h1></div>
 <p><strong>Package In progress…</strong></p>
 <p>A set of statistical functions and rmarkdown scripts to analyze experiments in a lattice platform - OpenSilex system information.</p>
+<p><a href="https://sanchezi.github.io/openSilexStatR/" class="uri">https://sanchezi.github.io/openSilexStatR/</a></p>
 <ul>
 <li>Spatial representation of a greenhouse or a lattice platform</li>
 <li>Create a video with imageGreenhouse() function. see vignette <em>videoImageGreenhouse</em>
@@ -103,46 +106,47 @@
 </ul>
 <p>The functions of the package are constructed according to a data set structure of a lattice experiment (spatial coordinates) and for some with temporal informations and therefore are not entirely generic.</p>
 <div style="background-color:rgba(0, 255, 0,0.1); text-align:left; vertical-align: center; padding:10px 0;">
-Please have a look to the structure of the example datasets provided by the package (plant1, plant2, plant3, plant4, PAdata). Mostly, the following columns are required:
-
-* the Line and Position columns (coordinates in a greenhouse)
-* Ref: a unique identifiant
-* genotypeAlias: genotypes used in the experiment
-* scenario: scenario applied to the experiment
-* time: a numeric time variable, for exemple a thermal time
+<p>Please have a look to the structure of the example datasets provided by the package (plant1, plant2, plant3, plant4, PAdata). Mostly, the following columns are required:</p>
+<ul>
+<li>the Line and Position columns (coordinates in a greenhouse)</li>
+<li>Ref: a unique identifiant</li>
+<li>genotypeAlias: genotypes used in the experiment</li>
+<li>scenario: scenario applied to the experiment</li>
+<li>time: a numeric time variable, for exemple a thermal time</li>
+</ul>
 </div>
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
 <p>To install the <strong>openSilexStatR</strong> package, the easiest is to install it directly from Github. Open an R session and run the following commands:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(remotes) </a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"sanchezi/openSilexStatR"</span>,<span class="dt">build_vignettes=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">remotes</span>)
+<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"sanchezi/openSilexStatR"</span>,<span class="kw">build_vignettes</span><span class="kw">=</span><span class="fl">TRUE</span>)</pre></div>
 <p>If you want to install the vignettes included in this library, be aware to have the following softwares on your computer:</p>
 <ul>
 <li>if <strong>Windows OS</strong>: MikTex (do not forget to add its path to the environment variables PATH, ex: “C:\MIKTEX~1.9\miktex\bin\x64\pdflatex.exe”), Rtools</li>
 <li>if <strong>Unix OS</strong>: rgdal, rgl, imagemagick</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">sudo add<span class="op">-</span>apt<span class="op">-</span>repository ppa<span class="op">:</span>ubuntugis<span class="op">/</span>ubuntugis<span class="op">-</span>unstable</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">sudo apt<span class="op">-</span>get update</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">sudo apt<span class="op">-</span>get install libgdal<span class="op">-</span>dev</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">sudo apt install libftgl2 libcgal<span class="op">-</span>dev libglu1<span class="op">-</span>mesa<span class="op">-</span>dev libglu1<span class="op">-</span>mesa<span class="op">-</span>dev libx11<span class="op">-</span>dev libfreetype6<span class="op">-</span>dev</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">sudo add<span class="op">-</span>apt<span class="op">-</span>repository <span class="op">-</span>y ppa<span class="op">:</span>cran<span class="op">/</span>imagemagick</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">sudo apt<span class="op">-</span>get update</a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">sudo apt<span class="op">-</span>get install imagemagick<span class="op">-</span>common</a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">sudo apt<span class="op">-</span>get install <span class="op">-</span>y libmagick<span class="op">++-</span>dev</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="r">sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+sudo apt-get update
+sudo apt-get install libgdal-dev
+
+sudo apt install libftgl2 libcgal-dev libglu1-mesa-dev libglu1-mesa-dev libx11-dev libfreetype6-dev
+
+sudo add-apt-repository -y ppa:cran/imagemagick
+sudo apt-get update
+sudo apt-get install imagemagick-common
+sudo apt-get install -y libmagick++-dev</pre></div>
 <p>Even if it is less informative, you can also install the package without the vignettes:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(remotes) </a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"sanchezi/openSilexStatR"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">remotes</span>)
+<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"sanchezi/openSilexStatR"</span>)</pre></div>
 </div>
 <div id="usage" class="section level1">
 <h1 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h1>
 <p>Once the package is installed on your computer, it can be loaded into a R session:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(openSilexStatR)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/help">help</a></span>(<span class="dt">package=</span><span class="st">"openSilexStatR"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">openSilexStatR</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span>(<span class="kw">package</span><span class="kw">=</span><span class="st">"openSilexStatR"</span>)</pre></div>
 </div>
 <div id="others-useful-packages" class="section level1">
 <h1 class="hasAnchor">
@@ -162,7 +166,7 @@ Please have a look to the structure of the example datasets provided by the pack
 <li><p>Neveu, P., Tireau, A., Hilgert, N., Negre, V., Mineau-Cesari, J., Brichet, N., Chapuis, R., Sanchez, I., Pommier, C., Charnomordic, B., Tardieu, F., Cabrera Bosquet, L. (2019). Dealing with multi-source and multi-scale information in plant phenomics: the ontology-driven Phenotyping Hybrid Information System. New Phytologist, 221 (1), 588-601. , DOI : 10.1111/nph.15385 <a href="https://prodinra.inra.fr/record/442308" class="uri">https://prodinra.inra.fr/record/442308</a></p></li>
 </ul>
 <p>You should also cite the <strong>openSilexStatR</strong> package:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/citation">citation</a></span>(<span class="st">"openSilexStatR"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">"openSilexStatR"</span>)</pre></div>
 <p>See also citation() for citing R itself.</p>
 </div>
 <div id="references" class="section level1">
@@ -181,7 +185,7 @@ Please have a look to the structure of the example datasets provided by the pack
 
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
@@ -206,17 +210,20 @@ Please have a look to the structure of the example datasets provided by the pack
   </div>
 </div>
 
+
       <footer><div class="copyright">
   <p>Developed by Pascal Neveu, Nadine Hilgert, Isabelle Sanchez.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

@@ -23,7 +23,5 @@ produce a graphic of the ditribution of a trait with the detected
 outlier points according to a specified flag method
 }
 \examples{
-\donttest{
- outlierHist(datain=myResuGlobal,trait="biovolume24",flag="flagLowerRaw")
-}
+# outlierHist(datain=myResuGlobal,trait="biovolume24",flag="flagLowerRaw")
 }

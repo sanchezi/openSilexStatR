@@ -3,7 +3,7 @@
 # Objective: functions for outliers detection according to biological meaning
 # Author: I.Sanchez
 # Creation: 05/09/2016
-# Update: 26/05/2020
+# Update: 01/09/2020
 #-------------------------------------------------------------------------------
 
 ##' a function for several outlier criteria
@@ -145,14 +145,15 @@ outlierCriteria<-function(datain,typeD,residin,typeR,trait,resRawName,resStdName
 #' }
 #' 
 #' @importFrom SpATS SpATS PSANOVA
-#' @importFrom dplyr filter mutate
+#' @importFrom dplyr filter mutate %>%
 #' 
 #' @examples
 #' \donttest{
-#' test<-FuncDetectOutlierPlantMaize(datain=phenoarchToy,dateBeforeTrt="2017-04-27",
+#' library(ggplot2)
+#' test<-FuncDetectOutlierPlantMaize(datain=PAdata,dateBeforeTrt="2017-04-27",
 #'                 param1="Biomass_Estimated",param2="Height_Estimated",
-#'                 param3="phyllocron",paramGeno="Geno",
-#'                 paramCol="Line",paramRow="Position",
+#'                 param3="phyllocron",paramGeno="Genotype",
+#'                 paramCol="Col",paramRow="Row",
 #'                 threshold=0.95,nCol=28,nRow=60,genotype.as.random=FALSE,
 #'                 timeColumn = "Time")
 #' plot(test$m1)  

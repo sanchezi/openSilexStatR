@@ -4,8 +4,17 @@
 \alias{fitSpATS}
 \title{fitSpATS}
 \usage{
-fitSpATS(datain, trait, genotypeId, rowId, colId, typeModel = "anova",
-  genotype.as.random = FALSE, nseg = c(14, 30), verbose)
+fitSpATS(
+  datain,
+  trait,
+  genotypeId,
+  rowId,
+  colId,
+  typeModel = "anova",
+  genotype.as.random = FALSE,
+  nseg = c(14, 30),
+  verbose
+)
 }
 \arguments{
 \item{datain}{input dataframe of parameters}

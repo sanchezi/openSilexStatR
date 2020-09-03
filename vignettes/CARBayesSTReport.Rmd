@@ -21,7 +21,7 @@ Objective: a vignette for phisStatR library
            require phisStatR library and fitCARBayesST() function
            The user has to adapt to his own analysis.
 Creation : 25/05/2020
-Update   : 25/05/2020
+Update   : 01/09/2020
 -->
 
 ***
@@ -37,6 +37,7 @@ Please, have a look on the names of the columns of the input data set. The funct
 * Ref: a unique identifiant by pot, repetition and alias
 * scenario: the scenario applied to the experiment
 * genotypeAlias: the used genotypes in the experiment
+
 </div>
 
 The example is conducted on plantHeight parameter, we modelise the plantHeight taking into account the temporality (thermal time) and the spatiality (lattice structure) with a bayesian spatio-temporal ANOVA model [3].
@@ -90,7 +91,7 @@ In model's comparison, the best fitting model is the one that minimises the DIC 
 
 **As the bayesian model can take a while, in this example, we initialise burnin=10 and n.sample=110 - not enough in real analysis!**
 
-```{r,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+```{r,echo=TRUE,eval=TRUE,message=FALSE, warning=FALSE,error=FALSE}
   # We suppress observations with missing data in time variable (here thermalTime)
   mydata<-filter(mydata,!is.na(mydata$thermalTime))
   model<-fitCARBayesST(datain=mydata,xvar="thermalTime",trait="plantHeight",k=2,
@@ -99,18 +100,18 @@ In model's comparison, the best fitting model is the one that minimises the DIC 
 
 ```
 
-```{r,echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+```{r,echo=TRUE,eval=TRUE,message=FALSE, warning=FALSE,error=FALSE}
   # print the result of the bayesian modelling
   printCARBayesST(modelin=model[[1]])
 ```
 
-```{r , echo = TRUE,message=FALSE, warning=FALSE}
+```{r , echo = TRUE,eval=TRUE,message=FALSE, warning=FALSE}
   outtmp<-outlierCARBayesST(modelin=model[[1]],datain=model[[2]],threshold=4,trait="plantHeight")
 ```
 
 ## Outlier detection
 The output report can be over-sized (more than 1Mb), for size of sub-directories in packages purposes, I choose to represent only the first genotypes...
-```{r , echo = TRUE,message=FALSE, warning=FALSE,fig.height=10,fig.width=12}
+```{r , echo = TRUE,eval=TRUE,message=FALSE, warning=FALSE,fig.height=10,fig.width=12}
   mygeno<-as.character(unique(model[[2]][,"genotypeAlias"]))
   mygeno<-mygeno[1:6]
   for (i in seq(1,length(mygeno),by=15)){ 

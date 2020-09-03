@@ -4,9 +4,21 @@
 \alias{FuncDetectOutlierPlantMaize}
 \title{FuncDetectOutlierPlantMaize}
 \usage{
-FuncDetectOutlierPlantMaize(datain, dateBeforeTrt, param1, param2, param3,
-  paramGeno, paramCol, paramRow, threshold, nCol, nRow,
-  genotype.as.random = FALSE, timeColumn)
+FuncDetectOutlierPlantMaize(
+  datain,
+  dateBeforeTrt,
+  param1,
+  param2,
+  param3,
+  paramGeno,
+  paramCol,
+  paramRow,
+  threshold,
+  nCol,
+  nRow,
+  genotype.as.random = FALSE,
+  timeColumn
+)
 }
 \arguments{
 \item{datain}{input dataframe, a spatio-temporal data.frame}
@@ -86,10 +98,11 @@ The input dataset must contain the following columns:
 }
 \examples{
 \donttest{
-test<-FuncDetectOutlierPlantMaize(datain=phenoarchToy,dateBeforeTrt="2017-04-27",
+library(ggplot2)
+test<-FuncDetectOutlierPlantMaize(datain=PAdata,dateBeforeTrt="2017-04-27",
                 param1="Biomass_Estimated",param2="Height_Estimated",
-                param3="phyllocron",paramGeno="Geno",
-                paramCol="Line",paramRow="Position",
+                param3="phyllocron",paramGeno="Genotype",
+                paramCol="Col",paramRow="Row",
                 threshold=0.95,nCol=28,nRow=60,genotype.as.random=FALSE,
                 timeColumn = "Time")
 plot(test$m1)  

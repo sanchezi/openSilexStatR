@@ -17,10 +17,15 @@ a function for CARBayesST analysis description
 }
 \examples{
 \donttest{
- test<-fitCARBayesST(datain=mydata,xvar="thermalTime",trait="plantHeight",k=2,
-     graphDist=TRUE,burnin=10,n.sample=110,
-     formulaModel=as.formula(plantHeight~scenario+genotypeAlias),
-     typeModel="anova",verbose=FALSE)
+ data(plant1)
+ library(dplyr)
+ mydata<-filter(plant1,!is.na(plant1$thermalTime))
+ str(mydata)
+ test<-fitCARBayesST(datain=mydata,xvar="thermalTime",
+       trait="plantHeight",k=2,
+       graphDist=TRUE,burnin=10,n.sample=110,
+       formulaModel=as.formula(plantHeight~scenario+genotypeAlias),
+       typeModel="anova",verbose=FALSE)
  printCARBayesST(modelin=test[[1]])
 }
 }

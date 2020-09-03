@@ -4,13 +4,15 @@
 \name{meteoDT}
 \alias{meteoDT}
 \title{leaf temperature in degree celsius over time in a greenhouse experiment}
-\format{a data frame with 7393 rows and 4 variables:
+\format{
+a data frame with 7393 rows and 4 variables:
 \describe{
   \item{date}{date of measurement}
   \item{yyyymmdd}{day of measurement}
   \item{codeVariable}{code of the variable in the web service}
   \item{value}{leaf temperature in degree celsius}
-}}
+}
+}
 \usage{
 meteoDT
 }
