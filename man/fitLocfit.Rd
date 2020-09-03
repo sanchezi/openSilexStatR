@@ -38,7 +38,10 @@ the input dataset must contain a thermalTime column (numeric data) and a Ref col
 \donttest{
 # Take a while...
  myThermalTimes<-c(24,30)
- resu<-fitLocfit(datain=plant1,trait="biovolume",xtime="thermalTime",
+selec<-c("manip1_1_1_WW","manip1_1_2_WW","manip1_1_3_WW",
+         "manip1_1_4_WW","manip1_1_5_WW")
+mydata<-plant1[plant1[,"Ref"] \%in\% selec,]
+ resu<-fitLocfit(datain=mydata,trait="biovolume",xtime="thermalTime",
                  myylim=700,tt=myThermalTimes,reference="Ref",
                  myxlab="Thermal Time degD")
  str(resu)

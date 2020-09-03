@@ -37,7 +37,10 @@ the input dataset must contain a thermalTime column (numeric data) and a Ref col
 \examples{
 \donttest{
 # Take a while...
- resu<-fitReg(datain=plant2,trait="F_visible",xtime="thermalTime",
+selec<-c("manip1_1_1_WW","manip1_1_2_WW","manip1_1_3_WW",
+         "manip1_1_4_WW","manip1_1_5_WW")
+mydata<-plant1[plant2[,"Ref"] \%in\% selec,]
+ resu<-fitReg(datain=mydata,trait="F_visible",xtime="thermalTime",
               myylim=22,reference="Ref",
               myxlab="Thermal Time degD")
  str(resu)
