@@ -184,10 +184,299 @@ to extract the slope (i.e. phyllocron: the rate of leaf appearance)</p>
 <span class='co'># Take a while...</span>
 <span class='no'>selec</span><span class='kw'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"manip1_1_1_WW"</span>,<span class='st'>"manip1_1_2_WW"</span>,<span class='st'>"manip1_1_3_WW"</span>,
          <span class='st'>"manip1_1_4_WW"</span>,<span class='st'>"manip1_1_5_WW"</span>)
-<span class='no'>mydata</span><span class='kw'>&lt;-</span><span class='no'>plant1</span>[<span class='no'>plant2</span>[,<span class='st'>"Ref"</span>] <span class='kw'>%in%</span> <span class='no'>selec</span>,]
+<span class='no'>mydata</span><span class='kw'>&lt;-</span><span class='no'>plant2</span>[<span class='no'>plant2</span>[,<span class='st'>"Ref"</span>] <span class='kw'>%in%</span> <span class='no'>selec</span>,]
  <span class='no'>resu</span><span class='kw'>&lt;-</span><span class='fu'>fitReg</span>(<span class='kw'>datain</span><span class='kw'>=</span><span class='no'>mydata</span>,<span class='kw'>trait</span><span class='kw'>=</span><span class='st'>"F_visible"</span>,<span class='kw'>xtime</span><span class='kw'>=</span><span class='st'>"thermalTime"</span>,
               <span class='kw'>myylim</span><span class='kw'>=</span><span class='fl'>22</span>,<span class='kw'>reference</span><span class='kw'>=</span><span class='st'>"Ref"</span>,
-              <span class='kw'>myxlab</span><span class='kw'>=</span><span class='st'>"Thermal Time degD"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(tmp, , trait): colonnes non définies sélectionnées</span></div><div class='input'> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>resu</span>)</div><div class='output co'>#&gt; <span class='error'>Error in str(resu): objet 'resu' introuvable</span></div><div class='input'># }
+              <span class='kw'>myxlab</span><span class='kw'>=</span><span class='st'>"Thermal Time degD"</span>)</div><div class='img'><img src='fitReg-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='fitReg-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='fitReg-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='fitReg-4.png' alt='' width='700' height='433' /></div><div class='img'><img src='fitReg-5.png' alt='' width='700' height='433' /></div><div class='input'> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>resu</span>)</div><div class='output co'>#&gt; List of 2
+#&gt;  $ :'data.frame':	5 obs. of  2 variables:
+#&gt;   ..$ Ref: chr [1:5] "manip1_1_1_WW" "manip1_1_2_WW" "manip1_1_3_WW" "manip1_1_4_WW" ...
+#&gt;   ..$ phy: num [1:5] 0.246 0.213 0.219 0.213 0.22
+#&gt;  $ :List of 5
+#&gt;   ..$ manip1_1_1_WW:List of 12
+#&gt;   .. ..$ coefficients : Named num [1:2] 0.494 0.246
+#&gt;   .. .. ..- attr(*, "names")= chr [1:2] "(Intercept)" "x"
+#&gt;   .. ..$ residuals    : Named num [1:8] 0.302 0.297 -0.186 -0.42 0.091 ...
+#&gt;   .. .. ..- attr(*, "names")= chr [1:8] "1" "2" "3" "4" ...
+#&gt;   .. ..$ effects      : Named num [1:8] -21.2839 10.2465 -0.2857 -0.5042 0.0446 ...
+#&gt;   .. .. ..- attr(*, "names")= chr [1:8] "(Intercept)" "x" "" "" ...
+#&gt;   .. ..$ rank         : int 2
+#&gt;   .. ..$ fitted.values: Named num [1:8] 2.5 3.7 4.99 5.92 8.11 ...
+#&gt;   .. .. ..- attr(*, "names")= chr [1:8] "1" "2" "3" "4" ...
+#&gt;   .. ..$ assign       : int [1:2] 0 1
+#&gt;   .. ..$ qr           :List of 5
+#&gt;   .. .. ..$ qr   : num [1:8, 1:2] -2.828 0.354 0.354 0.354 0.354 ...
+#&gt;   .. .. .. ..- attr(*, "dimnames")=List of 2
+#&gt;   .. .. .. .. ..$ : chr [1:8] "1" "2" "3" "4" ...
+#&gt;   .. .. .. .. ..$ : chr [1:2] "(Intercept)" "x"
+#&gt;   .. .. .. ..- attr(*, "assign")= int [1:2] 0 1
+#&gt;   .. .. ..$ qraux: num [1:2] 1.35 1.24
+#&gt;   .. .. ..$ pivot: int [1:2] 1 2
+#&gt;   .. .. ..$ tol  : num 1e-07
+#&gt;   .. .. ..$ rank : int 2
+#&gt;   .. .. ..- attr(*, "class")= chr "qr"
+#&gt;   .. ..$ df.residual  : int 6
+#&gt;   .. ..$ xlevels      : Named list()
+#&gt;   .. ..$ call         : language lm(formula = y ~ x)
+#&gt;   .. ..$ terms        :Classes 'terms', 'formula'  language y ~ x
+#&gt;   .. .. .. ..- attr(*, "variables")= language list(y, x)
+#&gt;   .. .. .. ..- attr(*, "factors")= int [1:2, 1] 0 1
+#&gt;   .. .. .. .. ..- attr(*, "dimnames")=List of 2
+#&gt;   .. .. .. .. .. ..$ : chr [1:2] "y" "x"
+#&gt;   .. .. .. .. .. ..$ : chr "x"
+#&gt;   .. .. .. ..- attr(*, "term.labels")= chr "x"
+#&gt;   .. .. .. ..- attr(*, "order")= int 1
+#&gt;   .. .. .. ..- attr(*, "intercept")= int 1
+#&gt;   .. .. .. ..- attr(*, "response")= int 1
+#&gt;   .. .. .. ..- attr(*, ".Environment")=&lt;environment: 0x000000004d4a54f8&gt; 
+#&gt;   .. .. .. ..- attr(*, "predvars")= language list(y, x)
+#&gt;   .. .. .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
+#&gt;   .. .. .. .. ..- attr(*, "names")= chr [1:2] "y" "x"
+#&gt;   .. ..$ model        :'data.frame':	8 obs. of  2 variables:
+#&gt;   .. .. ..$ y: num [1:8] 2.8 4 4.8 5.5 8.2 9.2 12.5 13.2
+#&gt;   .. .. ..$ x: num [1:8] 8.15 13.05 18.27 22.06 30.96 ...
+#&gt;   .. .. ..- attr(*, "terms")=Classes 'terms', 'formula'  language y ~ x
+#&gt;   .. .. .. .. ..- attr(*, "variables")= language list(y, x)
+#&gt;   .. .. .. .. ..- attr(*, "factors")= int [1:2, 1] 0 1
+#&gt;   .. .. .. .. .. ..- attr(*, "dimnames")=List of 2
+#&gt;   .. .. .. .. .. .. ..$ : chr [1:2] "y" "x"
+#&gt;   .. .. .. .. .. .. ..$ : chr "x"
+#&gt;   .. .. .. .. ..- attr(*, "term.labels")= chr "x"
+#&gt;   .. .. .. .. ..- attr(*, "order")= int 1
+#&gt;   .. .. .. .. ..- attr(*, "intercept")= int 1
+#&gt;   .. .. .. .. ..- attr(*, "response")= int 1
+#&gt;   .. .. .. .. ..- attr(*, ".Environment")=&lt;environment: 0x000000004d4a54f8&gt; 
+#&gt;   .. .. .. .. ..- attr(*, "predvars")= language list(y, x)
+#&gt;   .. .. .. .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
+#&gt;   .. .. .. .. .. ..- attr(*, "names")= chr [1:2] "y" "x"
+#&gt;   .. ..- attr(*, "class")= chr "lm"
+#&gt;   ..$ manip1_1_2_WW:List of 12
+#&gt;   .. ..$ coefficients : Named num [1:2] 0.876 0.213
+#&gt;   .. .. ..- attr(*, "names")= chr [1:2] "(Intercept)" "x"
+#&gt;   .. ..$ residuals    : Named num [1:9] -0.1086 0.3504 0.0413 -0.3663 -0.258 ...
+#&gt;   .. .. ..- attr(*, "names")= chr [1:9] "1" "2" "3" "4" ...
+#&gt;   .. ..$ effects      : Named num [1:9] -23.0333 10.7807 0.0224 -0.3627 -0.2016 ...
+#&gt;   .. .. ..- attr(*, "names")= chr [1:9] "(Intercept)" "x" "" "" ...
+#&gt;   .. ..$ rank         : int 2
+#&gt;   .. ..$ fitted.values: Named num [1:9] 2.61 3.65 4.76 5.57 7.46 ...
+#&gt;   .. .. ..- attr(*, "names")= chr [1:9] "1" "2" "3" "4" ...
+#&gt;   .. ..$ assign       : int [1:2] 0 1
+#&gt;   .. ..$ qr           :List of 5
+#&gt;   .. .. ..$ qr   : num [1:9, 1:2] -3 0.333 0.333 0.333 0.333 ...
+#&gt;   .. .. .. ..- attr(*, "dimnames")=List of 2
+#&gt;   .. .. .. .. ..$ : chr [1:9] "1" "2" "3" "4" ...
+#&gt;   .. .. .. .. ..$ : chr [1:2] "(Intercept)" "x"
+#&gt;   .. .. .. ..- attr(*, "assign")= int [1:2] 0 1
+#&gt;   .. .. ..$ qraux: num [1:2] 1.33 1.26
+#&gt;   .. .. ..$ pivot: int [1:2] 1 2
+#&gt;   .. .. ..$ tol  : num 1e-07
+#&gt;   .. .. ..$ rank : int 2
+#&gt;   .. .. ..- attr(*, "class")= chr "qr"
+#&gt;   .. ..$ df.residual  : int 7
+#&gt;   .. ..$ xlevels      : Named list()
+#&gt;   .. ..$ call         : language lm(formula = y ~ x)
+#&gt;   .. ..$ terms        :Classes 'terms', 'formula'  language y ~ x
+#&gt;   .. .. .. ..- attr(*, "variables")= language list(y, x)
+#&gt;   .. .. .. ..- attr(*, "factors")= int [1:2, 1] 0 1
+#&gt;   .. .. .. .. ..- attr(*, "dimnames")=List of 2
+#&gt;   .. .. .. .. .. ..$ : chr [1:2] "y" "x"
+#&gt;   .. .. .. .. .. ..$ : chr "x"
+#&gt;   .. .. .. ..- attr(*, "term.labels")= chr "x"
+#&gt;   .. .. .. ..- attr(*, "order")= int 1
+#&gt;   .. .. .. ..- attr(*, "intercept")= int 1
+#&gt;   .. .. .. ..- attr(*, "response")= int 1
+#&gt;   .. .. .. ..- attr(*, ".Environment")=&lt;environment: 0x000000004d4a54f8&gt; 
+#&gt;   .. .. .. ..- attr(*, "predvars")= language list(y, x)
+#&gt;   .. .. .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
+#&gt;   .. .. .. .. ..- attr(*, "names")= chr [1:2] "y" "x"
+#&gt;   .. ..$ model        :'data.frame':	9 obs. of  2 variables:
+#&gt;   .. .. ..$ y: num [1:9] 2.5 4 4.8 5.2 7.2 9.2 11 12.2 13
+#&gt;   .. .. ..$ x: num [1:9] 8.15 13.05 18.27 22.06 30.96 ...
+#&gt;   .. .. ..- attr(*, "terms")=Classes 'terms', 'formula'  language y ~ x
+#&gt;   .. .. .. .. ..- attr(*, "variables")= language list(y, x)
+#&gt;   .. .. .. .. ..- attr(*, "factors")= int [1:2, 1] 0 1
+#&gt;   .. .. .. .. .. ..- attr(*, "dimnames")=List of 2
+#&gt;   .. .. .. .. .. .. ..$ : chr [1:2] "y" "x"
+#&gt;   .. .. .. .. .. .. ..$ : chr "x"
+#&gt;   .. .. .. .. ..- attr(*, "term.labels")= chr "x"
+#&gt;   .. .. .. .. ..- attr(*, "order")= int 1
+#&gt;   .. .. .. .. ..- attr(*, "intercept")= int 1
+#&gt;   .. .. .. .. ..- attr(*, "response")= int 1
+#&gt;   .. .. .. .. ..- attr(*, ".Environment")=&lt;environment: 0x000000004d4a54f8&gt; 
+#&gt;   .. .. .. .. ..- attr(*, "predvars")= language list(y, x)
+#&gt;   .. .. .. .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
+#&gt;   .. .. .. .. .. ..- attr(*, "names")= chr [1:2] "y" "x"
+#&gt;   .. ..- attr(*, "class")= chr "lm"
+#&gt;   ..$ manip1_1_3_WW:List of 12
+#&gt;   .. ..$ coefficients : Named num [1:2] 0.63 0.219
+#&gt;   .. .. ..- attr(*, "names")= chr [1:2] "(Intercept)" "x"
+#&gt;   .. ..$ residuals    : Named num [1:9] 0.0892 0.319 -0.1212 -0.4515 -0.1963 ...
+#&gt;   .. .. ..- attr(*, "names")= chr [1:9] "1" "2" "3" "4" ...
+#&gt;   .. ..$ effects      : Named num [1:9] -22.867 11.083 -0.18 -0.492 -0.196 ...
+#&gt;   .. .. ..- attr(*, "names")= chr [1:9] "(Intercept)" "x" "" "" ...
+#&gt;   .. ..$ rank         : int 2
+#&gt;   .. ..$ fitted.values: Named num [1:9] 2.41 3.48 4.62 5.45 7.4 ...
+#&gt;   .. .. ..- attr(*, "names")= chr [1:9] "1" "2" "3" "4" ...
+#&gt;   .. ..$ assign       : int [1:2] 0 1
+#&gt;   .. ..$ qr           :List of 5
+#&gt;   .. .. ..$ qr   : num [1:9, 1:2] -3 0.333 0.333 0.333 0.333 ...
+#&gt;   .. .. .. ..- attr(*, "dimnames")=List of 2
+#&gt;   .. .. .. .. ..$ : chr [1:9] "1" "2" "3" "4" ...
+#&gt;   .. .. .. .. ..$ : chr [1:2] "(Intercept)" "x"
+#&gt;   .. .. .. ..- attr(*, "assign")= int [1:2] 0 1
+#&gt;   .. .. ..$ qraux: num [1:2] 1.33 1.26
+#&gt;   .. .. ..$ pivot: int [1:2] 1 2
+#&gt;   .. .. ..$ tol  : num 1e-07
+#&gt;   .. .. ..$ rank : int 2
+#&gt;   .. .. ..- attr(*, "class")= chr "qr"
+#&gt;   .. ..$ df.residual  : int 7
+#&gt;   .. ..$ xlevels      : Named list()
+#&gt;   .. ..$ call         : language lm(formula = y ~ x)
+#&gt;   .. ..$ terms        :Classes 'terms', 'formula'  language y ~ x
+#&gt;   .. .. .. ..- attr(*, "variables")= language list(y, x)
+#&gt;   .. .. .. ..- attr(*, "factors")= int [1:2, 1] 0 1
+#&gt;   .. .. .. .. ..- attr(*, "dimnames")=List of 2
+#&gt;   .. .. .. .. .. ..$ : chr [1:2] "y" "x"
+#&gt;   .. .. .. .. .. ..$ : chr "x"
+#&gt;   .. .. .. ..- attr(*, "term.labels")= chr "x"
+#&gt;   .. .. .. ..- attr(*, "order")= int 1
+#&gt;   .. .. .. ..- attr(*, "intercept")= int 1
+#&gt;   .. .. .. ..- attr(*, "response")= int 1
+#&gt;   .. .. .. ..- attr(*, ".Environment")=&lt;environment: 0x000000004d4a54f8&gt; 
+#&gt;   .. .. .. ..- attr(*, "predvars")= language list(y, x)
+#&gt;   .. .. .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
+#&gt;   .. .. .. .. ..- attr(*, "names")= chr [1:2] "y" "x"
+#&gt;   .. ..$ model        :'data.frame':	9 obs. of  2 variables:
+#&gt;   .. .. ..$ y: num [1:9] 2.5 3.8 4.5 5 7.2 9.2 11 12.2 13.2
+#&gt;   .. .. ..$ x: num [1:9] 8.15 13.05 18.27 22.06 30.96 ...
+#&gt;   .. .. ..- attr(*, "terms")=Classes 'terms', 'formula'  language y ~ x
+#&gt;   .. .. .. .. ..- attr(*, "variables")= language list(y, x)
+#&gt;   .. .. .. .. ..- attr(*, "factors")= int [1:2, 1] 0 1
+#&gt;   .. .. .. .. .. ..- attr(*, "dimnames")=List of 2
+#&gt;   .. .. .. .. .. .. ..$ : chr [1:2] "y" "x"
+#&gt;   .. .. .. .. .. .. ..$ : chr "x"
+#&gt;   .. .. .. .. ..- attr(*, "term.labels")= chr "x"
+#&gt;   .. .. .. .. ..- attr(*, "order")= int 1
+#&gt;   .. .. .. .. ..- attr(*, "intercept")= int 1
+#&gt;   .. .. .. .. ..- attr(*, "response")= int 1
+#&gt;   .. .. .. .. ..- attr(*, ".Environment")=&lt;environment: 0x000000004d4a54f8&gt; 
+#&gt;   .. .. .. .. ..- attr(*, "predvars")= language list(y, x)
+#&gt;   .. .. .. .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
+#&gt;   .. .. .. .. .. ..- attr(*, "names")= chr [1:2] "y" "x"
+#&gt;   .. ..- attr(*, "class")= chr "lm"
+#&gt;   ..$ manip1_1_4_WW:List of 12
+#&gt;   .. ..$ coefficients : Named num [1:2] 1.058 0.213
+#&gt;   .. .. ..- attr(*, "names")= chr [1:2] "(Intercept)" "x"
+#&gt;   .. ..$ residuals    : Named num [1:9] 0.00767 0.16559 -0.14462 -0.25307 -0.14664 ...
+#&gt;   .. .. ..- attr(*, "names")= chr [1:9] "1" "2" "3" "4" ...
+#&gt;   .. ..$ effects      : Named num [1:9] -23.6 10.792 -0.167 -0.265 -0.136 ...
+#&gt;   .. .. ..- attr(*, "names")= chr [1:9] "(Intercept)" "x" "" "" ...
+#&gt;   .. ..$ rank         : int 2
+#&gt;   .. ..$ fitted.values: Named num [1:9] 2.79 3.83 4.94 5.75 7.65 ...
+#&gt;   .. .. ..- attr(*, "names")= chr [1:9] "1" "2" "3" "4" ...
+#&gt;   .. ..$ assign       : int [1:2] 0 1
+#&gt;   .. ..$ qr           :List of 5
+#&gt;   .. .. ..$ qr   : num [1:9, 1:2] -3 0.333 0.333 0.333 0.333 ...
+#&gt;   .. .. .. ..- attr(*, "dimnames")=List of 2
+#&gt;   .. .. .. .. ..$ : chr [1:9] "1" "2" "3" "4" ...
+#&gt;   .. .. .. .. ..$ : chr [1:2] "(Intercept)" "x"
+#&gt;   .. .. .. ..- attr(*, "assign")= int [1:2] 0 1
+#&gt;   .. .. ..$ qraux: num [1:2] 1.33 1.26
+#&gt;   .. .. ..$ pivot: int [1:2] 1 2
+#&gt;   .. .. ..$ tol  : num 1e-07
+#&gt;   .. .. ..$ rank : int 2
+#&gt;   .. .. ..- attr(*, "class")= chr "qr"
+#&gt;   .. ..$ df.residual  : int 7
+#&gt;   .. ..$ xlevels      : Named list()
+#&gt;   .. ..$ call         : language lm(formula = y ~ x)
+#&gt;   .. ..$ terms        :Classes 'terms', 'formula'  language y ~ x
+#&gt;   .. .. .. ..- attr(*, "variables")= language list(y, x)
+#&gt;   .. .. .. ..- attr(*, "factors")= int [1:2, 1] 0 1
+#&gt;   .. .. .. .. ..- attr(*, "dimnames")=List of 2
+#&gt;   .. .. .. .. .. ..$ : chr [1:2] "y" "x"
+#&gt;   .. .. .. .. .. ..$ : chr "x"
+#&gt;   .. .. .. ..- attr(*, "term.labels")= chr "x"
+#&gt;   .. .. .. ..- attr(*, "order")= int 1
+#&gt;   .. .. .. ..- attr(*, "intercept")= int 1
+#&gt;   .. .. .. ..- attr(*, "response")= int 1
+#&gt;   .. .. .. ..- attr(*, ".Environment")=&lt;environment: 0x000000004d4a54f8&gt; 
+#&gt;   .. .. .. ..- attr(*, "predvars")= language list(y, x)
+#&gt;   .. .. .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
+#&gt;   .. .. .. .. ..- attr(*, "names")= chr [1:2] "y" "x"
+#&gt;   .. ..$ model        :'data.frame':	9 obs. of  2 variables:
+#&gt;   .. .. ..$ y: num [1:9] 2.8 4 4.8 5.5 7.5 9.5 11.5 12 13.2
+#&gt;   .. .. ..$ x: num [1:9] 8.15 13.05 18.27 22.06 30.96 ...
+#&gt;   .. .. ..- attr(*, "terms")=Classes 'terms', 'formula'  language y ~ x
+#&gt;   .. .. .. .. ..- attr(*, "variables")= language list(y, x)
+#&gt;   .. .. .. .. ..- attr(*, "factors")= int [1:2, 1] 0 1
+#&gt;   .. .. .. .. .. ..- attr(*, "dimnames")=List of 2
+#&gt;   .. .. .. .. .. .. ..$ : chr [1:2] "y" "x"
+#&gt;   .. .. .. .. .. .. ..$ : chr "x"
+#&gt;   .. .. .. .. ..- attr(*, "term.labels")= chr "x"
+#&gt;   .. .. .. .. ..- attr(*, "order")= int 1
+#&gt;   .. .. .. .. ..- attr(*, "intercept")= int 1
+#&gt;   .. .. .. .. ..- attr(*, "response")= int 1
+#&gt;   .. .. .. .. ..- attr(*, ".Environment")=&lt;environment: 0x000000004d4a54f8&gt; 
+#&gt;   .. .. .. .. ..- attr(*, "predvars")= language list(y, x)
+#&gt;   .. .. .. .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
+#&gt;   .. .. .. .. .. ..- attr(*, "names")= chr [1:2] "y" "x"
+#&gt;   .. ..- attr(*, "class")= chr "lm"
+#&gt;   ..$ manip1_1_5_WW:List of 12
+#&gt;   .. ..$ coefficients : Named num [1:2] 0.467 0.22
+#&gt;   .. .. ..- attr(*, "names")= chr [1:2] "(Intercept)" "x"
+#&gt;   .. ..$ residuals    : Named num [1:9] -0.26356 0.45651 0.00597 -0.33184 -0.09421 ...
+#&gt;   .. .. ..- attr(*, "names")= chr [1:9] "1" "2" "3" "4" ...
+#&gt;   .. ..$ effects      : Named num [1:9] -22.56667 11.18377 0.00813 -0.29852 0.01209 ...
+#&gt;   .. .. ..- attr(*, "names")= chr [1:9] "(Intercept)" "x" "" "" ...
+#&gt;   .. ..$ rank         : int 2
+#&gt;   .. ..$ fitted.values: Named num [1:9] 2.26 3.34 4.49 5.33 7.29 ...
+#&gt;   .. .. ..- attr(*, "names")= chr [1:9] "1" "2" "3" "4" ...
+#&gt;   .. ..$ assign       : int [1:2] 0 1
+#&gt;   .. ..$ qr           :List of 5
+#&gt;   .. .. ..$ qr   : num [1:9, 1:2] -3 0.333 0.333 0.333 0.333 ...
+#&gt;   .. .. .. ..- attr(*, "dimnames")=List of 2
+#&gt;   .. .. .. .. ..$ : chr [1:9] "1" "2" "3" "4" ...
+#&gt;   .. .. .. .. ..$ : chr [1:2] "(Intercept)" "x"
+#&gt;   .. .. .. ..- attr(*, "assign")= int [1:2] 0 1
+#&gt;   .. .. ..$ qraux: num [1:2] 1.33 1.26
+#&gt;   .. .. ..$ pivot: int [1:2] 1 2
+#&gt;   .. .. ..$ tol  : num 1e-07
+#&gt;   .. .. ..$ rank : int 2
+#&gt;   .. .. ..- attr(*, "class")= chr "qr"
+#&gt;   .. ..$ df.residual  : int 7
+#&gt;   .. ..$ xlevels      : Named list()
+#&gt;   .. ..$ call         : language lm(formula = y ~ x)
+#&gt;   .. ..$ terms        :Classes 'terms', 'formula'  language y ~ x
+#&gt;   .. .. .. ..- attr(*, "variables")= language list(y, x)
+#&gt;   .. .. .. ..- attr(*, "factors")= int [1:2, 1] 0 1
+#&gt;   .. .. .. .. ..- attr(*, "dimnames")=List of 2
+#&gt;   .. .. .. .. .. ..$ : chr [1:2] "y" "x"
+#&gt;   .. .. .. .. .. ..$ : chr "x"
+#&gt;   .. .. .. ..- attr(*, "term.labels")= chr "x"
+#&gt;   .. .. .. ..- attr(*, "order")= int 1
+#&gt;   .. .. .. ..- attr(*, "intercept")= int 1
+#&gt;   .. .. .. ..- attr(*, "response")= int 1
+#&gt;   .. .. .. ..- attr(*, ".Environment")=&lt;environment: 0x000000004d4a54f8&gt; 
+#&gt;   .. .. .. ..- attr(*, "predvars")= language list(y, x)
+#&gt;   .. .. .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
+#&gt;   .. .. .. .. ..- attr(*, "names")= chr [1:2] "y" "x"
+#&gt;   .. ..$ model        :'data.frame':	9 obs. of  2 variables:
+#&gt;   .. .. ..$ y: num [1:9] 2 3.8 4.5 5 7.2 9 11 12.2 13
+#&gt;   .. .. ..$ x: num [1:9] 8.15 13.05 18.27 22.06 30.96 ...
+#&gt;   .. .. ..- attr(*, "terms")=Classes 'terms', 'formula'  language y ~ x
+#&gt;   .. .. .. .. ..- attr(*, "variables")= language list(y, x)
+#&gt;   .. .. .. .. ..- attr(*, "factors")= int [1:2, 1] 0 1
+#&gt;   .. .. .. .. .. ..- attr(*, "dimnames")=List of 2
+#&gt;   .. .. .. .. .. .. ..$ : chr [1:2] "y" "x"
+#&gt;   .. .. .. .. .. .. ..$ : chr "x"
+#&gt;   .. .. .. .. ..- attr(*, "term.labels")= chr "x"
+#&gt;   .. .. .. .. ..- attr(*, "order")= int 1
+#&gt;   .. .. .. .. ..- attr(*, "intercept")= int 1
+#&gt;   .. .. .. .. ..- attr(*, "response")= int 1
+#&gt;   .. .. .. .. ..- attr(*, ".Environment")=&lt;environment: 0x000000004d4a54f8&gt; 
+#&gt;   .. .. .. .. ..- attr(*, "predvars")= language list(y, x)
+#&gt;   .. .. .. .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
+#&gt;   .. .. .. .. .. ..- attr(*, "names")= chr [1:2] "y" "x"
+#&gt;   .. ..- attr(*, "class")= chr "lm"</div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
