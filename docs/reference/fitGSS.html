@@ -183,11 +183,8 @@ performed with the gss R package.</p>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>plant1</span>)
 <span class='no'>selec</span><span class='kw'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Lo1199_H"</span>,<span class='st'>"Lo1124_H"</span>,<span class='st'>"Lo1038_H"</span>,<span class='st'>"A3_H"</span>)
 <span class='no'>mydata</span><span class='kw'>&lt;-</span><span class='no'>plant1</span>[<span class='no'>plant1</span>[,<span class='st'>"genotypeAlias"</span>] <span class='kw'>%in%</span> <span class='no'>selec</span>,]
- <span class='no'>fm1</span><span class='kw'>&lt;-</span><span class='fu'>fitGSS</span>(<span class='kw'>datain</span><span class='kw'>=</span><span class='no'>mydata</span>,<span class='kw'>trait</span><span class='kw'>=</span><span class='st'>"biovolume"</span>,<span class='kw'>loopId</span><span class='kw'>=</span><span class='st'>"genotypeAlias"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `select_()` is deprecated as of dplyr 0.7.0.</span>
-#&gt; <span class='warning'>Please use `select()` instead.</span>
-#&gt; <span class='warning'><span style='color: #555555;'>This warning is displayed once every 8 hours.</span><span></span>
-#&gt; <span class='warning'></span><span style='color: #555555;'>Call `lifecycle::last_warnings()` to see where this warning was generated.</span><span></span></div><div class='input'># }
-</div></span></pre>
+ <span class='no'>fm1</span><span class='kw'>&lt;-</span><span class='fu'>fitGSS</span>(<span class='kw'>datain</span><span class='kw'>=</span><span class='no'>mydata</span>,<span class='kw'>trait</span><span class='kw'>=</span><span class='st'>"biovolume"</span>,<span class='kw'>loopId</span><span class='kw'>=</span><span class='st'>"genotypeAlias"</span>)
+<span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -199,7 +196,7 @@ performed with the gss R package.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Pascal Neveu, Nadine Hilgert, Isabelle Sanchez.</p>
+  <p>Developed by Isabelle Sanchez, Pascal Neveu, Nadine Hilgert.</p>
 </div>
 
 <div class="pkgdown">

@@ -4,7 +4,7 @@
 #            locfit smoothing and an interval of prediction
 # Author: I.Sanchez
 # Creation: 13/04/2018
-# Update  : 26/05/2020
+# Update  : 04/09/2020
 #-------------------------------------------------------------------------------
 
 #' flagPointLocfit
@@ -25,14 +25,16 @@
 #' }
 #' @export
 #'
-#' @importFrom dplyr select_ bind_rows
+#' @importFrom dplyr select bind_rows
 #' 
 #' @examples
 #' \donttest{
 #' # Example
 #' }
 flagPointLocfit<-function(datain,trait,xvar,loopID,locfit.h,threshold){
-
+  
+  .Deprecated("FuncDetectPointOutlierLocFit")
+  
   # Initialisation
   #myfm<-list()
   tabpred<-NULL    # dataframe on observed data
@@ -42,7 +44,7 @@ flagPointLocfit<-function(datain,trait,xvar,loopID,locfit.h,threshold){
   for (i in levels(factor(datain[,loopID]))){
     ### select the data
     tmp<-datain[datain[,loopID]==i,]
-    tmp<-na.omit(select_(tmp,trait,xvar))
+    tmp<-na.omit(select(tmp,.data[[trait]],.data[[xvar]]))
     y<-tmp[,trait]
     x<-tmp[,xvar]
     # abscisse reguliere
@@ -62,7 +64,9 @@ flagPointLocfit<-function(datain,trait,xvar,loopID,locfit.h,threshold){
     ### lissage et intervalles de prediction
     if (length(na.omit(y)) <=4){
       tabNotEnoughPoint<-bind_rows(tabNotEnoughPoint,
-                                    select_(datain[datain[,loopID]==i,],loopID,xvar,trait))
+                                    select(datain[datain[,loopID]==i,],
+                                            .data[[loopID]],.data[[xvar]],
+                                            .data[[trait]]))
       names(tabNotEnoughPoint)<-c("Ref","x","y")
       next
     } else {

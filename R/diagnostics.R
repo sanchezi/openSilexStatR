@@ -3,7 +3,7 @@
 # Objective: graphical functions for diagnostics of linear models
 # Author: I.Sanchez
 # Creation: 28/07/2016
-# Update: 01/09/2020
+# Update: 04/09/2020
 #------------------------------------------------------------------
 
 #' a function for representing the residuals of a linear model
@@ -35,6 +35,7 @@ diagnosticLM<-function(fitin){
 diagnosticResiduals<-function(datain,xfitted,yresidual){
   g<-ggplot(data=datain,ggplot2::aes_string(x=xfitted,y=yresidual)) +
          geom_point(size=1) +
-         geom_hline(yintercept = 2,col="red") + geom_hline(yintercept = -2,col="red")
+         geom_hline(yintercept = 2,col="red") + 
+         geom_hline(yintercept = -2,col="red")
   print(g)
 }

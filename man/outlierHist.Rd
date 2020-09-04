@@ -23,5 +23,9 @@ produce a graphic of the ditribution of a trait with the detected
 outlier points according to a specified flag method
 }
 \examples{
-# outlierHist(datain=myResuGlobal,trait="biovolume24",flag="flagLowerRaw")
+library(dplyr)
+data(plant4)
+mydata<-mutate(plant4,flag=if_else(Phy <= 0.215,0,1))
+outlierHist(datain=mydata,trait="Phy",
+              flag="flag",labelX="Phyllocron")
 }

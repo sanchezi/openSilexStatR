@@ -3,7 +3,7 @@
 # Objective: functions for outliers detection according to biological meaning
 # Author: I.Sanchez
 # Creation: 05/09/2016
-# Update: 01/09/2020
+# Update: 04/09/2020
 #-------------------------------------------------------------------------------
 
 ##' a function for several outlier criteria
@@ -39,46 +39,55 @@
 ##' }
 ##'
 ##' @importFrom stats IQR qnorm quantile sd lm na.omit as.formula
+##' @importFrom dplyr select filter rename mutate left_join
 ##'
 ##' @examples
 ##' # Not run
 ##' # dt1<-outlierCriteria()
 ##'
 ##' @export
-outlierCriteria<-function(datain,typeD,residin,typeR,trait,resRawName,resStdName,threshold){
-  # Create a dataframe with raw data, fitted and residuals for each paramater
+outlierCriteria<-function(datain,typeD,residin,typeR,trait,
+                          resRawName,resStdName,threshold){
+  
+  .Deprecated("FuncDetectOutlierPlantMaize")
+  
+  # Create a dataframe with raw data, fitted and residuals for each parameter
   datain<-as.data.frame(datain)
   if (typeD==1){ # wide format column==differents traits
-    tmp1<-dplyr::select_(datain,"Ref","Genosce","Line","Position","genotypeAlias","experimentAlias",
-                         "scenario","repetition","potAlias",trait)
+    tmp1<-select(datain,Ref,Genosce,Line,Position,genotypeAlias,
+                        experimentAlias,scenario,repetition,
+                        potAlias,.data[[trait]])
   } else if (typeD==2){ # long format 1 column Trait, 1 column value
-    tmp1<-dplyr::filter(datain, Trait==trait)
-    tmp1<-dplyr::rename_(tmp1,trait="Trait")
+    tmp1<-filter(datain, Trait==trait)
+    tmp1<-rename(tmp1,"Trait" = {{ trait }})
   }
+  
   residin<-as.data.frame(residin)
   if (typeR==1){ # wide format column==differents traits
     tmp2<-residin
   } else if (typeR==2){ # long format 1 column Trait, 1 column value
-    tmp2<-dplyr::filter(residin, Trait==trait)
+    tmp2<-filter(residin, Trait==trait)
   }
+  
   # merge datain and residin by experimentAlias, line and position (unique key)
-  tmp<-dplyr::left_join(tmp1,tmp2,by=c("experimentAlias","Line","Position"))
+  tmp<-left_join(tmp1,tmp2,by=c("experimentAlias","Line","Position"))
+  
   # mean and sd of residuals
-  tmp<-dplyr::mutate(tmp, mean.res=mean(tmp[,resRawName],na.rm=TRUE),
-                     sd.res=sd(tmp[,resRawName],na.rm=TRUE))
+  tmp<-mutate(tmp,mean.res=mean(tmp[,resRawName],na.rm=TRUE),
+                  sd.res=sd(tmp[,resRawName],na.rm=TRUE))
   #--- raw cleaning
-  tmp<-dplyr::mutate(tmp, lower.res=mean.res - sd.res*qnorm(threshold),
-                     upper.res=mean.res + sd.res*qnorm(threshold))
-  tmp<-dplyr::mutate(tmp,lower.critraw=ifelse(tmp[,resRawName]-tmp[,"lower.res"]>0,yes=1,no=0),
-                     upper.critraw=ifelse(tmp[,resRawName]-tmp[,"upper.res"]<0,yes=1,no=0))
+  tmp<-mutate(tmp,lower.res=mean.res - sd.res*qnorm(threshold),
+                  upper.res=mean.res + sd.res*qnorm(threshold))
+  tmp<-mutate(tmp,lower.critraw=ifelse(tmp[,resRawName]-tmp[,"lower.res"]>0,yes=1,no=0),
+                  upper.critraw=ifelse(tmp[,resRawName]-tmp[,"upper.res"]<0,yes=1,no=0))
   #--- Quantiles cleaning
-  tmp<-dplyr::mutate(tmp, Q1.res=quantile(tmp[,resRawName],probs=0.25,na.rm=TRUE)-1.5*IQR(tmp[,resRawName],na.rm=TRUE),
-                     Q3.res=quantile(tmp[,resRawName],probs=0.75,na.rm=TRUE)+1.5*IQR(tmp[,resRawName],na.rm=TRUE))
-  tmp<-dplyr::mutate(tmp,lower.critci=ifelse(tmp[,resRawName]-tmp[,"Q1.res"]>0,yes=1,no=0),
-                     upper.critci=ifelse(tmp[,resRawName]-tmp[,"Q3.res"]<0,yes=1,no=0))
+  tmp<-mutate(tmp, Q1.res=quantile(tmp[,resRawName],probs=0.25,na.rm=TRUE)-1.5*IQR(tmp[,resRawName],na.rm=TRUE),
+                  Q3.res=quantile(tmp[,resRawName],probs=0.75,na.rm=TRUE)+1.5*IQR(tmp[,resRawName],na.rm=TRUE))
+  tmp<-mutate(tmp,lower.critci=ifelse(tmp[,resRawName]-tmp[,"Q1.res"]>0,yes=1,no=0),
+                  upper.critci=ifelse(tmp[,resRawName]-tmp[,"Q3.res"]<0,yes=1,no=0))
   #--- influence with standardized residuals
-  tmp<-dplyr::mutate(tmp,lower.critinfl=ifelse(tmp[,resStdName]>=-2,yes=1,no=0),
-                     upper.critinfl=ifelse(tmp[,resStdName]<=2,yes=1,no=0))
+  tmp<-mutate(tmp,lower.critinfl=ifelse(tmp[,resStdName]>=-2,yes=1,no=0),
+                  upper.critinfl=ifelse(tmp[,resStdName]<=2,yes=1,no=0))
   # output
   return(tmp)
 }

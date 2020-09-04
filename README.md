@@ -38,7 +38,7 @@ install_github("sanchezi/openSilexStatR",build_vignettes=TRUE)
 
 If you want to install the vignettes included in this library, be aware to have the following softwares on your computer:
 
-* if **Windows OS**: MikTex (do not forget to add its path to the environment variables PATH, ex: "C:\MIKTEX~1.9\miktex\bin\x64\pdflatex.exe"), Rtools
+* if **Windows OS**: **MikTex** (do not forget to add its path to the environment variables PATH, ex: "C:\MIKTEX~1.9\miktex\bin\x64\pdflatex.exe"), **Rtools**
 * if **Unix OS**: rgdal, rgl, imagemagick
 
 ```R
@@ -101,6 +101,6 @@ URL https://doi.org/10.1016/j.spasta.2017.10.003
 2. Gu, C. (2013), Smoothing Spline ANOVA Models (2nd Ed). New York: Springer-Verlag.
 3. Gu, C. (2014), Smoothing Spline ANOVA Models: R Package gss. Journal of Statistical Software, 58(5),
 1-25. URL http://www.jstatsoft.org/v58/i05/.
-4. Lee D, Rushworth A, Napier G (2018). “Spatio-Temporal Areal Unit Modeling in R with Conditional Autoregressive Priors Using the CARBayesST Package.” Journal of Statistical Software, 84(9), 1–39. doi: 10.18637/jss.v084.i09.
-5. Catherine Loader (2013). locfit: Local Regression, Likelihood and Density Estimation.. R package version 1.5-9.1. https://CRAN.R-project.org/package=locfit
+4. Lee D, Rushworth A, Napier G (2018). Spatio-Temporal Areal Unit Modeling in R with Conditional Autoregressive Priors Using the CARBayesST Package. Journal of Statistical Software, 84(9), 1–39. doi: 10.18637/jss.v084.i09.
+5. Catherine Loader (2013). locfit: Local Regression, Likelihood and Density Estimation. R package version 1.5-9.1. https://CRAN.R-project.org/package=locfit
 

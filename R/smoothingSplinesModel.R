@@ -4,7 +4,7 @@
 #            require gss package
 # Author: I.Sanchez
 # Creation: 28/07/2016
-# Update: 03/09/2020
+# Update: 04/09/2020
 #-------------------------------------------------------------------------------
 
 ##' a function to model curves using smoothing splines anova using \code{gss} library
@@ -30,6 +30,7 @@
 ##'
 ##' @seealso \code{\link[=project.ssanova]{project.ssanova}}, \code{\link[=ssanova]{ssanova}}
 ##' 
+##' @importFrom dplyr select
 ##' @examples
 ##' \donttest{
 ##' data(plant1)
@@ -39,15 +40,20 @@
 ##' }
 ##' @export
 fitGSS<-function(datain,trait,loopId){
+  # formating
   tmpdata<-as.data.frame(datain)
-  tmpdata<-dplyr::select_(tmpdata,.dots=c(loopId,"thermalTime","repetition",trait))
+  tmpdata<-select(tmpdata,
+                  .data[[loopId]],thermalTime,repetition,.data[[trait]])
+  
+  # smoothing splines model
   fm<-list()
   resu<-NULL
   genosceId<-unique(tmpdata[,loopId])
   for(i in 1:length(genosceId)){
     tmp<-na.omit(tmpdata[tmpdata[,loopId]==genosceId[i],])
     fm[[i]]<-gss::ssanova(as.formula(paste0(trait,"~repetition + thermalTime + repetition:thermalTime")),data=tmp,seed=1234)
-    tpproj<-cbind.data.frame(genosceId[i],t(unlist(gss::project(fm[[i]],inc=c("thermalTime","repetition")))))
+    tpproj<-cbind.data.frame(genosceId[i],
+                             t(unlist(gss::project(fm[[i]],inc=c("thermalTime","repetition")))))
     names(tpproj)[1]<-loopId
     resu<-rbind.data.frame(resu,tpproj)
   }
@@ -60,9 +66,12 @@ fitGSS<-function(datain,trait,loopId){
 #' @param threshold numeric, a threshold for Kullback-Leibler projection
 #'
 #' @seealso \code{\link[=ssanova]{ssanova}}
-#' @details the input object is the 2nd element of a fitGSS result, a dataframe with the Kullback-Leibler projection
-#'          colnames of this dataframe are Genosce, ratio, kl, check. The outlier curves are identified with the Kullback-Lleiber 
-#'          distance higher than a given threshold, see (Gu, 2014). Final identification of outlier is done by an operator over
+#' @details the input object is a fitGSS result and printGSS() prints the 2nd element of it (a dataframe 
+#'          with the Kullback-Leibler projection).
+#'          The colnames of this dataframe are Genosce, ratio, kl, check. 
+#'          The outlier curves are identified with the Kullback-Lleiber 
+#'          distance higher than a given threshold, see (Gu, 2014). 
+#'          Final identification of outlier is done by an operator over
 #'          genotypes when the test is significant.
 #' @return a description
 #'

@@ -177,9 +177,9 @@
        <span class='kw'>trait</span><span class='kw'>=</span><span class='st'>"plantHeight"</span>,<span class='kw'>k</span><span class='kw'>=</span><span class='fl'>2</span>,
        <span class='kw'>graphDist</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>10</span>,<span class='kw'>n.sample</span><span class='kw'>=</span><span class='fl'>110</span>,
        <span class='kw'>formulaModel</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/formula.html'>as.formula</a></span>(<span class='no'>plantHeight</span>~<span class='no'>scenario</span>+<span class='no'>genotypeAlias</span>),
-       <span class='kw'>typeModel</span><span class='kw'>=</span><span class='st'>"anova"</span>,<span class='kw'>verbose</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] 22.35558</div><div class='img'><img src='printCARBayesST-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt;            used (Mb) gc trigger   (Mb) max used (Mb)
-#&gt; Ncells  3969538  212    7019011  374.9  3969538  212
-#&gt; Vcells 68277136  521  195402115 1490.8 68277136  521</div><div class='input'> <span class='fu'>printCARBayesST</span>(<span class='kw'>modelin</span><span class='kw'>=</span><span class='no'>test</span><span class='kw'>[[</span><span class='fl'>1</span>]])</div><div class='output co'>#&gt;                             Median      2.5%      97.5% Geweke.diag
+       <span class='kw'>typeModel</span><span class='kw'>=</span><span class='st'>"anova"</span>,<span class='kw'>verbose</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] 22.35558</div><div class='img'><img src='printCARBayesST-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt;            used  (Mb) gc trigger   (Mb) max used  (Mb)
+#&gt; Ncells  3960884 211.6    6893817  368.2  3960884 211.6
+#&gt; Vcells 68276527 521.0  195298076 1490.1 68276527 521.0</div><div class='input'> <span class='fu'>printCARBayesST</span>(<span class='kw'>modelin</span><span class='kw'>=</span><span class='no'>test</span><span class='kw'>[[</span><span class='fl'>1</span>]])</div><div class='output co'>#&gt;                             Median      2.5%      97.5% Geweke.diag
 #&gt; (Intercept)               792.5817  763.6455   811.1604        -0.5
 #&gt; scenarioWW                  3.0254   -9.2358    12.9744        -6.5
 #&gt; genotypeAliasA310_H       -34.8434  -71.8982     2.6984        -0.3
@@ -476,7 +476,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Pascal Neveu, Nadine Hilgert, Isabelle Sanchez.</p>
+  <p>Developed by Isabelle Sanchez, Pascal Neveu, Nadine Hilgert.</p>
 </div>
 
 <div class="pkgdown">

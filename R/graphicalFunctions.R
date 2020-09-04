@@ -3,7 +3,7 @@
 # Objective: graphical functions for phenoarch experiment data analysis
 # Author: I.Sanchez
 # Creation: 27/07/2016
-# Update: 03/09/2020
+# Update: 04/09/2020
 #------------------------------------------------------------------
 
 #' @title a function for representing a trait in the phenoarch greenhouse
@@ -92,17 +92,19 @@ imageGreenhouse<-function(datain,trait,xcol,ycol,
   # Take care that position must be reordered from 1-60 to 60-1 for the graphic
   # ordering the dataset
   tmp.sp<-tmp.sp[order(tmp.sp[,"Position"],tmp.sp[,"Line"]),]
-  # Reconstruction of the greenhouse, taking into account the missing data (important)!
+  # Rebuild of the greenhouse, taking into account the missing data (important)!
   mymat<-matrix(nrow=numrow,ncol=numcol)
   for (i in seq(1:nrow(mymat))){
     for (j in seq(1:ncol(mymat))){
       if (isTRUE(rownames(tmp.sp)[tmp.sp["Line"]==i & tmp.sp["Position"]==j][1] > 0))
-        mymat[i,j]<-tmp.sp[rownames(tmp.sp)[tmp.sp["Line"]==i & tmp.sp["Position"]==j][1],trait]
+        mymat[i,j]<-tmp.sp[rownames(tmp.sp)[tmp.sp["Line"]==i & 
+                                            tmp.sp["Position"]==j][1],trait]
       else mymat[i,j]<-NA
     }
   }
 
   melted.tmp <- reshape2::melt(mymat,varnames=c("Line","Position"))
+
   # specific title for video type
   #-------
   if (typeI=="video") {
@@ -139,7 +141,8 @@ imageGreenhouse<-function(datain,trait,xcol,ycol,
   }
 
   melted.tmp[,"Line"]<-as.factor(melted.tmp[,"Line"])
-  melted.tmp[,"Position"]<-factor(melted.tmp[,"Position"],levels = rev(sort(unique(melted.tmp[,"Position"]))))
+  melted.tmp[,"Position"]<-factor(melted.tmp[,"Position"],
+                                  levels = rev(sort(unique(melted.tmp[,"Position"]))))
 
   ### if quantitative variable
   ###---------------------------
@@ -211,7 +214,8 @@ plotGSS<-function(datain,modelin,trait,myvec,lgrid){
   select<-unique(tmp1[,"Genosce"])
   tmp1<-na.omit(dplyr::filter(tmp1,Genosce %in% select[myvec]))
   tmp2<-as.data.frame(dplyr::summarise(dplyr::group_by(tmp1,Genosce,repetition),
-                                       mymin=min(thermalTime,na.rm=TRUE),mymax=max(thermalTime,na.rm=TRUE)))
+                                       mymin=min(thermalTime,na.rm=TRUE),
+                                       mymax=max(thermalTime,na.rm=TRUE)))
   ## creation grid
   tp<-numeric()
   Genosce<-character()
@@ -261,16 +265,26 @@ plotGSS<-function(datain,modelin,trait,myvec,lgrid){
 ##' @param labelX a label for abscissa
 ##' @return a graph
 ##' @importFrom graphics abline hist lines par plot points text
+##' @importFrom dplyr filter select
+##' @importFrom ggplot2 aes geom_histogram geom_point ggplot xlab
 ##'
 ##' @examples
-##' # outlierHist(datain=myResuGlobal,trait="biovolume24",flag="flagLowerRaw")
+##' library(dplyr)
+##' data(plant4)
+##' mydata<-mutate(plant4,flag=if_else(Phy <= 0.215,0,1))
+##' outlierHist(datain=mydata,trait="Phy",
+##'               flag="flag",labelX="Phyllocron")
 ##' @export
 outlierHist<-function(datain,trait,flag,labelX){
+  # formatting
   datain<-as.data.frame(datain)
-  idflag<-as.vector(t(dplyr::select(dplyr::filter_(datain,paste0(flag,"==0")),Ref)))
-  pflag<-as.vector(t(dplyr::select_(dplyr::filter(datain,Ref %in% idflag),trait)))
-  hist(datain[,trait],main=flag,xlab=labelX)
-  points(x=pflag,y=rep(0,length(pflag)),col="red",pch=19)
+  selec<-filter(datain,.data[[flag]] == 0)
+  
+  # graph
+  ggplot(mydata,aes_string(x=trait)) + 
+      geom_histogram() + 
+      geom_point(data=selec,aes_string(x=trait,y=0),color="red") +
+      xlab(label=labelX)
 }
 
 
@@ -299,7 +313,8 @@ plotCARBayesST<-function(datain,outlierin,myselect,trait,xvar){
   # identifying the outlier points in tmp
   tutu<-filter(tmp,genotypeAlias %in% selectVariete)
 
-  g<-ggplot(data = tutu, aes_string(x = xvar, y = trait,color="scenario")) + geom_point() +
+  g<-ggplot(data = tutu, aes_string(x = xvar, y = trait,color="scenario")) + 
+    geom_point() +
     geom_line(aes(color=scenario,linetype=Repsce))  +
     geom_point(data=toto,aes_string(x = xvar, y = trait),colour="black") +
     facet_wrap(~ genotypeAlias) + labs(title=trait)

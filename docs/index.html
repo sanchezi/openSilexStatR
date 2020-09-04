@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Lattice Experiments Data Analysis">
-<meta property="og:description" content="A set of statistical functions and rmarkdown scripts to analyze experiment in
+<meta property="og:description" content="A set of statistical functions and rmarkdown scripts to analyze experiments in
    a lattice platfrom - OpenSilex system information.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -124,7 +124,8 @@
 <span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"sanchezi/openSilexStatR"</span>,<span class="kw">build_vignettes</span><span class="kw">=</span><span class="fl">TRUE</span>)</pre></div>
 <p>If you want to install the vignettes included in this library, be aware to have the following softwares on your computer:</p>
 <ul>
-<li>if <strong>Windows OS</strong>: MikTex (do not forget to add its path to the environment variables PATH, ex: “C:\MIKTEX~1.9\miktex\bin\x64\pdflatex.exe”), Rtools</li>
+<li>if <strong>Windows OS</strong>: <strong>MikTex</strong> (do not forget to add its path to the environment variables PATH, ex: “C:\MIKTEX~1.9\miktex\bin\x64\pdflatex.exe”), <strong>Rtools</strong>
+</li>
 <li>if <strong>Unix OS</strong>: rgdal, rgl, imagemagick</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="r">sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
@@ -177,8 +178,8 @@ sudo apt-get install -y libmagick++-dev</pre></div>
 </li>
 <li>Gu, C. (2013), Smoothing Spline ANOVA Models (2nd Ed). New York: Springer-Verlag.</li>
 <li>Gu, C. (2014), Smoothing Spline ANOVA Models: R Package gss. Journal of Statistical Software, 58(5), 1-25. URL <a href="http://www.jstatsoft.org/v58/i05/" class="uri">http://www.jstatsoft.org/v58/i05/</a>.</li>
-<li>Lee D, Rushworth A, Napier G (2018). “Spatio-Temporal Areal Unit Modeling in R with Conditional Autoregressive Priors Using the CARBayesST Package.” Journal of Statistical Software, 84(9), 1–39. doi: 10.18637/jss.v084.i09.</li>
-<li>Catherine Loader (2013). locfit: Local Regression, Likelihood and Density Estimation.. R package version 1.5-9.1. <a href="https://CRAN.R-project.org/package=locfit" class="uri">https://CRAN.R-project.org/package=locfit</a>
+<li>Lee D, Rushworth A, Napier G (2018). Spatio-Temporal Areal Unit Modeling in R with Conditional Autoregressive Priors Using the CARBayesST Package. Journal of Statistical Software, 84(9), 1–39. doi: 10.18637/jss.v084.i09.</li>
+<li>Catherine Loader (2013). locfit: Local Regression, Likelihood and Density Estimation. R package version 1.5-9.1. <a href="https://CRAN.R-project.org/package=locfit" class="uri">https://CRAN.R-project.org/package=locfit</a>
 </li>
 </ol>
 </div>
@@ -201,9 +202,9 @@ sudo apt-get install -y libmagick++-dev</pre></div>
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
+<li>Isabelle Sanchez <br><small class="roles"> Author, maintainer </small>  </li>
 <li>Pascal Neveu <br><small class="roles"> Author </small>  </li>
 <li>Nadine Hilgert <br><small class="roles"> Author </small>  </li>
-<li>Isabelle Sanchez <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
 </div>
 
@@ -212,7 +213,7 @@ sudo apt-get install -y libmagick++-dev</pre></div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Pascal Neveu, Nadine Hilgert, Isabelle Sanchez.</p>
+  <p>Developed by Isabelle Sanchez, Pascal Neveu, Nadine Hilgert.</p>
 </div>
 
 <div class="pkgdown">

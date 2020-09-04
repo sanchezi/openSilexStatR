@@ -18,9 +18,12 @@ a description
 a function for gss analysis description
 }
 \details{
-the input object is the 2nd element of a fitGSS result, a dataframe with the Kullback-Leibler projection
-         colnames of this dataframe are Genosce, ratio, kl, check. The outlier curves are identified with the Kullback-Lleiber 
-         distance higher than a given threshold, see (Gu, 2014). Final identification of outlier is done by an operator over
+the input object is a fitGSS result and printGSS() prints the 2nd element of it (a dataframe 
+         with the Kullback-Leibler projection).
+         The colnames of this dataframe are Genosce, ratio, kl, check. 
+         The outlier curves are identified with the Kullback-Lleiber 
+         distance higher than a given threshold, see (Gu, 2014). 
+         Final identification of outlier is done by an operator over
          genotypes when the test is significant.
 }
 \examples{

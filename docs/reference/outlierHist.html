@@ -166,8 +166,11 @@ outlier points according to a specified flag method</p>
     <p>a graph</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># outlierHist(datain=myResuGlobal,trait="biovolume24",flag="flagLowerRaw")
-</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>plant4</span>)
+<span class='no'>mydata</span><span class='kw'>&lt;-</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='no'>plant4</span>,<span class='kw'>flag</span><span class='kw'>=</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span>(<span class='no'>Phy</span> <span class='kw'>&lt;=</span> <span class='fl'>0.215</span>,<span class='fl'>0</span>,<span class='fl'>1</span>))
+<span class='fu'>outlierHist</span>(<span class='kw'>datain</span><span class='kw'>=</span><span class='no'>mydata</span>,<span class='kw'>trait</span><span class='kw'>=</span><span class='st'>"Phy"</span>,
+              <span class='kw'>flag</span><span class='kw'>=</span><span class='st'>"flag"</span>,<span class='kw'>labelX</span><span class='kw'>=</span><span class='st'>"Phyllocron"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in ggplot(mydata, aes_string(x = trait)): objet 'mydata' introuvable</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -179,7 +182,7 @@ outlier points according to a specified flag method</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Pascal Neveu, Nadine Hilgert, Isabelle Sanchez.</p>
+  <p>Developed by Isabelle Sanchez, Pascal Neveu, Nadine Hilgert.</p>
 </div>
 
 <div class="pkgdown">
